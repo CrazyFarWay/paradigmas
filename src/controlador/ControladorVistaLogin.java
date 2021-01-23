@@ -6,17 +6,36 @@ import vistas.VistaLogin;
 
 
 public class ControladorVistaLogin {
-	VistaLogin ventanaLogin = new VistaLogin();
+	private static VistaLogin ventanaLogin = new VistaLogin();
 	
-	public void mostrar(){
+	public static void mostrar(){
+		ventanaLogin.getUsuario().setText("");
+		ventanaLogin.getContraseña().setText("");
 		ventanaLogin.getLabelUsuarioContraseñaIncorrecto().setVisible(false);
 		ventanaLogin.setVisible(true);
 	}
 	
-	public void ingresar(){
+	public static void ingresar(){
 		BaseDeDatos baseDeDatos = new BaseDeDatos();
-		Usuario usuarioIngresado = new Usuario();
+		ArrayList<Usuario> usuarios = baseDeDatos.obtenerUsuarios();
 		
+		String usuarioIngresado = ventanaLogin.getUsuario().getText();
+		String contraseñaIngresada = ventanaLogin.getContraseña().getText();
 		
+		boolean bandera = false;
+		
+		for(Usuario usuario:usuarios){
+			if(usuarioIngresado.equals(usuario.getUsuario()) && contraseñaIngresada.equals(usuario.getContraseña())){
+				bandera = true;
+			}
+		}
+		
+		if (bandera){
+			ventanaLogin.setVisible(false);
+			//ControladorVistaPrincipal.mostrar();
+		}
+		else{
+			ventanaLogin.getLabelUsuarioContraseñaIncorrecto().setVisible(true);
+		}
 	}
 }
