@@ -93,14 +93,15 @@ public class BaseDeDatos {
     }
 
     public void agregarProveedor(Proveedor proveedor) {
-        
-        try {
-                PreparedStatement statement = conexion.prepareStatement("insert into proveedores (nombre, rubro, telefono, correoElectronico, direccion) values (?, ?, ?, ?)");
 
-            statement.setString(1, producto.getNombre());
-            statement.setString(2, producto.getMarca());
-            statement.setDouble(3, producto.getPrecio());
-            statement.setInt(4, producto.getCantidad());
+        try {
+            PreparedStatement statement = conexion.prepareStatement("insert into proveedores (nombre, rubro, telefono, correoElectronico, direccion) values (?, ?, ?, ?, ?)");
+
+            statement.setString(1, proveedor.getNombre());
+            statement.setString(2, proveedor.getRubro());
+            statement.setString(3, proveedor.getTelefono());
+            statement.setString(4, proveedor.getCorreoElectronico());
+            statement.setString(5, proveedor.getDireccion());
 
             statement.executeUpdate();
         } catch (SQLException ex) {
@@ -108,12 +109,81 @@ public class BaseDeDatos {
         }
     }
 
-    public void eliminarProveedor() {
+    public void eliminarProveedor(int codigo) {
+        Statement statement;
+
+        try {
+            statement = conexion.createStatement();
+            statement.executeUpdate("delete from proveedores where codigo=" + codigo);
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
     }
 
-    public void modificarProveedor() {
+    public void modificarProveedor(Proveedor proveedor) {
+
+        try {
+            PreparedStatement statement = conexion.prepareStatement("update proveedores set nombre=?, rubro=?, telefono=?, correoElectronico=?, direccion=? where codigo=?");
+
+            statement.setString(1, proveedor.getNombre());
+            statement.setString(2, proveedor.getRubro());
+            statement.setString(3, proveedor.getTelefono());
+            statement.setString(4, proveedor.getCorreoElectronico());
+            statement.setString(5, proveedor.getDireccion());
+            statement.setInt(6, proveedor.getCodigo());
+
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
-    // public ArrayList<Proveedor> obtenerProveedores(){}
-    // public ArrayList<Usuario> obtenerUsuarios(){}
+    public ArrayList<Proveedor> obtenerProveedores() {
+
+        ArrayList<Proveedor> proveedores = new ArrayList<>();
+
+        try {
+            Statement statement = conexion.createStatement();
+            ResultSet resultado = statement.executeQuery("select * from proveedores order by codigo");
+
+            while (resultado.next()) {
+                Proveedor proveedor = new Proveedor(resultado.getInt("codigo"),
+                        resultado.getString("nombre"),
+                        resultado.getString("rubro"),
+                        resultado.getString("telefono"),
+                        resultado.getString("correo electronico"),
+                        resultado.getString("direccion"));
+
+                proveedores.add(proveedor);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return proveedores;
+    }
+
+    public ArrayList<Usuario> obtenerUsuarios(){
+        
+        ArrayList<Usuario> usuarios = new ArrayList<>();
+
+        try {
+            Statement statement = conexion.createStatement();
+            ResultSet resultado = statement.executeQuery("select * from usuarios order by usuario");
+
+            while (resultado.next()) {
+                Usuario usuario = new Usuario(resultado.getString("usuario"),
+                        resultado.getString("contraseña"));
+
+                usuarios.add(usuario);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return usuarios;
+    
+    }
 }
