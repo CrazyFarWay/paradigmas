@@ -6,6 +6,8 @@
 package vistas;
 
 import controlador.ControladorVistaProveedores;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -52,6 +54,11 @@ public class VistaProveedores extends javax.swing.JFrame {
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
                 setTitle("Proveedores");
                 setResizable(false);
+                addMouseListener(new java.awt.event.MouseAdapter() {
+                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                formMouseClicked(evt);
+                        }
+                });
 
                 tablaProveedores.setModel(new javax.swing.table.DefaultTableModel(
                         new Object [][] {
@@ -67,6 +74,11 @@ public class VistaProveedores extends javax.swing.JFrame {
 
                         public boolean isCellEditable(int rowIndex, int columnIndex) {
                                 return canEdit [columnIndex];
+                        }
+                });
+                tablaProveedores.addMouseListener(new java.awt.event.MouseAdapter() {
+                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                tablaProveedoresMouseClicked(evt);
                         }
                 });
                 jScrollPane1.setViewportView(tablaProveedores);
@@ -100,16 +112,31 @@ public class VistaProveedores extends javax.swing.JFrame {
                 botonHacerPedido.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
                 botonHacerPedido.setForeground(new java.awt.Color(255, 255, 255));
                 botonHacerPedido.setText("HACER UN PEDIDO");
+                botonHacerPedido.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                botonHacerPedidoActionPerformed(evt);
+                        }
+                });
 
                 botonModificar.setBackground(new java.awt.Color(0, 51, 153));
                 botonModificar.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
                 botonModificar.setForeground(new java.awt.Color(255, 255, 255));
                 botonModificar.setText("Modificar");
+                botonModificar.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                botonModificarActionPerformed(evt);
+                        }
+                });
 
                 botonEliminar.setBackground(new java.awt.Color(153, 0, 51));
                 botonEliminar.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
                 botonEliminar.setForeground(new java.awt.Color(255, 255, 255));
                 botonEliminar.setText("Eliminar");
+                botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                botonEliminarActionPerformed(evt);
+                        }
+                });
 
                 botonAgregar.setBackground(new java.awt.Color(102, 153, 0));
                 botonAgregar.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
@@ -146,7 +173,18 @@ public class VistaProveedores extends javax.swing.JFrame {
                                                 .addGap(229, 229, 229)
                                                 .addComponent(jLabel1))
                                         .addGroup(layout.createSequentialGroup()
-                                                .addContainerGap()
+                                                .addGap(301, 301, 301)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel7)
+                                                        .addComponent(jLabel5)
+                                                        .addComponent(jLabel4))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(rubro, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(correoElectronico, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(30, 30, 30)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                         .addComponent(botonHacerPedido)
                                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,23 +193,10 @@ public class VistaProveedores extends javax.swing.JFrame {
                                                                         .addGap(155, 155, 155)
                                                                         .addComponent(botonAgregar)
                                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                .addGroup(layout.createSequentialGroup()
-                                                                                        .addGap(49, 49, 49)
-                                                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                .addComponent(jLabel7)
-                                                                                                .addComponent(jLabel5)
-                                                                                                .addComponent(jLabel4))
-                                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                .addComponent(rubro, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                .addComponent(correoElectronico, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                                                .addGroup(layout.createSequentialGroup()
-                                                                                        .addComponent(botonModificar)
-                                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                                        .addComponent(botonEliminar))))))))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                                        .addComponent(botonModificar)
+                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                        .addComponent(botonEliminar))))))
+                                .addContainerGap(39, Short.MAX_VALUE))
                 );
 
                 layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {botonAgregar, botonEliminar, botonModificar});
@@ -208,7 +233,7 @@ public class VistaProveedores extends javax.swing.JFrame {
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                         .addComponent(jLabel7)
                                                         .addComponent(correoElectronico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(botonModificar)
                                         .addComponent(botonEliminar)
@@ -217,7 +242,7 @@ public class VistaProveedores extends javax.swing.JFrame {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(botonHacerPedido)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap())
                 );
 
                 layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {botonAgregar, botonEliminar, botonModificar});
@@ -228,6 +253,26 @@ public class VistaProveedores extends javax.swing.JFrame {
         private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
                 ControladorVistaProveedores.agregarProveedor();
         }//GEN-LAST:event_botonAgregarActionPerformed
+
+        private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
+		ControladorVistaProveedores.modificarProveedor();
+        }//GEN-LAST:event_botonModificarActionPerformed
+
+        private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+		ControladorVistaProveedores.eliminarProveedor();
+        }//GEN-LAST:event_botonEliminarActionPerformed
+
+        private void tablaProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProveedoresMouseClicked
+		ControladorVistaProveedores.seleccionarProveedor();
+        }//GEN-LAST:event_tablaProveedoresMouseClicked
+
+        private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+		ControladorVistaProveedores.limpiarTextFields();
+        }//GEN-LAST:event_formMouseClicked
+
+        private void botonHacerPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonHacerPedidoActionPerformed
+		ControladorVistaProveedores.hacerUnPedido();
+        }//GEN-LAST:event_botonHacerPedidoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -286,59 +331,60 @@ public class VistaProveedores extends javax.swing.JFrame {
         private javax.swing.JTextField telefono;
         // End of variables declaration//GEN-END:variables
 
-	public javax.swing.JTextField getCodigo() {
+	public JTextField getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(javax.swing.JTextField codigo) {
+	public void setCodigo(JTextField codigo) {
 		this.codigo = codigo;
 	}
 
-	public javax.swing.JTextField getCorreoElectronico() {
+	public JTextField getCorreoElectronico() {
 		return correoElectronico;
 	}
 
-	public void setCorreoElectronico(javax.swing.JTextField correoElectronico) {
+	public void setCorreoElectronico(JTextField correoElectronico) {
 		this.correoElectronico = correoElectronico;
 	}
 
-	public javax.swing.JTextField getDireccion() {
+	public JTextField getDireccion() {
 		return direccion;
 	}
 
-	public void setDireccion(javax.swing.JTextField direccion) {
+	public void setDireccion(JTextField direccion) {
 		this.direccion = direccion;
 	}
 
-	public javax.swing.JTextField getNombre() {
+	public JTextField getNombre() {
 		return nombre;
 	}
 
-	public void setNombre(javax.swing.JTextField nombre) {
+	public void setNombre(JTextField nombre) {
 		this.nombre = nombre;
 	}
 
-	public javax.swing.JTextField getRubro() {
+	public JTextField getRubro() {
 		return rubro;
 	}
 
-	public void setRubro(javax.swing.JTextField rubro) {
+	public void setRubro(JTextField rubro) {
 		this.rubro = rubro;
 	}
 
-	public javax.swing.JTable getTablaProveedores() {
+	public JTable getTablaProveedores() {
 		return tablaProveedores;
 	}
 
-	public void setTablaProveedores(javax.swing.JTable tablaProveedores) {
+	public void setTablaProveedores(JTable tablaProveedores) {
 		this.tablaProveedores = tablaProveedores;
 	}
 
-	public javax.swing.JTextField getTelefono() {
+	public JTextField getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(javax.swing.JTextField telefono) {
+	public void setTelefono(JTextField telefono) {
 		this.telefono = telefono;
 	}
+
 }

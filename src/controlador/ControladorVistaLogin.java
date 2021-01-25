@@ -32,7 +32,7 @@ public class ControladorVistaLogin {
 		
 		if (bandera){
 			ventanaLogin.setVisible(false);
-			//ControladorVistaPrincipal.mostrar();
+			ControladorVistaPrincipal.mostrar();
 		}
 		else{
 			ventanaLogin.getLabelUsuarioContraseñaIncorrecto().setVisible(true);

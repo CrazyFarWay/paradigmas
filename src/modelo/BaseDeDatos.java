@@ -110,11 +110,12 @@ public class BaseDeDatos {
     }
 
     public void eliminarProveedor(int codigo) {
-        Statement statement;
+        PreparedStatement statement;
 
         try {
-            statement = conexion.createStatement();
-            statement.executeUpdate("delete from proveedores where codigo=" + codigo);
+		statement = conexion.prepareStatement("DELETE FROM PROVEEDORES WHERE codigo = ?");
+		statement.setInt(1, codigo);
+		statement.executeUpdate();
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -153,7 +154,7 @@ public class BaseDeDatos {
                         resultado.getString("nombre"),
                         resultado.getString("rubro"),
                         resultado.getString("telefono"),
-                        resultado.getString("correo electronico"),
+                        resultado.getString("correoElectronico"),
                         resultado.getString("direccion"));
 
                 proveedores.add(proveedor);

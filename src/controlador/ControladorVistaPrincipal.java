@@ -6,6 +6,9 @@ public class ControladorVistaPrincipal {
     
     static VistaPrincipal vista = new VistaPrincipal();
   
+    public static void mostrar(){
+	    vista.setVisible(true);
+    }
     
     public static void botonInventario(){
         vista.dispose();

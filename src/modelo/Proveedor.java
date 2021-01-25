@@ -14,6 +14,14 @@ public class Proveedor {
         this.direccion = direccion;
     }
 
+    public Proveedor(String nombre, String rubro, String telefono, String correoElectronico, String direccion) {
+        this.nombre = nombre;
+        this.rubro = rubro;
+        this.telefono = telefono;
+        this.correoElectronico = correoElectronico;
+        this.direccion = direccion;
+    }
+
     public Proveedor() {
     }
 
