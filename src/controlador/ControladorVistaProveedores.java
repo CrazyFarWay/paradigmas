@@ -76,6 +76,11 @@ public class ControladorVistaProveedores {
     }
     
     public static void hacerUnPedido(){
+	String mail = vista.getCorreoElectronico().getText();
+	String asunto = "Pedido de "+ vista.getRubro().getText() + " por parte del Drugstore";
+
+	ControladorVistaPedidos.rellenarDatos(mail, asunto);
+
 	vista.dispose();
 	ControladorVistaPedidos.mostrar();
     }
