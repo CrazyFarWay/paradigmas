@@ -5,6 +5,7 @@
  */
 package vistas;
 
+import controlador.ControladorMenu;
 import controlador.ControladorVistaPrincipal;
 import controlador.ControladorVistaProveedores;
 
@@ -34,6 +35,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 inventario = new javax.swing.JButton();
                 inventario1 = new javax.swing.JButton();
                 inventario2 = new javax.swing.JButton();
+                jMenuBar1 = new javax.swing.JMenuBar();
+                jMenu1 = new javax.swing.JMenu();
+                botonCerrarSesion = new javax.swing.JMenuItem();
+                botonSalir = new javax.swing.JMenuItem();
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
                 setTitle("Menu Principal");
@@ -41,7 +46,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 setResizable(false);
 
                 jLabel1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
-                jLabel1.setText("Sistema Drugstore");
+                jLabel1.setText("SISTEMA DRUGSTORE");
 
                 inventario.setBackground(new java.awt.Color(102, 0, 102));
                 inventario.setFont(new java.awt.Font("Tw Cen MT", 2, 18)); // NOI18N
@@ -73,18 +78,48 @@ public class VistaPrincipal extends javax.swing.JFrame {
                         }
                 });
 
+                jMenuBar1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+                jMenu1.setText("Menu");
+                jMenu1.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
+
+                botonCerrarSesion.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
+                botonCerrarSesion.setText("Cerrar Sesion");
+                botonCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                botonCerrarSesionActionPerformed(evt);
+                        }
+                });
+                jMenu1.add(botonCerrarSesion);
+
+                botonSalir.setBackground(new java.awt.Color(255, 153, 153));
+                botonSalir.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
+                botonSalir.setForeground(new java.awt.Color(255, 255, 255));
+                botonSalir.setText("Salir");
+                botonSalir.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                botonSalirActionPerformed(evt);
+                        }
+                });
+                jMenu1.add(botonSalir);
+
+                jMenuBar1.add(jMenu1);
+
+                setJMenuBar(jMenuBar1);
+
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                 getContentPane().setLayout(layout);
                 layout.setHorizontalGroup(
                         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(inventario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(inventario1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(inventario2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap(37, Short.MAX_VALUE))
+                                .addGap(21, 21, 21)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(inventario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(inventario1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(inventario2, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel1))
+                                .addContainerGap(21, Short.MAX_VALUE))
                 );
                 layout.setVerticalGroup(
                         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,15 +152,27 @@ public class VistaPrincipal extends javax.swing.JFrame {
 		ControladorVistaPrincipal.botonProveedores();
         }//GEN-LAST:event_inventario2ActionPerformed
 
+        private void botonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesionActionPerformed
+		ControladorMenu.cerrarSesion(this);
+        }//GEN-LAST:event_botonCerrarSesionActionPerformed
+
+        private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+		ControladorMenu.salirDelPrograma();
+        }//GEN-LAST:event_botonSalirActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
+        private javax.swing.JMenuItem botonCerrarSesion;
+        private javax.swing.JMenuItem botonSalir;
         private javax.swing.JButton inventario;
         private javax.swing.JButton inventario1;
         private javax.swing.JButton inventario2;
         private javax.swing.JLabel jLabel1;
+        private javax.swing.JMenu jMenu1;
+        private javax.swing.JMenuBar jMenuBar1;
         // End of variables declaration//GEN-END:variables
 }
