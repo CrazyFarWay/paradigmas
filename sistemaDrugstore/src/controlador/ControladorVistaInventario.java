@@ -20,7 +20,7 @@ public class ControladorVistaInventario {
         model.setNumRows(0);
 
         for (Producto producto : productos) {
-            Object[] fila = new Object[3];
+            Object[] fila = new Object[5];
 
             fila[0] = producto.getId();
             fila[1] = producto.getNombre();
@@ -51,6 +51,7 @@ public class ControladorVistaInventario {
         baseDeDatos.agregarProducto(prod);
         mostrar();
 
+
     }
 
     public static void botonModificar() {
@@ -72,6 +73,7 @@ public class ControladorVistaInventario {
 
         baseDeDatos.modificarProducto(prod);
         mostrar();
+
     }
 
     public static void botonEliminar() {
@@ -83,6 +85,15 @@ public class ControladorVistaInventario {
         baseDeDatos.eliminarProducto(id);
         mostrar();
 
+
+    }
+    
+    public static void limpiarTextFields(){
+	vista.getId().setText("");
+	vista.getNombre().setText("");
+	vista.getMarca().setText("");
+	vista.getPrecio().setText("");
+	vista.getCantidad().setText("");
     }
 
 }
