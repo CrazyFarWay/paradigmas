@@ -31,60 +31,44 @@ public class ControladorVistaInventario {
         }
     }
 
-    public static void botonAgregar() {
+    public static void agregarProducto() {
 
-        int id = Integer.parseInt(vista.getId().getText());
-        String nombre = vista.getNombre().getText();
-        String marca = vista.getMarca().getText();
-        double precio = Double.parseDouble(vista.getPrecio().getText());
-        int cantidad = Integer.parseInt(vista.getCantidad().getText());
-
-        Producto prod = new Producto();
-        prod.setId(id);
-        prod.setNombre(nombre);
-        prod.setMarca(marca);
-        prod.setPrecio(precio);
-        prod.setCantidad(cantidad);
 
         BaseDeDatos baseDeDatos = new BaseDeDatos();
-
-        baseDeDatos.agregarProducto(prod);
-        mostrar();
-
-
+	Producto producto = new Producto(
+		Integer.parseInt(vista.getId().getText()),
+		vista.getNombre().getText(),
+		vista.getMarca().getText(),
+		Double.parseDouble(vista.getPrecio().getText()),
+		Integer.parseInt(vista.getCantidad().getText())
+	);
+	    
+	baseDeDatos.agregarProducto(producto);
+	mostrar();
     }
 
-    public static void botonModificar() {
+    public static void modificarProducto() {
 
-        int id = Integer.parseInt(vista.getId().getText());
-        String nombre = vista.getNombre().getText();
-        String marca = vista.getMarca().getText();
-        double precio = Double.parseDouble(vista.getPrecio().getText());
-        int cantidad = Integer.parseInt(vista.getCantidad().getText());
-
-        Producto prod = new Producto();
-        prod.setId(id);
-        prod.setNombre(nombre);
-        prod.setMarca(marca);
-        prod.setPrecio(precio);
-        prod.setCantidad(cantidad);
 
         BaseDeDatos baseDeDatos = new BaseDeDatos();
-
-        baseDeDatos.modificarProducto(prod);
-        mostrar();
-
+	Producto producto = new Producto(
+		Integer.parseInt(vista.getId().getText()),
+		vista.getNombre().getText(),
+		vista.getMarca().getText(),
+		Double.parseDouble(vista.getPrecio().getText()),
+		Integer.parseInt(vista.getCantidad().getText())
+	);
+	    
+	baseDeDatos.modificarProducto(producto);
+	mostrar();
     }
 
-    public static void botonEliminar() {
+    public static void eliminarProducto() {
+       
         
-        int id = Integer.parseInt(vista.getId().getText());
-
         BaseDeDatos baseDeDatos = new BaseDeDatos();
-
-        baseDeDatos.eliminarProducto(id);
-        mostrar();
-
+	baseDeDatos.eliminarProducto(Integer.parseInt(vista.getId().getText()));
+	mostrar();
 
     }
     
@@ -94,6 +78,19 @@ public class ControladorVistaInventario {
 	vista.getMarca().setText("");
 	vista.getPrecio().setText("");
 	vista.getCantidad().setText("");
+    }
+    
+    public static void seleccionarProducto(){
+	int filaSeleccionada = vista.getTablaInventario().getSelectedRow();
+	DefaultTableModel modelo = (DefaultTableModel) vista.getTablaInventario().getModel();
+
+	if(filaSeleccionada >= 0){
+		vista.getId().setText(modelo.getValueAt(filaSeleccionada, 0).toString());
+		vista.getNombre().setText(modelo.getValueAt(filaSeleccionada, 1).toString());
+		vista.getMarca().setText(modelo.getValueAt(filaSeleccionada, 2).toString());
+		vista.getPrecio().setText(modelo.getValueAt(filaSeleccionada, 3).toString());
+		vista.getCantidad().setText(modelo.getValueAt(filaSeleccionada, 4).toString());
+	}
     }
 
 }
