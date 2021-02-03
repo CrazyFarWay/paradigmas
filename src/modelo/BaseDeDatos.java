@@ -8,7 +8,7 @@ public class BaseDeDatos {
     Connection conexion;
     String url = "jdbc:mysql://localhost/drugstore";
     String usuario = "root";
-    String contraseña = "";
+    String contraseña = "valentinasaccone";
 
     public BaseDeDatos() {
 
