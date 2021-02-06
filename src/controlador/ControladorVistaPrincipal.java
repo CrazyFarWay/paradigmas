@@ -17,7 +17,7 @@ public class ControladorVistaPrincipal {
     
     public static void botonVenta(){
         vista.dispose();
-        ControladorVistaVentaPrincipal.mostrar();
+        ControladorVistaVenta.mostrar();
         
     }
     

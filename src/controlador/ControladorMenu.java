@@ -20,7 +20,7 @@ public class ControladorMenu {
 
 	public static void abrirVentas(JFrame vista) {
 		vista.dispose();
-		ControladorVistaVentaPrincipal.mostrar();
+		ControladorVistaVenta.mostrar();
 	}
 
 	public static void cerrarSesion(JFrame vista) {

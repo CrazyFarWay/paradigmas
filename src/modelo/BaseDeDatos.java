@@ -113,9 +113,9 @@ public class BaseDeDatos {
         PreparedStatement statement;
 
         try {
-		statement = conexion.prepareStatement("DELETE FROM PROVEEDORES WHERE codigo = ?");
-		statement.setInt(1, codigo);
-		statement.executeUpdate();
+            statement = conexion.prepareStatement("DELETE FROM PROVEEDORES WHERE codigo = ?");
+            statement.setInt(1, codigo);
+            statement.executeUpdate();
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -166,8 +166,8 @@ public class BaseDeDatos {
         return proveedores;
     }
 
-    public ArrayList<Usuario> obtenerUsuarios(){
-        
+    public ArrayList<Usuario> obtenerUsuarios() {
+
         ArrayList<Usuario> usuarios = new ArrayList<>();
 
         try {
@@ -185,6 +185,64 @@ public class BaseDeDatos {
             System.out.println(ex.getMessage());
         }
         return usuarios;
-    
+
+    }
+
+    public ArrayList<Venta> obtenerVenta() {
+        ArrayList<Venta> ventas = new ArrayList<>();
+
+        try {
+            Statement statement = conexion.createStatement();
+            ResultSet resultado = statement.executeQuery("select * from venta order by id");
+
+            while (resultado.next()) {
+                Venta venta = new Venta(resultado.getInt("id"),
+                        resultado.getString("nombre"),
+                        resultado.getString("marca"),
+                        resultado.getInt("cantidad"),
+                        resultado.getDouble("precioUnidad"),
+                        resultado.getInt("descuento"),
+                        resultado.getInt("subtotal")
+                        );
+
+                ventas.add(venta);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return ventas;
+
+    }
+
+    public void agregarVenta(Venta venta) {
+
+        try {
+            PreparedStatement statement = conexion.prepareStatement("insert into venta (nombre, marca, cantidad, precioUnidad, descuento, subtotal) values (?, ?, ?, ?, ?, ?)");
+
+            statement.setString(1, venta.getNombre());
+            statement.setString(2, venta.getMarca());
+            statement.setInt(3, venta.getCantidad());
+            statement.setDouble(4, venta.getPrecioUnidad());
+            statement.setInt(5, venta.getDescuento());
+            statement.setDouble(6, venta.getSubtotal());
+
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public void eliminarVenta(int id) {
+        PreparedStatement statement;
+
+        try {
+            statement = conexion.prepareStatement("delete from venta where id = ?");
+            statement.setInt(1, id);
+            statement.executeUpdate();
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }
