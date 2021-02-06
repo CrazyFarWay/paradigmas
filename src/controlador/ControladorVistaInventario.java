@@ -92,5 +92,35 @@ public class ControladorVistaInventario {
 		vista.getCantidad().setText(modelo.getValueAt(filaSeleccionada, 4).toString());
 	}
     }
+    
+    public static void actualizarProductos() {
+        vista.dispose();
+        ControladorVistaActualizarProductos.mostrar();
+    }
 
+    public static void filtrarProductos() {
+        BaseDeDatos baseDeDatos = new BaseDeDatos();
+       
+        ArrayList<Producto> productos = baseDeDatos.obtenerProductosFiltrados(
+                vista.getFiltroCantidad().getSelectedItem().toString(),
+                vista.getFiltroPrecio().getSelectedItem().toString(),
+                vista.getFiltroRubro().getSelectedItem().toString()
+        );
+        
+                
+        
+        DefaultTableModel model = (DefaultTableModel) vista.getTablaInventario().getModel();
+        model.setNumRows(0);
+
+        for (Producto producto : productos) {
+            Object[] fila = new Object[5];
+
+            fila[0] = producto.getId();
+            fila[1] = producto.getNombre();
+            fila[2] = producto.getMarca();
+            fila[3] = producto.getPrecio();
+            fila[4] = producto.getCantidad();
+            model.addRow(fila);
+        }
+    }
 }

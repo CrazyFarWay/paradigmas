@@ -245,4 +245,63 @@ public class BaseDeDatos {
             System.out.println(ex.getMessage());
         }
     }
+    
+    public ArrayList<Producto> obtenerProductosFiltrados(String cantidad, String precio, String rubro) {
+        ArrayList<Producto> productos = new ArrayList<>();
+        String orderBy = "";
+        
+        if (rubro.equals("Todos")) {
+            rubro = "";
+        }
+        else {
+            rubro = "WHERE rubro = '"+rubro+"'";
+        }
+        
+        if (precio.equals("Todos")) {
+            precio = "";
+        }
+        else if (precio.equals("Mayor Precio")) {
+            precio = ", precio ASC";
+            orderBy = "ORDER BY";
+        }
+        else if (precio.equals("Menor Precio")) {
+            precio = ", precio DESC";
+            orderBy = "ORDER BY";
+        }
+        
+        if (cantidad.equals("Todos")) {
+            cantidad = "";
+        }
+        else if (cantidad.equals("Mayor Cantidad")) {
+            cantidad = ", cantidad ASC";
+            orderBy = "ORDER BY";
+        }
+        else if (cantidad.equals("Menor Cantidad")) {
+            cantidad = ", cantidad DESC";
+            orderBy = " ORDER BY ";
+        }
+        
+        //System.out.println("select * from productos "+ rubro + orderBy + precio + cantidad);
+        
+        try {
+            Statement statement = conexion.createStatement();
+            ResultSet resultado = statement.executeQuery(
+                    "select * from productos "+ rubro + orderBy + precio + cantidad);
+
+            while (resultado.next()) {
+                Producto producto = new Producto(resultado.getInt("id"),
+                        resultado.getString("nombre"),
+                        resultado.getString("marca"),
+                        resultado.getDouble("precio"),
+                        resultado.getInt("cantidad"));
+
+                productos.add(producto);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return productos;
+    }
 }
