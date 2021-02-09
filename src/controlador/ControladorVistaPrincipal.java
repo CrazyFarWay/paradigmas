@@ -12,7 +12,7 @@ public class ControladorVistaPrincipal {
     
     public static void botonInventario(){
         vista.dispose();
-        ControladorVistaInventario.mostrar();
+        ControladorVistaABM.mostrar();
     }
     
     public static void botonVenta(){

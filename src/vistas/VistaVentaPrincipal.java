@@ -121,7 +121,7 @@ public class VistaVentaPrincipal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Nombre", "Marca", "Precio", "Cantidad"
+                "ID", "Nombre", "Marca", "Rubro", "Precio", "Cantidad"
             }
         ));
         tablaProductos.addMouseListener(new java.awt.event.MouseAdapter() {

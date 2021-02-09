@@ -11,7 +11,7 @@ public class ControladorMenu {
 
 	public static void abrirInventario(JFrame vista) {
 		vista.dispose();
-		ControladorVistaInventario.mostrar();
+		ControladorVistaABM.mostrar();
 	}
 
 	public static void salirDelPrograma() {

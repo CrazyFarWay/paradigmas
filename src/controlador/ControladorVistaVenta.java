@@ -21,13 +21,14 @@ public class ControladorVistaVenta {
         model.setNumRows(0);
 
         for (Producto producto : productos) {
-            Object[] fila = new Object[5];
+            Object[] fila = new Object[6];
 
             fila[0] = producto.getId();
             fila[1] = producto.getNombre();
             fila[2] = producto.getMarca();
-            fila[3] = producto.getPrecio();
-            fila[4] = producto.getCantidad();
+            fila[3] = producto.getRubro();
+            fila[4] = producto.getPrecio();
+            fila[5] = producto.getCantidad();
             model.addRow(fila);
         }
 

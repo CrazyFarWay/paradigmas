@@ -25,12 +25,13 @@ public class BaseDeDatos {
     public void agregarProducto(Producto producto) {
 
         try {
-            PreparedStatement statement = conexion.prepareStatement("insert into productos (nombre, marca, precio, cantidad) values (?, ?, ?, ?)");
+            PreparedStatement statement = conexion.prepareStatement("insert into productos (nombre, marca, rubro, precio, cantidad) values (?, ?, ?, ?, ?)");
 
             statement.setString(1, producto.getNombre());
             statement.setString(2, producto.getMarca());
-            statement.setDouble(3, producto.getPrecio());
-            statement.setInt(4, producto.getCantidad());
+            statement.setString(3, producto.getRubro());
+            statement.setDouble(4, producto.getPrecio());
+            statement.setInt(5, producto.getCantidad());
 
             statement.executeUpdate();
         } catch (SQLException ex) {
@@ -54,13 +55,14 @@ public class BaseDeDatos {
     public void modificarProducto(Producto producto) {
 
         try {
-            PreparedStatement statement = conexion.prepareStatement("update productos set nombre=?, marca=?, precio=?, cantidad=? where id=?");
+            PreparedStatement statement = conexion.prepareStatement("update productos set nombre=?, marca=?, rubro=?, precio=?, cantidad=? where id=?");
 
             statement.setString(1, producto.getNombre());
             statement.setString(2, producto.getMarca());
-            statement.setDouble(3, producto.getPrecio());
-            statement.setInt(4, producto.getCantidad());
-            statement.setInt(5, producto.getId());
+            statement.setString(3, producto.getRubro());
+            statement.setDouble(4, producto.getPrecio());
+            statement.setInt(5, producto.getCantidad());
+            statement.setInt(6, producto.getId());
 
             statement.executeUpdate();
         } catch (SQLException ex) {
@@ -79,6 +81,7 @@ public class BaseDeDatos {
                 Producto producto = new Producto(resultado.getInt("id"),
                         resultado.getString("nombre"),
                         resultado.getString("marca"),
+                        resultado.getString("rubro"),
                         resultado.getDouble("precio"),
                         resultado.getInt("cantidad"));
 
@@ -292,6 +295,7 @@ public class BaseDeDatos {
                 Producto producto = new Producto(resultado.getInt("id"),
                         resultado.getString("nombre"),
                         resultado.getString("marca"),
+                        resultado.getString("rubro"),
                         resultado.getDouble("precio"),
                         resultado.getInt("cantidad"));
 
