@@ -13,6 +13,7 @@ public class ControladorVistaVenta {
 
     public static void mostrar() {
         vista.setVisible(true);
+        vista.getLabelMontoInsuficiente().setVisible(false);
 
         BaseDeDatos baseDeDatos = new BaseDeDatos();
         ArrayList<Producto> productos = baseDeDatos.obtenerProductos();
@@ -69,7 +70,7 @@ public class ControladorVistaVenta {
                 Integer.parseInt(vista.getCantidad().getText()),
                 Double.parseDouble(vista.getPrecioUnidad().getText()),
                 Integer.parseInt(vista.getDescuento().getText()),
-                subtotal = precioUnidad * cantidad - (descuento*precioUnidad)/100
+                subtotal = precioUnidad * cantidad - (descuento * precioUnidad) / 100
         );
 
         baseDeDatos.agregarVenta(venta);
@@ -83,19 +84,39 @@ public class ControladorVistaVenta {
         mostrar();
 
     }
-    
-    public static void calculoTotalYVuelto(){
-        //ver como limpiar los jtextfields
-        double montoEntregado, total, vuelto;
-        
+
+    public static void calculoTotal() {
+
+        double total = 0;
+
+        if (vista.getTablaVentas().getRowCount() > 0) {
+            for (int i = 0; i < vista.getTablaVentas().getRowCount(); i++) {
+                total = total + Double.parseDouble(vista.getTablaVentas().getValueAt(i, 6).toString());
+            }
+        }
+
+        vista.getTotal().setText(Double.toString(total));
+    }
+
+    public static void calculoVuelto() {
+
+        double montoEntregado, total, vuelto = 0;
+
         montoEntregado = Double.parseDouble(vista.getMontoEntregado().getText());
-        
-        int filaSeleccionada = vista.getTablaVentas().getSelectedRow();
-        DefaultTableModel modelo = (DefaultTableModel) vista.getTablaVentas().getModel();
-        
-        //for each recorrer tabla y sumar el subtotal. Ese seria el total.
-        //vuelto = monto entregado - total;
-        //vista.getVuelto().setText(vuelto); toString?
+        total = Double.parseDouble(vista.getTotal().getText());
+
+        if (montoEntregado >= total) {
+            vuelto = montoEntregado - total;
+            vista.getLabelMontoInsuficiente().setVisible(false);
+        } else {
+            vista.getLabelMontoInsuficiente().setVisible(true);
+        }
+
+        vista.getVuelto().setText(Double.toString(vuelto));
+
+    }
+    
+    public static void mostrarTotalYVuelto(){
         
     }
 
@@ -132,5 +153,9 @@ public class ControladorVistaVenta {
         vista.getCantidad().setText("");
         vista.getPrecioUnidad().setText("");
         vista.getDescuento().setText("");
+
+        vista.getTotal().setText("");
+        vista.getMontoEntregado().setText("");
+        vista.getVuelto().setText("");
     }
 }
