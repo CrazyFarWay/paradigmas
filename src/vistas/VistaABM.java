@@ -103,13 +103,13 @@ public class VistaABM extends javax.swing.JFrame {
         botonAgregar = new javax.swing.JButton();
         botonModificar = new javax.swing.JButton();
         botonEliminar = new javax.swing.JButton();
-        filtroCantidad = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
         filtroPrecio = new javax.swing.JComboBox<>();
         filtroRubro = new javax.swing.JComboBox<>();
         botonActualizarPrecios = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         rubro = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         botonProveedores = new javax.swing.JMenuItem();
@@ -127,7 +127,7 @@ public class VistaABM extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
-        jLabel1.setText("ABM");
+        jLabel1.setText("A.B.M. PRODUCTOS");
 
         jLabel2.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
         jLabel2.setText("ID");
@@ -186,15 +186,6 @@ public class VistaABM extends javax.swing.JFrame {
             }
         });
 
-        filtroCantidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Menor Cantidad", "Mayor Cantidad" }));
-        filtroCantidad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filtroCantidadActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setText("Ordenar por:");
-
         filtroPrecio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Mayor Precio", "Menor Precio" }));
         filtroPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -223,6 +214,10 @@ public class VistaABM extends javax.swing.JFrame {
                 rubroActionPerformed(evt);
             }
         });
+
+        jLabel9.setText("Precio:");
+
+        jLabel10.setText("Rubro:");
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jMenuBar1.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
@@ -282,7 +277,7 @@ public class VistaABM extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1)
@@ -325,17 +320,19 @@ public class VistaABM extends javax.swing.JFrame {
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(botonActualizarPrecios)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(filtroPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(99, 99, 99)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(filtroRubro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(85, 85, 85))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(filtroCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addComponent(filtroPrecio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel10)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(filtroRubro, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
@@ -365,11 +362,11 @@ public class VistaABM extends javax.swing.JFrame {
                     .addComponent(botonAgregar))
                 .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(filtroCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(filtroPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(filtroRubro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonActualizarPrecios))
+                    .addComponent(botonActualizarPrecios)
+                    .addComponent(jLabel10)
+                    .addComponent(filtroPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
                 .addContainerGap())
@@ -414,10 +411,6 @@ public class VistaABM extends javax.swing.JFrame {
 		ControladorMenu.cerrarSesion(this);
         }//GEN-LAST:event_botonCerrarSesionActionPerformed
 
-    private void filtroCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroCantidadActionPerformed
-        ControladorVistaABM.filtrarProductos();
-    }//GEN-LAST:event_filtroCantidadActionPerformed
-
     private void botonActualizarPreciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarPreciosActionPerformed
         ControladorVistaABM.actualizarProductos();
     }//GEN-LAST:event_botonActualizarPreciosActionPerformed
@@ -448,18 +441,18 @@ public class VistaABM extends javax.swing.JFrame {
     private javax.swing.JMenuItem botonSalir;
     private javax.swing.JMenuItem botonVentas;
     private javax.swing.JTextField cantidad;
-    private javax.swing.JComboBox<String> filtroCantidad;
     private javax.swing.JComboBox<String> filtroPrecio;
     private javax.swing.JComboBox<String> filtroRubro;
     private javax.swing.JTextField id;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -471,13 +464,6 @@ public class VistaABM extends javax.swing.JFrame {
     private javax.swing.JTable tablaInventario;
     // End of variables declaration//GEN-END:variables
 
-    public javax.swing.JComboBox<String> getFiltroCantidad() {
-        return filtroCantidad;
-    }
-
-    public void setFiltroCantidad(javax.swing.JComboBox<String> filtroCantidad) {
-        this.filtroCantidad = filtroCantidad;
-    }
 
     public javax.swing.JComboBox<String> getFiltroPrecio() {
         return filtroPrecio;

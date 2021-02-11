@@ -35,8 +35,8 @@ public class ControladorVistaABM {
     public static void agregarProducto() {
 
         BaseDeDatos baseDeDatos = new BaseDeDatos();
+        
 	Producto producto = new Producto(
-		Integer.parseInt(vista.getId().getText()),
 		vista.getNombre().getText(),
 		vista.getMarca().getText(),
                 vista.getRubro().getText(),
@@ -106,7 +106,6 @@ public class ControladorVistaABM {
         BaseDeDatos baseDeDatos = new BaseDeDatos();
        
         ArrayList<Producto> productos = baseDeDatos.obtenerProductosFiltrados(
-                vista.getFiltroCantidad().getSelectedItem().toString(),
                 vista.getFiltroPrecio().getSelectedItem().toString(),
                 vista.getFiltroRubro().getSelectedItem().toString()
         );

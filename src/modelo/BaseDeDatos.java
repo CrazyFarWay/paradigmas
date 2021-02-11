@@ -262,7 +262,7 @@ public class BaseDeDatos {
     
     }
     
-    public ArrayList<Producto> obtenerProductosFiltrados(String cantidad, String precio, String rubro) {
+    public ArrayList<Producto> obtenerProductosFiltrados(String precio, String rubro) {
         ArrayList<Producto> productos = new ArrayList<>();
         String orderBy = "";
         
@@ -277,24 +277,12 @@ public class BaseDeDatos {
             precio = "";
         }
         else if (precio.equals("Mayor Precio")) {
-            precio = ", precio ASC";
+            precio = " precio DESC";
             orderBy = "ORDER BY";
         }
         else if (precio.equals("Menor Precio")) {
-            precio = ", precio DESC";
+            precio = " precio ASC";
             orderBy = "ORDER BY";
-        }
-        
-        if (cantidad.equals("Todos")) {
-            cantidad = "";
-        }
-        else if (cantidad.equals("Mayor Cantidad")) {
-            cantidad = ", cantidad ASC";
-            orderBy = "ORDER BY";
-        }
-        else if (cantidad.equals("Menor Cantidad")) {
-            cantidad = ", cantidad DESC";
-            orderBy = " ORDER BY ";
         }
         
         //System.out.println("select * from productos "+ rubro + orderBy + precio + cantidad);
@@ -302,7 +290,7 @@ public class BaseDeDatos {
         try {
             Statement statement = conexion.createStatement();
             ResultSet resultado = statement.executeQuery(
-                    "select * from productos "+ rubro + orderBy + precio + cantidad);
+                    "select * from productos "+ rubro + orderBy + precio);
 
             while (resultado.next()) {
                 Producto producto = new Producto(resultado.getInt("id"),
