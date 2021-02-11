@@ -5,21 +5,23 @@ import javax.swing.table.DefaultTableModel;
 import modelo.BaseDeDatos;
 import modelo.Producto;
 import modelo.Venta;
+import vistas.VistaVentaConfirmada;
 import vistas.VistaVentaPrincipal;
 
 public class ControladorVistaVenta {
 
-    static VistaVentaPrincipal vista = new VistaVentaPrincipal();
-
+    static VistaVentaPrincipal vistaVentaPrincipal = new VistaVentaPrincipal();
+    static VistaVentaConfirmada vistaVentaConfirmada = new VistaVentaConfirmada();
+    
     public static void mostrar() {
-        vista.setVisible(true);
-        vista.getLabelMontoInsuficiente().setVisible(false);
+        vistaVentaPrincipal.setVisible(true);
+        vistaVentaPrincipal.getLabelMontoInsuficiente().setVisible(false);
 
         BaseDeDatos baseDeDatos = new BaseDeDatos();
         ArrayList<Producto> productos = baseDeDatos.obtenerProductos();
 
-        DefaultTableModel model = (DefaultTableModel) vista.getTablaProductos().getModel();
-        model.setNumRows(0);
+        DefaultTableModel modelo1 = (DefaultTableModel) vistaVentaPrincipal.getTablaProductos().getModel();
+        modelo1.setNumRows(0);
 
         for (Producto producto : productos) {
             Object[] fila = new Object[6];
@@ -30,13 +32,13 @@ public class ControladorVistaVenta {
             fila[3] = producto.getRubro();
             fila[4] = producto.getPrecio();
             fila[5] = producto.getCantidad();
-            model.addRow(fila);
+            modelo1.addRow(fila);
         }
 
         ArrayList<Venta> ventas = baseDeDatos.obtenerVenta();
 
-        DefaultTableModel model2 = (DefaultTableModel) vista.getTablaVentas().getModel();
-        model2.setNumRows(0);
+        DefaultTableModel modelo2 = (DefaultTableModel) vistaVentaPrincipal.getTablaVentas().getModel();
+        modelo2.setNumRows(0);
 
         for (Venta venta : ventas) {
             Object[] fila = new Object[7];
@@ -48,114 +50,160 @@ public class ControladorVistaVenta {
             fila[4] = venta.getPrecioUnidad();
             fila[5] = venta.getDescuento();
             fila[6] = venta.getSubtotal();
-            model2.addRow(fila);
-
+            modelo2.addRow(fila);
         }
 
     }
 
     public static void agregarVenta() {
         int cantidad, descuento;
-        Double precioUnidad, subtotal;
-
-        cantidad = Integer.parseInt(vista.getCantidad().getText());
-        precioUnidad = Double.parseDouble(vista.getPrecioUnidad().getText());
-        descuento = (Integer.parseInt(vista.getDescuento().getText()));
-
+        double precioUnidad, subtotal, total = 0;
+        
+        cantidad = Integer.parseInt(vistaVentaPrincipal.getCantidad().getText());
+        precioUnidad = Double.parseDouble(vistaVentaPrincipal.getPrecioUnidad().getText());
+        descuento = (Integer.parseInt(vistaVentaPrincipal.getDescuento().getText()));
+      
+        
         BaseDeDatos baseDeDatos = new BaseDeDatos();
         Venta venta = new Venta(
-                Integer.parseInt(vista.getId().getText()),
-                vista.getNombre().getText(),
-                vista.getMarca().getText(),
-                Integer.parseInt(vista.getCantidad().getText()),
-                Double.parseDouble(vista.getPrecioUnidad().getText()),
-                Integer.parseInt(vista.getDescuento().getText()),
+                Integer.parseInt(vistaVentaPrincipal.getId().getText()),
+                vistaVentaPrincipal.getNombre().getText(),
+                vistaVentaPrincipal.getMarca().getText(),
+                Integer.parseInt(vistaVentaPrincipal.getCantidad().getText()),
+                Double.parseDouble(vistaVentaPrincipal.getPrecioUnidad().getText()),
+                Integer.parseInt(vistaVentaPrincipal.getDescuento().getText()),
                 subtotal = precioUnidad * cantidad - (descuento * precioUnidad) / 100
         );
-
-        baseDeDatos.agregarVenta(venta);
+        baseDeDatos.agregarVenta(venta); 
+        
+        //calculoTotal();
         mostrar();
+       
     }
 
     public static void eliminarVenta() {
-
+        
+        double total = 0;
+        
         BaseDeDatos baseDeDatos = new BaseDeDatos();
-        baseDeDatos.eliminarVenta(Integer.parseInt(vista.getId().getText()));
+        baseDeDatos.eliminarVenta(Integer.parseInt(vistaVentaPrincipal.getId().getText()));
+        
+       // calculoTotal();
         mostrar();
-
+    
     }
 
     public static void calculoTotal() {
 
         double total = 0;
 
-        if (vista.getTablaVentas().getRowCount() > 0) {
-            for (int i = 0; i < vista.getTablaVentas().getRowCount(); i++) {
-                total = total + Double.parseDouble(vista.getTablaVentas().getValueAt(i, 6).toString());
+        if (vistaVentaPrincipal.getTablaVentas().getRowCount() > 0) {
+            for (int i = 0; i < vistaVentaPrincipal.getTablaVentas().getRowCount(); i++) {
+                total = total + Double.parseDouble(vistaVentaPrincipal.getTablaVentas().getValueAt(i, 6).toString());
             }
         }
 
-        vista.getTotal().setText(Double.toString(total));
+        vistaVentaPrincipal.getTotal().setText(Double.toString(total));
     }
 
     public static void calculoVuelto() {
 
         double montoEntregado, total, vuelto = 0;
 
-        montoEntregado = Double.parseDouble(vista.getMontoEntregado().getText());
-        total = Double.parseDouble(vista.getTotal().getText());
+        montoEntregado = Double.parseDouble(vistaVentaPrincipal.getMontoEntregado().getText());
+        total = Double.parseDouble(vistaVentaPrincipal.getTotal().getText());
 
         if (montoEntregado >= total) {
             vuelto = montoEntregado - total;
-            vista.getLabelMontoInsuficiente().setVisible(false);
+            vistaVentaPrincipal.getLabelMontoInsuficiente().setVisible(false);
         } else {
-            vista.getLabelMontoInsuficiente().setVisible(true);
+            vistaVentaPrincipal.getLabelMontoInsuficiente().setVisible(true);
         }
 
-        vista.getVuelto().setText(Double.toString(vuelto));
+        vistaVentaPrincipal.getVuelto().setText(Double.toString(vuelto));
+        mostrarConfirmacion();
 
     }
     
-    public static void mostrarTotalYVuelto(){
+    public static void mostrarConfirmacion(){
+        vistaVentaConfirmada.setVisible(true);
+        
+        String total, vuelto;
+        
+        BaseDeDatos baseDeDatos = new BaseDeDatos();
+        ArrayList<Venta> ventas = baseDeDatos.obtenerVenta();
+
+        DefaultTableModel modelo = (DefaultTableModel) vistaVentaConfirmada.getTablaVentas().getModel();
+        modelo.setNumRows(0);
+
+        for (Venta venta : ventas) {
+            Object[] fila = new Object[7];
+
+            fila[0] = venta.getId();
+            fila[1] = venta.getNombre();
+            fila[2] = venta.getMarca();
+            fila[3] = venta.getCantidad();
+            fila[4] = venta.getPrecioUnidad();
+            fila[5] = venta.getDescuento();
+            fila[6] = venta.getSubtotal();
+            modelo.addRow(fila);
+        }
+        
+        total = vistaVentaPrincipal.getTotal().getText();
+        vuelto = vistaVentaPrincipal.getVuelto().getText();
+        
+        vistaVentaConfirmada.getTotal().setText(total);
+        vistaVentaConfirmada.getVuelto().setText(vuelto);
+        
         
     }
 
+    public static void ConfirmarDeshacerVenta(){
+        
+        BaseDeDatos baseDeDatos = new BaseDeDatos();
+        baseDeDatos.eliminarVentas();
+        
+        mostrarConfirmacion();
+    }
+    
+    
+    
     public static void seleccionarProducto() {
-        int filaSeleccionada = vista.getTablaProductos().getSelectedRow();
-        DefaultTableModel modelo = (DefaultTableModel) vista.getTablaProductos().getModel();
+        int filaSeleccionada = vistaVentaPrincipal.getTablaProductos().getSelectedRow();
+        DefaultTableModel modelo = (DefaultTableModel) vistaVentaPrincipal.getTablaProductos().getModel();
 
         if (filaSeleccionada >= 0) {
-            vista.getId().setText(modelo.getValueAt(filaSeleccionada, 0).toString());
-            vista.getNombre().setText(modelo.getValueAt(filaSeleccionada, 1).toString());
-            vista.getMarca().setText(modelo.getValueAt(filaSeleccionada, 2).toString());
-            vista.getPrecioUnidad().setText(modelo.getValueAt(filaSeleccionada, 3).toString());
+            vistaVentaPrincipal.getId().setText(modelo.getValueAt(filaSeleccionada, 0).toString());
+            vistaVentaPrincipal.getNombre().setText(modelo.getValueAt(filaSeleccionada, 1).toString());
+            vistaVentaPrincipal.getMarca().setText(modelo.getValueAt(filaSeleccionada, 2).toString());
+            vistaVentaPrincipal.getPrecioUnidad().setText(modelo.getValueAt(filaSeleccionada, 4).toString());
         }
     }
 
     public static void seleccionarVenta() {
-        int filaSeleccionada = vista.getTablaVentas().getSelectedRow();
-        DefaultTableModel modelo = (DefaultTableModel) vista.getTablaVentas().getModel();
+        int filaSeleccionada = vistaVentaPrincipal.getTablaVentas().getSelectedRow();
+        DefaultTableModel modelo = (DefaultTableModel) vistaVentaPrincipal.getTablaVentas().getModel();
 
         if (filaSeleccionada >= 0) {
-            vista.getId().setText(modelo.getValueAt(filaSeleccionada, 0).toString());
-            vista.getNombre().setText(modelo.getValueAt(filaSeleccionada, 1).toString());
-            vista.getMarca().setText(modelo.getValueAt(filaSeleccionada, 2).toString());
-            vista.getCantidad().setText(modelo.getValueAt(filaSeleccionada, 3).toString());
-            vista.getPrecioUnidad().setText(modelo.getValueAt(filaSeleccionada, 4).toString());
-            vista.getDescuento().setText(modelo.getValueAt(filaSeleccionada, 5).toString());
+            vistaVentaPrincipal.getId().setText(modelo.getValueAt(filaSeleccionada, 0).toString());
+            vistaVentaPrincipal.getNombre().setText(modelo.getValueAt(filaSeleccionada, 1).toString());
+            vistaVentaPrincipal.getMarca().setText(modelo.getValueAt(filaSeleccionada, 2).toString());
+            vistaVentaPrincipal.getCantidad().setText(modelo.getValueAt(filaSeleccionada, 3).toString());
+            vistaVentaPrincipal.getPrecioUnidad().setText(modelo.getValueAt(filaSeleccionada, 4).toString());
+            vistaVentaPrincipal.getDescuento().setText(modelo.getValueAt(filaSeleccionada, 5).toString());
         }
     }
 
     public static void limpiarTextFields() {
-        vista.getId().setText("");
-        vista.getNombre().setText("");
-        vista.getMarca().setText("");
-        vista.getCantidad().setText("");
-        vista.getPrecioUnidad().setText("");
-        vista.getDescuento().setText("");
+        vistaVentaPrincipal.getId().setText("");
+        vistaVentaPrincipal.getNombre().setText("");
+        vistaVentaPrincipal.getMarca().setText("");
+        vistaVentaPrincipal.getCantidad().setText("");
+        vistaVentaPrincipal.getPrecioUnidad().setText("");
+        vistaVentaPrincipal.getDescuento().setText("");
 
-        vista.getTotal().setText("");
-        vista.getMontoEntregado().setText("");
-        vista.getVuelto().setText("");
+        vistaVentaPrincipal.getTotal().setText("");
+        vistaVentaPrincipal.getMontoEntregado().setText("");
+        vistaVentaPrincipal.getVuelto().setText("");
     }
 }

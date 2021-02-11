@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/filip/OneDrive/Documentos/NetBeansProjects/sistemaDrugstore/src/vistas/VistaVentaPrincipal.java</file>
+            <file>file:/C:/Users/filip/OneDrive/Documentos/NetBeansProjects/sistemaDrugstore/src/controlador/ControladorVistaLogin.java</file>
+            <file>file:/C:/Users/filip/OneDrive/Documentos/NetBeansProjects/sistemaDrugstore/src/vistas/VistaLogin.java</file>
+            <file>file:/C:/Users/filip/OneDrive/Documentos/NetBeansProjects/sistemaDrugstore/src/vistas/VistaVentaConfirmada.java</file>
+            <file>file:/C:/Users/filip/OneDrive/Documentos/NetBeansProjects/sistemaDrugstore/src/modelo/BaseDeDatos.java</file>
+            <file>file:/C:/Users/filip/OneDrive/Documentos/NetBeansProjects/sistemaDrugstore/src/controlador/ControladorVistaVenta.java</file>
+        </group>
     </open-files>
 </project-private>

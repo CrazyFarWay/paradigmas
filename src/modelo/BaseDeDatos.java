@@ -8,7 +8,7 @@ public class BaseDeDatos {
     Connection conexion;
     String url = "jdbc:mysql://localhost/drugstore";
     String usuario = "root";
-    String contraseña = "valentinasaccone";
+    String contraseña = "";
 
     public BaseDeDatos() {
 
@@ -247,6 +247,19 @@ public class BaseDeDatos {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+    
+    public void eliminarVentas(){
+        PreparedStatement statement;
+
+        try {
+            statement = conexion.prepareStatement("delete from venta");
+            statement.executeUpdate();
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    
     }
     
     public ArrayList<Producto> obtenerProductosFiltrados(String cantidad, String precio, String rubro) {
