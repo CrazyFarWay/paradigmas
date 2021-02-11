@@ -2,7 +2,7 @@ package controlador;
 
 import java.util.ArrayList;
 import modelo.*;
-import vistas.VistaLogin;
+import vistas.*;
 
 
 public class ControladorVistaLogin {
@@ -32,7 +32,7 @@ public class ControladorVistaLogin {
 		
 		if (bandera){
 			ventanaLogin.setVisible(false);
-			ControladorVistaPrincipal.mostrar();
+			ControladorVistaVenta.mostrar();
 		}
 		else{
 			ventanaLogin.getLabelUsuarioContraseñaIncorrecto().setVisible(true);
