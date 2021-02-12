@@ -63,12 +63,12 @@ public class VistaABM extends javax.swing.JFrame {
         this.precio = precio;
     }
 
-    public JTable getTablaInventario() {
-        return tablaInventario;
+    public JTable getTablaProductos() {
+        return tablaProductos;
     }
 
     public void setTablaInventario(JTable tablaInventario) {
-        this.tablaInventario = tablaInventario;
+        this.tablaProductos = tablaInventario;
     }
 
     public JTextField getRubro() {
@@ -99,7 +99,7 @@ public class VistaABM extends javax.swing.JFrame {
         cantidad = new javax.swing.JTextField();
         marca = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaInventario = new javax.swing.JTable();
+        tablaProductos = new javax.swing.JTable();
         botonAgregar = new javax.swing.JButton();
         botonModificar = new javax.swing.JButton();
         botonEliminar = new javax.swing.JButton();
@@ -114,6 +114,7 @@ public class VistaABM extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         botonProveedores = new javax.swing.JMenuItem();
         botonVentas = new javax.swing.JMenuItem();
+        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         botonCerrarSesion = new javax.swing.JMenuItem();
         botonSalir = new javax.swing.JMenuItem();
@@ -144,7 +145,7 @@ public class VistaABM extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
         jLabel6.setText("Cantidad");
 
-        tablaInventario.setModel(new javax.swing.table.DefaultTableModel(
+        tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -152,12 +153,12 @@ public class VistaABM extends javax.swing.JFrame {
                 "Id", "Nombre", "Marca", "Rubro", "Precio", "Cantidad"
             }
         ));
-        tablaInventario.addMouseListener(new java.awt.event.MouseAdapter() {
+        tablaProductos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaInventarioMouseClicked(evt);
+                tablaProductosMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tablaInventario);
+        jScrollPane1.setViewportView(tablaProductos);
 
         botonAgregar.setBackground(new java.awt.Color(102, 153, 0));
         botonAgregar.setForeground(new java.awt.Color(240, 240, 240));
@@ -242,6 +243,15 @@ public class VistaABM extends javax.swing.JFrame {
             }
         });
         jMenu1.add(botonVentas);
+
+        jCheckBoxMenuItem1.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
+        jCheckBoxMenuItem1.setText("Actualización de Precios");
+        jCheckBoxMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jCheckBoxMenuItem1);
         jMenu1.add(jSeparator1);
 
         botonCerrarSesion.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
@@ -387,9 +397,9 @@ public class VistaABM extends javax.swing.JFrame {
         ControladorVistaABM.eliminarProducto();
     }//GEN-LAST:event_botonEliminarActionPerformed
 
-    private void tablaInventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaInventarioMouseClicked
+    private void tablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosMouseClicked
         ControladorVistaABM.seleccionarProducto();
-    }//GEN-LAST:event_tablaInventarioMouseClicked
+    }//GEN-LAST:event_tablaProductosMouseClicked
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         ControladorVistaABM.limpiarTextFields();
@@ -412,7 +422,7 @@ public class VistaABM extends javax.swing.JFrame {
         }//GEN-LAST:event_botonCerrarSesionActionPerformed
 
     private void botonActualizarPreciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarPreciosActionPerformed
-        ControladorVistaABM.actualizarProductos();
+        ControladorVistaABM.actualizarPrecios();
     }//GEN-LAST:event_botonActualizarPreciosActionPerformed
 
     private void filtroPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroPrecioActionPerformed
@@ -426,6 +436,10 @@ public class VistaABM extends javax.swing.JFrame {
     private void rubroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rubroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rubroActionPerformed
+
+    private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
+        ControladorMenu.abrirActualizacionPrecios(this);
+    }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -444,6 +458,7 @@ public class VistaABM extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> filtroPrecio;
     private javax.swing.JComboBox<String> filtroRubro;
     private javax.swing.JTextField id;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -461,7 +476,7 @@ public class VistaABM extends javax.swing.JFrame {
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField precio;
     private javax.swing.JTextField rubro;
-    private javax.swing.JTable tablaInventario;
+    private javax.swing.JTable tablaProductos;
     // End of variables declaration//GEN-END:variables
 
 

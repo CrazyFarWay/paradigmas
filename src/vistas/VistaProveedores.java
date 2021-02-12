@@ -58,8 +58,9 @@ public class VistaProveedores extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         menuSuperior = new javax.swing.JMenu();
-        botonInventario = new javax.swing.JMenuItem();
         botonVentas = new javax.swing.JMenuItem();
+        botonInventario = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         botonCerrarSesion = new javax.swing.JMenuItem();
         botonSalir = new javax.swing.JMenuItem();
@@ -181,16 +182,6 @@ public class VistaProveedores extends javax.swing.JFrame {
         menuSuperior.setText("Menu");
         menuSuperior.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
 
-        botonInventario.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
-        botonInventario.setText("Inventario");
-        botonInventario.setBorder(null);
-        botonInventario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonInventarioActionPerformed(evt);
-            }
-        });
-        menuSuperior.add(botonInventario);
-
         botonVentas.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
         botonVentas.setText("Ventas");
         botonVentas.setBorder(null);
@@ -200,6 +191,25 @@ public class VistaProveedores extends javax.swing.JFrame {
             }
         });
         menuSuperior.add(botonVentas);
+
+        botonInventario.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
+        botonInventario.setText("ABM");
+        botonInventario.setBorder(null);
+        botonInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonInventarioActionPerformed(evt);
+            }
+        });
+        menuSuperior.add(botonInventario);
+
+        jMenuItem1.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
+        jMenuItem1.setText("Actualización de Precios");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        menuSuperior.add(jMenuItem1);
         menuSuperior.add(jSeparator1);
 
         botonCerrarSesion.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
@@ -312,13 +322,14 @@ public class VistaProveedores extends javax.swing.JFrame {
                             .addComponent(jLabel7)
                             .addComponent(correoElectronico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonModificar)
-                    .addComponent(botonEliminar)
-                    .addComponent(botonAgregar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(filtroRubro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel10)))
+                        .addComponent(jLabel10))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(botonModificar)
+                        .addComponent(botonEliminar)
+                        .addComponent(botonAgregar)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -356,7 +367,7 @@ public class VistaProveedores extends javax.swing.JFrame {
         }//GEN-LAST:event_botonHacerPedidoActionPerformed
 
         private void botonInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInventarioActionPerformed
-		ControladorMenu.abrirInventario(this);
+		ControladorMenu.abrirABM(this);
         }//GEN-LAST:event_botonInventarioActionPerformed
 
         private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
@@ -375,40 +386,14 @@ public class VistaProveedores extends javax.swing.JFrame {
         ControladorVistaProveedores.filtrarProveedores();
     }//GEN-LAST:event_filtroRubroActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        ControladorMenu.abrirActualizacionPrecios(this);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaProveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaProveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaProveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaProveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VistaProveedores().setVisible(true);
-            }
-        });
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregar;
@@ -435,6 +420,7 @@ public class VistaProveedores extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenu menuSuperior;

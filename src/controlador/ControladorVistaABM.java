@@ -16,7 +16,7 @@ public class ControladorVistaABM {
         BaseDeDatos baseDeDatos = new BaseDeDatos();
         ArrayList<Producto> productos = baseDeDatos.obtenerProductos();
 
-        DefaultTableModel model = (DefaultTableModel) vista.getTablaInventario().getModel();
+        DefaultTableModel model = (DefaultTableModel) vista.getTablaProductos().getModel();
         model.setNumRows(0);
 
         for (Producto producto : productos) {
@@ -84,8 +84,8 @@ public class ControladorVistaABM {
     }
     
     public static void seleccionarProducto(){
-	int filaSeleccionada = vista.getTablaInventario().getSelectedRow();
-	DefaultTableModel modelo = (DefaultTableModel) vista.getTablaInventario().getModel();
+	int filaSeleccionada = vista.getTablaProductos().getSelectedRow();
+	DefaultTableModel modelo = (DefaultTableModel) vista.getTablaProductos().getModel();
 
 	if(filaSeleccionada >= 0){
 		vista.getId().setText(modelo.getValueAt(filaSeleccionada, 0).toString());
@@ -97,8 +97,8 @@ public class ControladorVistaABM {
 	}
     }
     
-    public static void actualizarProductos() {
-        vista.dispose();
+    public static void actualizarPrecios() {
+        //vista.dispose();
         ControladorVistaActualizarProductos.mostrar();
     }
 
@@ -112,7 +112,7 @@ public class ControladorVistaABM {
         
                 
         
-        DefaultTableModel model = (DefaultTableModel) vista.getTablaInventario().getModel();
+        DefaultTableModel model = (DefaultTableModel) vista.getTablaProductos().getModel();
         model.setNumRows(0);
 
         for (Producto producto : productos) {

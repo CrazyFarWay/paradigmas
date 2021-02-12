@@ -9,7 +9,7 @@ public class ControladorMenu {
 		ControladorVistaProveedores.mostrar();
 	}
 
-	public static void abrirInventario(JFrame vista) {
+	public static void abrirABM(JFrame vista) {
 		vista.dispose();
 		ControladorVistaABM.mostrar();
 	}
@@ -22,6 +22,11 @@ public class ControladorMenu {
 		vista.dispose();
 		ControladorVistaVenta.mostrar();
 	}
+        
+        public static void abrirActualizacionPrecios(JFrame vista){
+                vista.dispose();
+                ControladorVistaActualizacionPrecios.mostrar();
+        }
 
 	public static void cerrarSesion(JFrame vista) {
 		vista.dispose();

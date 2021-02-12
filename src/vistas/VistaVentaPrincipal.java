@@ -65,8 +65,9 @@ public class VistaVentaPrincipal extends javax.swing.JFrame {
         labelMontoInsuficiente = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        botonInventario = new javax.swing.JMenuItem();
         botonProveedores = new javax.swing.JMenuItem();
+        botonInventario = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         botonCerrarSesion = new javax.swing.JMenuItem();
         botonSalir = new javax.swing.JMenuItem();
@@ -199,17 +200,9 @@ public class VistaVentaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
+        jMenu1.setBorder(null);
         jMenu1.setText("Menu");
         jMenu1.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
-
-        botonInventario.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
-        botonInventario.setText("Inventario");
-        botonInventario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonInventarioActionPerformed(evt);
-            }
-        });
-        jMenu1.add(botonInventario);
 
         botonProveedores.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
         botonProveedores.setText("Proveedores");
@@ -219,6 +212,24 @@ public class VistaVentaPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(botonProveedores);
+
+        botonInventario.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
+        botonInventario.setText("ABM");
+        botonInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonInventarioActionPerformed(evt);
+            }
+        });
+        jMenu1.add(botonInventario);
+
+        jMenuItem1.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
+        jMenuItem1.setText("Actualización de Precios");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
         jMenu1.add(jSeparator1);
 
         botonCerrarSesion.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
@@ -382,7 +393,7 @@ public class VistaVentaPrincipal extends javax.swing.JFrame {
         }//GEN-LAST:event_botonProveedoresActionPerformed
 
         private void botonInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInventarioActionPerformed
-		ControladorMenu.abrirInventario(this);
+		ControladorMenu.abrirABM(this);
         }//GEN-LAST:event_botonInventarioActionPerformed
 
         private void botonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesionActionPerformed
@@ -432,6 +443,10 @@ public class VistaVentaPrincipal extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         ControladorVistaVenta.calculoVuelto();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        ControladorMenu.abrirActualizacionPrecios(this);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -514,6 +529,7 @@ public class VistaVentaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
