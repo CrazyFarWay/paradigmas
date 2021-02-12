@@ -47,12 +47,12 @@ public class VistaActualizacionPrecios extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
-        jCheckBoxMenuItem3 = new javax.swing.JCheckBoxMenuItem();
-        jCheckBoxMenuItem6 = new javax.swing.JCheckBoxMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jCheckBoxMenuItem4 = new javax.swing.JCheckBoxMenuItem();
-        jCheckBoxMenuItem5 = new javax.swing.JCheckBoxMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,53 +92,52 @@ public class VistaActualizacionPrecios extends javax.swing.JFrame {
         jMenu1.setText("Menú");
         jMenu1.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
 
-        jCheckBoxMenuItem2.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
-        jCheckBoxMenuItem2.setText("Proveedores");
-        jCheckBoxMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem2.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
+        jMenuItem2.setText("Proveedores");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxMenuItem2ActionPerformed(evt);
+                jMenuItem2ActionPerformed(evt);
             }
         });
-        jMenu1.add(jCheckBoxMenuItem2);
+        jMenu1.add(jMenuItem2);
 
-        jCheckBoxMenuItem3.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
-        jCheckBoxMenuItem3.setText("Ventas");
-        jCheckBoxMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem3.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
+        jMenuItem3.setText("Ventas");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxMenuItem3ActionPerformed(evt);
+                jMenuItem3ActionPerformed(evt);
             }
         });
-        jMenu1.add(jCheckBoxMenuItem3);
+        jMenu1.add(jMenuItem3);
 
-        jCheckBoxMenuItem6.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
-        jCheckBoxMenuItem6.setText("ABM");
-        jCheckBoxMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem4.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
+        jMenuItem4.setText("ABM");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxMenuItem6ActionPerformed(evt);
+                jMenuItem4ActionPerformed(evt);
             }
         });
-        jMenu1.add(jCheckBoxMenuItem6);
+        jMenu1.add(jMenuItem4);
         jMenu1.add(jSeparator1);
 
-        jCheckBoxMenuItem4.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
-        jCheckBoxMenuItem4.setText("Cerrar Sesión");
-        jCheckBoxMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem1.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
+        jMenuItem1.setText("Cerrar Sesión");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxMenuItem4ActionPerformed(evt);
+                jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu1.add(jCheckBoxMenuItem4);
+        jMenu1.add(jMenuItem1);
 
-        jCheckBoxMenuItem5.setBackground(new java.awt.Color(255, 153, 153));
-        jCheckBoxMenuItem5.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
-        jCheckBoxMenuItem5.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBoxMenuItem5.setText("Salir");
-        jCheckBoxMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem5.setBackground(new java.awt.Color(255, 153, 153));
+        jMenuItem5.setForeground(new java.awt.Color(255, 255, 255));
+        jMenuItem5.setText("Salir");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxMenuItem5ActionPerformed(evt);
+                jMenuItem5ActionPerformed(evt);
             }
         });
-        jMenu1.add(jCheckBoxMenuItem5);
+        jMenu1.add(jMenuItem5);
 
         jMenuBar1.add(jMenu1);
 
@@ -201,29 +200,29 @@ public class VistaActualizacionPrecios extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBoxMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem2ActionPerformed
-        ControladorMenu.abrirProveedores(this);
-    }//GEN-LAST:event_jCheckBoxMenuItem2ActionPerformed
-
-    private void jCheckBoxMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem3ActionPerformed
-        ControladorMenu.abrirVentas(this);
-    }//GEN-LAST:event_jCheckBoxMenuItem3ActionPerformed
-
-    private void jCheckBoxMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem6ActionPerformed
-        ControladorMenu.abrirABM(this);
-    }//GEN-LAST:event_jCheckBoxMenuItem6ActionPerformed
-
-    private void jCheckBoxMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem4ActionPerformed
-        ControladorMenu.cerrarSesion(this);
-    }//GEN-LAST:event_jCheckBoxMenuItem4ActionPerformed
-
-    private void jCheckBoxMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem5ActionPerformed
-        ControladorMenu.salirDelPrograma();
-    }//GEN-LAST:event_jCheckBoxMenuItem5ActionPerformed
-
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        ControladorMenu.abrirABM(this);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        ControladorMenu.abrirProveedores(this);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        ControladorMenu.abrirVentas(this);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        ControladorMenu.cerrarSesion(this);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        ControladorMenu.salirDelPrograma();
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,11 +232,6 @@ public class VistaActualizacionPrecios extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem3;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem4;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem5;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem6;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
@@ -245,6 +239,11 @@ public class VistaActualizacionPrecios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JTextField jTextField3;

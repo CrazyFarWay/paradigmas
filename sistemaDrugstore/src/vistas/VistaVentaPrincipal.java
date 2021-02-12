@@ -67,7 +67,7 @@ public class VistaVentaPrincipal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         botonProveedores = new javax.swing.JMenuItem();
         botonInventario = new javax.swing.JMenuItem();
-        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         botonCerrarSesion = new javax.swing.JMenuItem();
         botonSalir = new javax.swing.JMenuItem();
@@ -222,16 +222,14 @@ public class VistaVentaPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(botonInventario);
 
-        jCheckBoxMenuItem1.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
-        jCheckBoxMenuItem1.setText("Actualización de Precios");
-        jCheckBoxMenuItem1.setBorder(null);
-        jCheckBoxMenuItem1.setRequestFocusEnabled(false);
-        jCheckBoxMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem1.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
+        jMenuItem1.setText("Actualización de Precios");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxMenuItem1ActionPerformed(evt);
+                jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu1.add(jCheckBoxMenuItem1);
+        jMenu1.add(jMenuItem1);
         jMenu1.add(jSeparator1);
 
         botonCerrarSesion.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
@@ -446,9 +444,9 @@ public class VistaVentaPrincipal extends javax.swing.JFrame {
         ControladorVistaVenta.calculoVuelto();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         ControladorMenu.abrirActualizacionPrecios(this);
-    }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -517,7 +515,6 @@ public class VistaVentaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField id;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -532,6 +529,7 @@ public class VistaVentaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
