@@ -2,14 +2,23 @@ package modelo;
 
 public class Producto {
 
-    String nombre, marca;
+    String nombre, marca, rubro;
     double precio;
     int id, cantidad;
 
-    public Producto(int id, String nombre, String marca, double precio, int cantidad) {
+    public Producto(int id, String nombre, String marca, String rubro, double precio, int cantidad) {
         this.id = id;
         this.nombre = nombre;
         this.marca = marca;
+        this.rubro = rubro;
+        this.precio = precio;
+        this.cantidad = cantidad;
+    }
+    
+    public Producto(String nombre, String marca, String rubro, double precio, int cantidad) {
+        this.nombre = nombre;
+        this.marca = marca;
+        this.rubro = rubro;
         this.precio = precio;
         this.cantidad = cantidad;
     }
@@ -31,6 +40,14 @@ public class Producto {
 
     public void setMarca(String marca) {
         this.marca = marca;
+    }
+
+    public String getRubro() {
+        return rubro;
+    }
+
+    public void setRubro(String rubro) {
+        this.rubro = rubro;
     }
 
     public double getPrecio() {
@@ -56,8 +73,5 @@ public class Producto {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
-    
-    
-    
-    
+
 }

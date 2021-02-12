@@ -2,20 +2,28 @@ package controlador;
 
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.DefaultComboBoxModel;
 import modelo.BaseDeDatos;
 import modelo.Proveedor;
 import vistas.VistaProveedores;
 
 public class ControladorVistaProveedores {
-    static VistaProveedores vista = new VistaProveedores();
+    private static VistaProveedores vista = new VistaProveedores();
+    private static ArrayList<Proveedor> proveedores;
+    private static ArrayList<String> filtros = new ArrayList<>();
+    private static BaseDeDatos baseDeDatos = new BaseDeDatos();
     
     public static void mostrar(){
         vista.setVisible(true);
-	BaseDeDatos baseDeDatos = new BaseDeDatos();
-	ArrayList<Proveedor> proveedores = baseDeDatos.obtenerProveedores();
-	DefaultTableModel modelo = (DefaultTableModel) vista.getTablaProveedores().getModel();
+	proveedores = baseDeDatos.obtenerProveedores();
+        
+        filtros.clear();
+        filtros.addAll(baseDeDatos.obtenerFiltrosProveedores());    
+        
+	DefaultTableModel modeloTabla = (DefaultTableModel) vista.getTablaProveedores().getModel();
+        DefaultComboBoxModel modeloComboBox = (DefaultComboBoxModel) vista.getFiltroRubro().getModel();
 
-	modelo.setNumRows(0);
+	modeloTabla.setNumRows(0);
 	
 	for(Proveedor proveedor:proveedores){
 		Object[] fila = new Object[6];
@@ -27,8 +35,17 @@ public class ControladorVistaProveedores {
 		fila[4] = proveedor.getCorreoElectronico();
 		fila[5] = proveedor.getDireccion();
 		
-		modelo.addRow(fila);
+		modeloTabla.addRow(fila);
 	}
+        
+        modeloComboBox.addElement("Todos");
+        modeloComboBox.setSelectedItem("Todos");
+        
+        for(String filtro: filtros) {
+            modeloComboBox.addElement(filtro);
+        }
+        
+        vista.getFiltroRubro().setModel(modeloComboBox);
     }
 
     public static void limpiarTextFields(){
@@ -41,10 +58,9 @@ public class ControladorVistaProveedores {
     }
     
     public static void agregarProveedor(){
-	BaseDeDatos baseDeDatos = new BaseDeDatos();
 	Proveedor proveedor = new Proveedor(
 		vista.getNombre().getText(),
-		vista.getRubro().getText(),
+		vista.getRubro().getText().toUpperCase(),
 		vista.getTelefono().getText(),
 		vista.getCorreoElectronico().getText(),
 		vista.getDireccion().getText()  
@@ -55,17 +71,15 @@ public class ControladorVistaProveedores {
     }
     
     public static void eliminarProveedor(){
-	BaseDeDatos baseDeDatos = new BaseDeDatos();
 	baseDeDatos.eliminarProveedor(Integer.parseInt(vista.getCodigo().getText()));
 	ControladorVistaProveedores.mostrar();
     }
     
     public static void modificarProveedor(){
-	BaseDeDatos baseDeDatos = new BaseDeDatos();
 	Proveedor proveedor = new Proveedor(
 		Integer.parseInt(vista.getCodigo().getText()),
 		vista.getNombre().getText(),
-		vista.getRubro().getText(),
+		vista.getRubro().getText().toUpperCase(),
 		vista.getTelefono().getText(),
 		vista.getCorreoElectronico().getText(),
 		vista.getDireccion().getText()
@@ -97,5 +111,27 @@ public class ControladorVistaProveedores {
 		vista.getCorreoElectronico().setText(modelo.getValueAt(filaSeleccionada, 4).toString());
 		vista.getTelefono().setText(modelo.getValueAt(filaSeleccionada, 5).toString());
 	}
+    }
+    
+    public static void filtrarProveedores() {
+        ArrayList<Proveedor> proveedoresFiltrados = baseDeDatos.obtenerProveedoresFiltrados(
+                vista.getFiltroRubro().getSelectedItem().toString()
+        );
+                
+        
+        DefaultTableModel model = (DefaultTableModel) vista.getTablaProveedores().getModel();
+        model.setNumRows(0);
+
+        for (Proveedor proveedor : proveedoresFiltrados) {
+            Object[] fila = new Object[6];
+
+            fila[0] = proveedor.getCodigo();
+            fila[1] = proveedor.getNombre();
+            fila[2] = proveedor.getRubro();
+            fila[3] = proveedor.getTelefono();
+            fila[4] = proveedor.getCorreoElectronico();
+            fila[5] = proveedor.getDireccion();
+            model.addRow(fila);
+        }
     }
 }
