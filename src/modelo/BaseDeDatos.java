@@ -55,7 +55,7 @@ public class BaseDeDatos {
                 throw (ex);
             }
         } else {
-                System.out.println("chau, desde el driver nulo");
+                
             System.err.println("No encuentra el Driver.");
             JOptionPane.showMessageDialog(null,
                     "Error Driver Base de Datos...", "ADVERTENCIA",

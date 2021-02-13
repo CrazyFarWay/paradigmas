@@ -37,7 +37,7 @@ public class GestionConexion {
         
         while (true) {
             
-            System.out.println("hola");
+            
             if (ControladorVistaLogin.getReturnStatus() == 1) {
                 
                 baseDeDatos = new BaseDeDatos(ControladorVistaLogin.getUsuario(), ControladorVistaLogin.getContraseña());
