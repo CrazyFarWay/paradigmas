@@ -6,36 +6,48 @@ import vistas.*;
 
 
 public class ControladorVistaLogin {
-	private static VistaLogin ventanaLogin = new VistaLogin();
+	private static VistaLogin vista = new VistaLogin();
+        private static BaseDeDatos baseDeDatos;
+        public static int returnStatus = 0;
+
+    public static int getReturnStatus() {
+        return returnStatus;
+    }
+
+    public static void setReturnStatus(int returnStatus) {
+        ControladorVistaLogin.returnStatus = returnStatus;
+    }
 	
 	public static void mostrar(){
-		ventanaLogin.getUsuario().setText("");
-		ventanaLogin.getContraseña().setText("");
-		ventanaLogin.getLabelUsuarioContraseñaIncorrecto().setVisible(false);
-		ventanaLogin.setVisible(true);
+		vista.getUsuario().setText("");
+		vista.getContraseña().setText("");
+		vista.getLabelUsuarioContraseñaIncorrecto().setVisible(false);
+		vista.setVisible(true);
 	}
 	
 	public static void ingresar(){
-		BaseDeDatos baseDeDatos = new BaseDeDatos();
-		ArrayList<Usuario> usuarios = baseDeDatos.obtenerUsuarios();
-		
-		String usuarioIngresado = ventanaLogin.getUsuario().getText();
-		String contraseñaIngresada = ventanaLogin.getContraseña().getText();
-		
-		boolean bandera = false;
-		
-		for(Usuario usuario:usuarios){
-			if(usuarioIngresado.equals(usuario.getUsuario()) && contraseñaIngresada.equals(usuario.getContraseña())){
-				bandera = true;
-			}
-		}
-		
-		if (bandera){
-			ventanaLogin.setVisible(false);
-			ControladorVistaVenta.mostrar();
-		}
-		else{
-			ventanaLogin.getLabelUsuarioContraseñaIncorrecto().setVisible(true);
-		}
+            returnStatus = 1;
+            //vista.setVisible(false);
 	}
+        
+        public static void mostrarErrorDatosIncorrectos() {
+            vista.getLabelUsuarioContraseñaIncorrecto().setVisible(true);
+        }
+        
+        public static void salir() {
+            vista.setVisible(false);
+            System.exit(0);
+        }
+        
+        public static String getUsuario() {
+            return vista.getContraseña().getText();
+        }
+        
+        public static String getContraseña() {
+            return vista.getUsuario().getText();
+        }
+
+        static void ocultar() {
+            vista.setVisible(false);
+        }
 }

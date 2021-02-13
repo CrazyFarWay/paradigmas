@@ -5,14 +5,14 @@
  */
 package controlador;
 
-import vistas.VistaActualizarProductos;
+import vistas.VistaInicial;
 
 /**
  *
  * @author CrazyFarWay
  */
-public class ControladorVistaActualizarProductos {
-    private static VistaActualizarProductos vista = new VistaActualizarProductos();
+public class ControladorVistaInicial {
+    private static VistaInicial vista = new VistaInicial();
     
     public static void mostrar() {
         vista.setVisible(true);

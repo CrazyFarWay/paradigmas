@@ -1,22 +1,27 @@
 package controlador;
 
+import static controlador.ControladorVistaActualizarPrecios.vista;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import modelo.BaseDeDatos;
 import modelo.Producto;
-import vistas.VistaABM;
+import vistas.VistaABMProductos;
 
-public class ControladorVistaABM {
-
-    static VistaABM vista = new VistaABM();
+public class ControladorVistaABMProductos {
+    static VistaABMProductos vista = new VistaABMProductos();
+    private static ArrayList<String> filtros;
 
     public static void mostrar() {
         vista.setVisible(true);
 
-        BaseDeDatos baseDeDatos = new BaseDeDatos();
-        ArrayList<Producto> productos = baseDeDatos.obtenerProductos();
+        ArrayList<Producto> productos = GestionConexion.obtenerProductos();
 
+        filtros = GestionConexion.obtenerFiltrosRubroProductos();   
+        
         DefaultTableModel model = (DefaultTableModel) vista.getTablaProductos().getModel();
+        DefaultComboBoxModel modeloComboBox = (DefaultComboBoxModel) vista.getFiltroRubro().getModel();
+        
         model.setNumRows(0);
 
         for (Producto producto : productos) {
@@ -30,46 +35,46 @@ public class ControladorVistaABM {
             fila[5] = producto.getCantidad();
             model.addRow(fila);
         }
+        
+        for(String filtro: filtros) {
+            if (modeloComboBox.getIndexOf(filtro) == -1) {
+                    modeloComboBox.addElement(filtro);
+            }
+        }
     }
 
     public static void agregarProducto() {
-
-        BaseDeDatos baseDeDatos = new BaseDeDatos();
         
 	Producto producto = new Producto(
 		vista.getNombre().getText(),
 		vista.getMarca().getText(),
-                vista.getRubro().getText(),
+                vista.getRubro().getText().toUpperCase(),
 		Double.parseDouble(vista.getPrecio().getText()),
 		Integer.parseInt(vista.getCantidad().getText())
 	);
 	    
-	baseDeDatos.agregarProducto(producto);
+	GestionConexion.agregarProducto(producto);
 	mostrar();
     }
 
     public static void modificarProducto() {
 
-
-        BaseDeDatos baseDeDatos = new BaseDeDatos();
 	Producto producto = new Producto(
 		Integer.parseInt(vista.getId().getText()),
 		vista.getNombre().getText(),
 		vista.getMarca().getText(),
-                vista.getRubro().getText(),
+                vista.getRubro().getText().toUpperCase(),
 		Double.parseDouble(vista.getPrecio().getText()),
 		Integer.parseInt(vista.getCantidad().getText())
 	);
 	    
-	baseDeDatos.modificarProducto(producto);
+	GestionConexion.modificarProducto(producto);
 	mostrar();
     }
 
     public static void eliminarProducto() {
        
-        
-        BaseDeDatos baseDeDatos = new BaseDeDatos();
-	baseDeDatos.eliminarProducto(Integer.parseInt(vista.getId().getText()));
+	GestionConexion.eliminarProducto(Integer.parseInt(vista.getId().getText()));
 	mostrar();
 
     }
@@ -99,13 +104,12 @@ public class ControladorVistaABM {
     
     public static void actualizarPrecios() {
         //vista.dispose();
-        ControladorVistaActualizarProductos.mostrar();
+        ControladorVistaActualizarPrecios.mostrar();
     }
 
     public static void filtrarProductos() {
-        BaseDeDatos baseDeDatos = new BaseDeDatos();
        
-        ArrayList<Producto> productos = baseDeDatos.obtenerProductosFiltrados(
+        ArrayList<Producto> productos = GestionConexion.obtenerProductosFiltrados(
                 vista.getFiltroPrecio().getSelectedItem().toString(),
                 vista.getFiltroRubro().getSelectedItem().toString()
         );

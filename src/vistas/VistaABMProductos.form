@@ -44,15 +44,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonVentasActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="jCheckBoxMenuItem1">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
               <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tw Cen MT" size="14" style="2"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Actualizaci&#xf3;n de Precios"/>
+                <Property name="text" type="java.lang.String" value="Actualizacion de Precios"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxMenuItem1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
@@ -91,7 +88,7 @@
     </Menu>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
@@ -413,9 +410,9 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="3">
-            <StringItem index="0" value="Todos"/>
-            <StringItem index="1" value="Mayor Precio"/>
-            <StringItem index="2" value="Menor Precio"/>
+            <StringItem index="0" value="TODOS"/>
+            <StringItem index="1" value="MAYOR A MENOR"/>
+            <StringItem index="2" value="MENOR A MAYOR"/>
           </StringArray>
         </Property>
       </Properties>
@@ -429,10 +426,8 @@
     <Component class="javax.swing.JComboBox" name="filtroRubro">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="3">
-            <StringItem index="0" value="Todos"/>
-            <StringItem index="1" value="Golosinas"/>
-            <StringItem index="2" value="Bebidas"/>
+          <StringArray count="1">
+            <StringItem index="0" value="TODOS"/>
           </StringArray>
         </Property>
       </Properties>

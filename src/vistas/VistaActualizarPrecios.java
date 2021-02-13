@@ -6,18 +6,45 @@
 package vistas;
 
 import controlador.ControladorMenu;
+import controlador.ControladorVistaActualizarPrecios;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
  * @author ValeS
  */
-public class VistaActualizacionPrecios extends javax.swing.JFrame {
+public class VistaActualizarPrecios extends javax.swing.JFrame {
+
+    public JTextField getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(JTextField cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public JComboBox<String> getFiltroRubro() {
+        return filtroRubro;
+    }
+
+    public void setFiltroRubro(JComboBox<String> filtroRubro) {
+        this.filtroRubro = filtroRubro;
+    }
+
+    public JComboBox<String> getTipoCambio() {
+        return tipoCambio;
+    }
+
+    public void setTipoCambio(JComboBox<String> tipoCambio) {
+        this.tipoCambio = tipoCambio;
+    }
 
     /**
      * Creates new form VistaActualizacionPrecios
      */
-    public VistaActualizacionPrecios() {
+    public VistaActualizarPrecios() {
         initComponents();
     }
 
@@ -38,13 +65,13 @@ public class VistaActualizacionPrecios extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaProductos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        filtroRubro = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cantidad = new javax.swing.JTextField();
+        botonAumentar = new javax.swing.JButton();
+        botonDisminuir = new javax.swing.JButton();
+        tipoCambio = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -54,7 +81,8 @@ public class VistaActualizacionPrecios extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -63,13 +91,26 @@ public class VistaActualizacionPrecios extends javax.swing.JFrame {
             new String [] {
                 "ID", "Nombre", "Marca", "Rubro", "Precio", "Cantidad"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tablaProductos);
 
         jLabel1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
         jLabel1.setText("Actualización de Precios");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        filtroRubro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODOS" }));
+        filtroRubro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filtroRubroActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
         jLabel3.setText("Rubro:");
@@ -77,17 +118,27 @@ public class VistaActualizacionPrecios extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
         jLabel4.setText("Cambiar Precio:");
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        cantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                cantidadActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Aumentar");
+        botonAumentar.setText("Aumentar");
+        botonAumentar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAumentarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Disminuir");
+        botonDisminuir.setText("Disminuir");
+        botonDisminuir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonDisminuirActionPerformed(evt);
+            }
+        });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        tipoCambio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PORCENTAJE", "VALOR" }));
 
         jMenu1.setText("Menú");
         jMenu1.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
@@ -111,7 +162,7 @@ public class VistaActualizacionPrecios extends javax.swing.JFrame {
         jMenu1.add(jMenuItem3);
 
         jMenuItem4.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
-        jMenuItem4.setText("ABM");
+        jMenuItem4.setText("ABM Productos");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
@@ -158,17 +209,17 @@ public class VistaActualizacionPrecios extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(botonAumentar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(68, 68, 68)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(botonDisminuir, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(filtroRubro, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(88, 88, 88)
                                         .addComponent(jLabel4)
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(tipoCambio, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(15, 15, 15))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 221, Short.MAX_VALUE)
@@ -183,15 +234,15 @@ public class VistaActualizacionPrecios extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(filtroRubro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tipoCambio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(botonDisminuir)
+                    .addComponent(botonAumentar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(24, Short.MAX_VALUE))
@@ -200,9 +251,9 @@ public class VistaActualizacionPrecios extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void cantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantidadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_cantidadActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         ControladorMenu.abrirABM(this);
@@ -224,16 +275,28 @@ public class VistaActualizacionPrecios extends javax.swing.JFrame {
         ControladorMenu.salirDelPrograma();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void filtroRubroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroRubroActionPerformed
+        ControladorVistaActualizarPrecios.filtrarProductos();
+    }//GEN-LAST:event_filtroRubroActionPerformed
+
+    private void botonAumentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAumentarActionPerformed
+        ControladorVistaActualizarPrecios.aumentarPrecios();
+    }//GEN-LAST:event_botonAumentarActionPerformed
+
+    private void botonDisminuirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDisminuirActionPerformed
+        ControladorVistaActualizarPrecios.disminuirPrecios();
+    }//GEN-LAST:event_botonDisminuirActionPerformed
+
     /**
      * @param args the command line arguments
      */
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JButton botonAumentar;
+    private javax.swing.JButton botonDisminuir;
+    private javax.swing.JTextField cantidad;
+    private javax.swing.JComboBox<String> filtroRubro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -246,7 +309,7 @@ public class VistaActualizacionPrecios extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTable tablaProductos;
+    private javax.swing.JComboBox<String> tipoCambio;
     // End of variables declaration//GEN-END:variables
 }

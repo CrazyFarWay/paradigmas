@@ -10,15 +10,13 @@ import vistas.VistaProveedores;
 public class ControladorVistaProveedores {
     private static VistaProveedores vista = new VistaProveedores();
     private static ArrayList<Proveedor> proveedores;
-    private static ArrayList<String> filtros = new ArrayList<>();
-    private static BaseDeDatos baseDeDatos = new BaseDeDatos();
+    private static ArrayList<String> filtros;
     
     public static void mostrar(){
         vista.setVisible(true);
-	proveedores = baseDeDatos.obtenerProveedores();
+	proveedores = GestionConexion.obtenerProveedores();
         
-        filtros.clear();
-        filtros.addAll(baseDeDatos.obtenerFiltrosProveedores());    
+        filtros = GestionConexion.obtenerFiltrosRubroProveedores();    
         
 	DefaultTableModel modeloTabla = (DefaultTableModel) vista.getTablaProveedores().getModel();
         DefaultComboBoxModel modeloComboBox = (DefaultComboBoxModel) vista.getFiltroRubro().getModel();
@@ -37,15 +35,12 @@ public class ControladorVistaProveedores {
 		
 		modeloTabla.addRow(fila);
 	}
-        
-        modeloComboBox.addElement("Todos");
-        modeloComboBox.setSelectedItem("Todos");
-        
+       
         for(String filtro: filtros) {
-            modeloComboBox.addElement(filtro);
+            if (modeloComboBox.getIndexOf(filtro) == -1) {
+                    modeloComboBox.addElement(filtro);
+            }
         }
-        
-        vista.getFiltroRubro().setModel(modeloComboBox);
     }
 
     public static void limpiarTextFields(){
@@ -66,13 +61,13 @@ public class ControladorVistaProveedores {
 		vista.getDireccion().getText()  
 	);
 	
-	baseDeDatos.agregarProveedor(proveedor);
-	ControladorVistaProveedores.mostrar();
+	GestionConexion.agregarProveedor(proveedor);
+	mostrar();
     }
     
     public static void eliminarProveedor(){
-	baseDeDatos.eliminarProveedor(Integer.parseInt(vista.getCodigo().getText()));
-	ControladorVistaProveedores.mostrar();
+	GestionConexion.eliminarProveedor(Integer.parseInt(vista.getCodigo().getText()));
+	mostrar();
     }
     
     public static void modificarProveedor(){
@@ -84,9 +79,9 @@ public class ControladorVistaProveedores {
 		vista.getCorreoElectronico().getText(),
 		vista.getDireccion().getText()
 	);
-	    
-	baseDeDatos.modificarProveedor(proveedor);
-	ControladorVistaProveedores.mostrar();
+	
+	GestionConexion.modificarProveedor(proveedor);
+	mostrar();
     }
     
     public static void hacerUnPedido(){
@@ -114,7 +109,7 @@ public class ControladorVistaProveedores {
     }
     
     public static void filtrarProveedores() {
-        ArrayList<Proveedor> proveedoresFiltrados = baseDeDatos.obtenerProveedoresFiltrados(
+        ArrayList<Proveedor> proveedoresFiltrados = GestionConexion.obtenerProveedoresFiltrados(
                 vista.getFiltroRubro().getSelectedItem().toString()
         );
                 

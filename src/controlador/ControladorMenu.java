@@ -11,7 +11,7 @@ public class ControladorMenu {
 
 	public static void abrirABM(JFrame vista) {
 		vista.dispose();
-		ControladorVistaABM.mostrar();
+		ControladorVistaABMProductos.mostrar();
 	}
 
 	public static void salirDelPrograma() {
@@ -23,14 +23,33 @@ public class ControladorMenu {
 		ControladorVistaVenta.mostrar();
 	}
         
-        public static void abrirActualizacionPrecios(JFrame vista){
+        public static void abrirActualizarPrecios(JFrame vista){
                 vista.dispose();
-                ControladorVistaActualizacionPrecios.mostrar();
+                ControladorVistaActualizarPrecios.mostrar();
         }
 
 	public static void cerrarSesion(JFrame vista) {
-		vista.dispose();
-		ControladorVistaLogin.mostrar();
+            GestionConexion.cerrarSesion();
 	}
+        
+	public static void abrirProveedoresDesdeInicio() {
+		
+		ControladorVistaProveedores.mostrar();
+	}
+
+	public static void abrirABMDesdeInicio() {
+		
+		ControladorVistaABMProductos.mostrar();
+	}
+
+	public static void abrirVentasDesdeInicio() {
+		
+		ControladorVistaVenta.mostrar();
+	}
+        
+        public static void abrirActualizarPreciosDesdeInicio(){
+                
+                ControladorVistaActualizarPrecios.mostrar();
+        }
     
 }

@@ -6,7 +6,7 @@
 package vistas;
 
 import controlador.ControladorMenu;
-import controlador.ControladorVistaABM;
+import controlador.ControladorVistaABMProductos;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -14,12 +14,12 @@ import javax.swing.JTextField;
  *
  * @author ValeS
  */
-public class VistaABM extends javax.swing.JFrame {
+public class VistaABMProductos extends javax.swing.JFrame {
 
     /**
      * Creates new form VistaInventario
      */
-    public VistaABM() {
+    public VistaABMProductos() {
         initComponents();
     }
 
@@ -114,12 +114,12 @@ public class VistaABM extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         botonProveedores = new javax.swing.JMenuItem();
         botonVentas = new javax.swing.JMenuItem();
-        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         botonCerrarSesion = new javax.swing.JMenuItem();
         botonSalir = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -187,14 +187,14 @@ public class VistaABM extends javax.swing.JFrame {
             }
         });
 
-        filtroPrecio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Mayor Precio", "Menor Precio" }));
+        filtroPrecio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODOS", "MAYOR A MENOR", "MENOR A MAYOR" }));
         filtroPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 filtroPrecioActionPerformed(evt);
             }
         });
 
-        filtroRubro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Golosinas", "Bebidas" }));
+        filtroRubro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODOS" }));
         filtroRubro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 filtroRubroActionPerformed(evt);
@@ -244,14 +244,13 @@ public class VistaABM extends javax.swing.JFrame {
         });
         jMenu1.add(botonVentas);
 
-        jCheckBoxMenuItem1.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
-        jCheckBoxMenuItem1.setText("Actualización de Precios");
-        jCheckBoxMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem1.setText("Actualizacion de Precios");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxMenuItem1ActionPerformed(evt);
+                jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu1.add(jCheckBoxMenuItem1);
+        jMenu1.add(jMenuItem1);
         jMenu1.add(jSeparator1);
 
         botonCerrarSesion.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
@@ -386,23 +385,23 @@ public class VistaABM extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
-        ControladorVistaABM.agregarProducto();
+        ControladorVistaABMProductos.agregarProducto();
     }//GEN-LAST:event_botonAgregarActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
-        ControladorVistaABM.modificarProducto();
+        ControladorVistaABMProductos.modificarProducto();
     }//GEN-LAST:event_botonModificarActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-        ControladorVistaABM.eliminarProducto();
+        ControladorVistaABMProductos.eliminarProducto();
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void tablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosMouseClicked
-        ControladorVistaABM.seleccionarProducto();
+        ControladorVistaABMProductos.seleccionarProducto();
     }//GEN-LAST:event_tablaProductosMouseClicked
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        ControladorVistaABM.limpiarTextFields();
+        ControladorVistaABMProductos.limpiarTextFields();
     }//GEN-LAST:event_formMouseClicked
 
         private void botonVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVentasActionPerformed
@@ -422,24 +421,24 @@ public class VistaABM extends javax.swing.JFrame {
         }//GEN-LAST:event_botonCerrarSesionActionPerformed
 
     private void botonActualizarPreciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarPreciosActionPerformed
-        ControladorVistaABM.actualizarPrecios();
+        ControladorVistaABMProductos.actualizarPrecios();
     }//GEN-LAST:event_botonActualizarPreciosActionPerformed
 
     private void filtroPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroPrecioActionPerformed
-        ControladorVistaABM.filtrarProductos();
+        ControladorVistaABMProductos.filtrarProductos();
     }//GEN-LAST:event_filtroPrecioActionPerformed
 
     private void filtroRubroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroRubroActionPerformed
-        ControladorVistaABM.filtrarProductos();
+        ControladorVistaABMProductos.filtrarProductos();
     }//GEN-LAST:event_filtroRubroActionPerformed
 
     private void rubroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rubroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rubroActionPerformed
 
-    private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
-        ControladorMenu.abrirActualizacionPrecios(this);
-    }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        ControladorMenu.abrirActualizarPrecios(this);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -458,7 +457,6 @@ public class VistaABM extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> filtroPrecio;
     private javax.swing.JComboBox<String> filtroRubro;
     private javax.swing.JTextField id;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -470,6 +468,7 @@ public class VistaABM extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JTextField marca;

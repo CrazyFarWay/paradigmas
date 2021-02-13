@@ -16,9 +16,7 @@ public class ControladorVistaVenta {
     public static void mostrar() {
         vistaVentaPrincipal.setVisible(true);
         vistaVentaPrincipal.getLabelMontoInsuficiente().setVisible(false);
-
-        BaseDeDatos baseDeDatos = new BaseDeDatos();
-        ArrayList<Producto> productos = baseDeDatos.obtenerProductos();
+        ArrayList<Producto> productos = GestionConexion.obtenerProductos();
 
         DefaultTableModel modelo1 = (DefaultTableModel) vistaVentaPrincipal.getTablaProductos().getModel();
         modelo1.setNumRows(0);
@@ -35,7 +33,7 @@ public class ControladorVistaVenta {
             modelo1.addRow(fila);
         }
 
-        ArrayList<Venta> ventas = baseDeDatos.obtenerVenta();
+        ArrayList<Venta> ventas = GestionConexion.obtenerVenta();
 
         DefaultTableModel modelo2 = (DefaultTableModel) vistaVentaPrincipal.getTablaVentas().getModel();
         modelo2.setNumRows(0);
@@ -63,8 +61,6 @@ public class ControladorVistaVenta {
         precioUnidad = Double.parseDouble(vistaVentaPrincipal.getPrecioUnidad().getText());
         descuento = (Integer.parseInt(vistaVentaPrincipal.getDescuento().getText()));
       
-        
-        BaseDeDatos baseDeDatos = new BaseDeDatos();
         Venta venta = new Venta(
                 Integer.parseInt(vistaVentaPrincipal.getId().getText()),
                 vistaVentaPrincipal.getNombre().getText(),
@@ -74,9 +70,8 @@ public class ControladorVistaVenta {
                 Integer.parseInt(vistaVentaPrincipal.getDescuento().getText()),
                 subtotal = precioUnidad * cantidad - (descuento * precioUnidad) / 100
         );
-        baseDeDatos.agregarVenta(venta); 
+        GestionConexion.agregarVenta(venta); 
         
-        //calculoTotal();
         mostrar();
        
     }
@@ -85,10 +80,8 @@ public class ControladorVistaVenta {
         
         double total = 0;
         
-        BaseDeDatos baseDeDatos = new BaseDeDatos();
-        baseDeDatos.eliminarVenta(Integer.parseInt(vistaVentaPrincipal.getId().getText()));
+        GestionConexion.eliminarVenta(Integer.parseInt(vistaVentaPrincipal.getId().getText()));
         
-       // calculoTotal();
         mostrar();
     
     }
@@ -130,8 +123,7 @@ public class ControladorVistaVenta {
         
         String total, vuelto;
         
-        BaseDeDatos baseDeDatos = new BaseDeDatos();
-        ArrayList<Venta> ventas = baseDeDatos.obtenerVenta();
+        ArrayList<Venta> ventas = GestionConexion.obtenerVenta();
 
         DefaultTableModel modelo = (DefaultTableModel) vistaVentaConfirmada.getTablaVentas().getModel();
         modelo.setNumRows(0);
@@ -159,9 +151,7 @@ public class ControladorVistaVenta {
     }
 
     public static void ConfirmarDeshacerVenta(){
-        
-        BaseDeDatos baseDeDatos = new BaseDeDatos();
-        baseDeDatos.eliminarVentas();
+        GestionConexion.eliminarVentas();
         
         mostrarConfirmacion();
     }

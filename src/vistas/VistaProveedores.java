@@ -71,7 +71,7 @@ public class VistaProveedores extends javax.swing.JFrame {
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Proveedores");
         setResizable(false);
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -168,7 +168,7 @@ public class VistaProveedores extends javax.swing.JFrame {
             }
         });
 
-        filtroRubro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos" }));
+        filtroRubro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODOS" }));
         filtroRubro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 filtroRubroActionPerformed(evt);
@@ -193,7 +193,7 @@ public class VistaProveedores extends javax.swing.JFrame {
         menuSuperior.add(botonVentas);
 
         botonInventario.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
-        botonInventario.setText("ABM");
+        botonInventario.setText("ABM Productos");
         botonInventario.setBorder(null);
         botonInventario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -387,7 +387,7 @@ public class VistaProveedores extends javax.swing.JFrame {
     }//GEN-LAST:event_filtroRubroActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        ControladorMenu.abrirActualizacionPrecios(this);
+        ControladorMenu.abrirActualizarPrecios(this);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
