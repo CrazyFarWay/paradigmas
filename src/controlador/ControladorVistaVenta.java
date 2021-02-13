@@ -109,12 +109,12 @@ public class ControladorVistaVenta {
         if (montoEntregado >= total) {
             vuelto = montoEntregado - total;
             vistaVentaPrincipal.getLabelMontoInsuficiente().setVisible(false);
+            vistaVentaPrincipal.getVuelto().setText(Double.toString(vuelto));
+            mostrarConfirmacion();
         } else {
             vistaVentaPrincipal.getLabelMontoInsuficiente().setVisible(true);
         }
 
-        vistaVentaPrincipal.getVuelto().setText(Double.toString(vuelto));
-        mostrarConfirmacion();
 
     }
     
@@ -152,8 +152,8 @@ public class ControladorVistaVenta {
 
     public static void ConfirmarDeshacerVenta(){
         GestionConexion.eliminarVentas();
-        
-        mostrarConfirmacion();
+        vistaVentaConfirmada.setVisible(false);
+        mostrar();
     }
     
     

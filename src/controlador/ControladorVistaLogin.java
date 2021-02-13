@@ -7,7 +7,6 @@ import vistas.*;
 
 public class ControladorVistaLogin {
 	private static VistaLogin vista = new VistaLogin();
-        private static BaseDeDatos baseDeDatos;
         public static int returnStatus = 0;
 
     public static int getReturnStatus() {
