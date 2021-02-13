@@ -29,7 +29,14 @@ public class ControladorMenu {
         }
 
 	public static void cerrarSesion(JFrame vista) {
+            vista.dispose();
             GestionConexion.cerrarSesion();
+            
+            try {
+                GestionConexion.inicializar();
+            } catch (Exception ex) {
+                System.out.println(ex);
+            }
 	}
         
 	public static void abrirProveedoresDesdeInicio() {

@@ -142,5 +142,6 @@ public class GestionConexion {
     
     public static void cerrarSesion() {
         baseDeDatos.cerrarSesion();
+        baseDeDatos = null;
     }
 }
