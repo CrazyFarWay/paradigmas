@@ -215,28 +215,6 @@ public class BaseDeDatos {
         return proveedores;
     }
 
-    public ArrayList<Usuario> obtenerUsuarios() {
-
-        ArrayList<Usuario> usuarios = new ArrayList<>();
-
-        try {
-            Statement statement = conexion.createStatement();
-            ResultSet resultado = statement.executeQuery("select * from usuarios order by usuario");
-
-            while (resultado.next()) {
-                Usuario usuario = new Usuario(resultado.getString("usuario"),
-                        resultado.getString("contraseña"));
-
-                usuarios.add(usuario);
-            }
-
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return usuarios;
-
-    }
-
     public ArrayList<Venta> obtenerVenta() {
         ArrayList<Venta> ventas = new ArrayList<>();
 
@@ -322,16 +300,15 @@ public class BaseDeDatos {
         if (precio.equals("TODOS")) {
             precio = "";
         }
-        else if (precio.equals("MENOR A MAYOR")) {
+        else if (precio.equals("MAYOR A MENOR")) {
             precio = " precio DESC";
             orderBy = "ORDER BY";
         }
-        else if (precio.equals("MAYOR A MENOR")) {
+        else if (precio.equals("MENOR A MAYOR")) {
             precio = " precio ASC";
             orderBy = "ORDER BY";
         }
         
-        //System.out.println("select * from productos "+ rubro + orderBy + precio + cantidad);
         
         try {
             Statement statement = conexion.createStatement();

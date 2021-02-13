@@ -10,7 +10,6 @@ public class Main {
             GestionConexion.inicializar();
         } catch (Exception ex) {
             System.out.println(ex);
-//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

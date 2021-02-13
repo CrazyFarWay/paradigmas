@@ -26,7 +26,6 @@ public class GestionConexion {
     private static BaseDeDatos baseDeDatos;
     private static String usuario;
     private static String contraseña;
-    private static ArrayList<Usuario> usuarios = new ArrayList<>();
 
     public static void inicializar() throws Exception {
         conectar();
@@ -37,6 +36,7 @@ public class GestionConexion {
         
         while (true) {
             
+            System.out.println("Esperando loguear");
             
             if (ControladorVistaLogin.getReturnStatus() == 1) {
                 
@@ -52,8 +52,6 @@ public class GestionConexion {
                     ControladorVistaLogin.mostrarErrorDatosIncorrectos();
                     ControladorVistaLogin.setReturnStatus(0);
                 }
-            } else {
-                //ControladorVistaLogin.salir();
             }
         }
     }
@@ -91,11 +89,6 @@ public class GestionConexion {
     public static ArrayList<Proveedor> obtenerProveedores() {
         ArrayList<Proveedor> proveedores = baseDeDatos.obtenerProveedores();
         return proveedores;
-    }
-
-    public static ArrayList<Usuario> obtenerUsuarios() {
-        ArrayList<Usuario> usuarios = baseDeDatos.obtenerUsuarios();
-        return usuarios;
     }
 
     public static ArrayList<Venta> obtenerVenta() {
