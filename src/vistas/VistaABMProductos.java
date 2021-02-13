@@ -244,6 +244,7 @@ public class VistaABMProductos extends javax.swing.JFrame {
         });
         jMenu1.add(botonVentas);
 
+        jMenuItem1.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
         jMenuItem1.setText("Actualizacion de Precios");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

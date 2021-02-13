@@ -46,6 +46,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tw Cen MT" size="14" style="2"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Actualizacion de Precios"/>
               </Properties>
               <Events>
