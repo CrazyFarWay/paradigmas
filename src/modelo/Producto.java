@@ -5,16 +5,19 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 
-public class Producto {
+public class Producto extends Entidad {
 
     String nombre, marca, rubro;
     double precio;
     int id, cantidad;
-
-    private Statement statement;
-    private Connection conexion;
     
-    public Producto(int id, String nombre, String marca, String rubro, double precio, int cantidad) {
+    public Producto(GestionConexion conexion,String nombre) {
+	    super("Producto", conexion);
+	    this.nombre = nombre;
+    }
+
+    public Producto(GestionConexion conexion, int id, String nombre, String marca, String rubro, double precio, int cantidad) {
+        super("Producto", conexion);
         this.id = id;
         this.nombre = nombre;
         this.marca = marca;
@@ -83,49 +86,42 @@ public class Producto {
     }
 
     
+    @Override
     public void agregarProducto(Producto producto) {
+	String query;
+
+	query = "insert into productos (nombre, marca, rubro, precio, cantidad) vaules ('"+ producto.getNombre() + "', '" +
+producto.getMarca() + "', '" + producto.getRubro() + "', '" + producto.getPrecio() + "', '" + producto.getCantidad() + "')";
 
         try {
-            PreparedStatement statement = conexion.prepareStatement("insert into productos (nombre, marca, rubro, precio, cantidad) values (?, ?, ?, ?, ?)");
-
-            statement.setString(1, producto.getNombre());
-            statement.setString(2, producto.getMarca());
-            statement.setString(3, producto.getRubro());
-            statement.setDouble(4, producto.getPrecio());
-            statement.setInt(5, producto.getCantidad());
-
-            statement.executeUpdate();
+	    getGestionConexion().getStatement().executeUpdate(query);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
+    @Override
     public void eliminarProducto(int id) {
-        Statement statement;
+	String query;
+
+	query = "delete from productos where id='" + id + "'";
 
         try {
-            statement = conexion.createStatement();
-            statement.executeUpdate("delete from productos where id=" + id);
-
+	    getGestionConexion().getStatement().executeUpdate(query);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
 
     }
 
+    @Override
     public void modificarProducto(Producto producto) {
+	String query;
+
+	query = "update productos set nombre = '" + producto.getNombre() + "', marca = '" + producto.getMarca() + "', rubro = '" + producto.getRubro() + "', precio = '" + producto.getPrecio() + "', cantidad = '" + producto.getCantidad() + "' where id = '" + producto.getId() + "'";
 
         try {
-            PreparedStatement statement = conexion.prepareStatement("update productos set nombre=?, marca=?, rubro=?, precio=?, cantidad=? where id=?");
-
-            statement.setString(1, producto.getNombre());
-            statement.setString(2, producto.getMarca());
-            statement.setString(3, producto.getRubro());
-            statement.setDouble(4, producto.getPrecio());
-            statement.setInt(5, producto.getCantidad());
-            statement.setInt(6, producto.getId());
-
-            statement.executeUpdate();
+	    getGestionConexion().getStatement().executeUpdate(query);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -133,21 +129,23 @@ public class Producto {
 
     public ArrayList<Producto> obtenerProductos() {
         ArrayList<Producto> productos = new ArrayList<>();
+        ResultSet resultado;
+	String query = "select * from productos order by id";
+	
 
         try {
-            Statement statement = conexion.createStatement();
-            ResultSet resultado = statement.executeQuery("select * from productos order by id");
+		resultado = getGestionConexion().getStatement().executeQuery(query);
+	    	while (resultado.next()) {
+                	Producto producto = new Producto(getGestionConexion(),"");
+			producto.setId(resultado.getInt("id"));
+			producto.setNombre(resultado.getString("nombre"));
+			producto.setMarca(resultado.getString("marca"));
+			producto.setRubro(resultado.getString("rubro"));
+			producto.setPrecio(resultado.getDouble("precio"));
+			producto.setCantidad(resultado.getInt("cantidad"));
 
-            while (resultado.next()) {
-                Producto producto = new Producto(resultado.getInt("id"),
-                        resultado.getString("nombre"),
-                        resultado.getString("marca"),
-                        resultado.getString("rubro"),
-                        resultado.getDouble("precio"),
-                        resultado.getInt("cantidad"));
-
-                productos.add(producto);
-            }
+			productos.add(producto);
+		    }
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -177,23 +175,23 @@ public class Producto {
             precio = " precio ASC";
             orderBy = "ORDER BY";
         }
-        
+
+	String query = "select * from productos "+ rubro + orderBy + precio;
+        ResultSet resultado;
         
         try {
-            Statement statement = conexion.createStatement();
-            ResultSet resultado = statement.executeQuery(
-                    "select * from productos "+ rubro + orderBy + precio);
+		resultado = getGestionConexion().getStatement().executeQuery(query);
+	    	while (resultado.next()) {
+                	Producto producto = new Producto(getGestionConexion(),"");
+			producto.setId(resultado.getInt("id"));
+			producto.setNombre(resultado.getString("nombre"));
+			producto.setMarca(resultado.getString("marca"));
+			producto.setRubro(resultado.getString("rubro"));
+			producto.setPrecio(resultado.getDouble("precio"));
+			producto.setCantidad(resultado.getInt("cantidad"));
 
-            while (resultado.next()) {
-                Producto producto = new Producto(resultado.getInt("id"),
-                        resultado.getString("nombre"),
-                        resultado.getString("marca"),
-                        resultado.getString("rubro"),
-                        resultado.getDouble("precio"),
-                        resultado.getInt("cantidad"));
-
-                productos.add(producto);
-            }
+			productos.add(producto);
+		    }
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -213,22 +211,23 @@ public class Producto {
         }
         
         //System.out.println("select * from productos "+ rubro + orderBy + precio + cantidad);
+	String query = "select * from productos "+ rubro;
+        ResultSet resultado;
         
         try {
-            Statement statement = conexion.createStatement();
-            ResultSet resultado = statement.executeQuery(
-                    "select * from productos "+ rubro);
+		resultado = getGestionConexion().getStatement().executeQuery(query);
+	    	while (resultado.next()) {
+                	Producto producto = new Producto(getGestionConexion(),"");
+			producto.setId(resultado.getInt("id"));
+			producto.setNombre(resultado.getString("nombre"));
+			producto.setMarca(resultado.getString("marca"));
+			producto.setRubro(resultado.getString("rubro"));
+			producto.setPrecio(resultado.getDouble("precio"));
+			producto.setCantidad(resultado.getInt("cantidad"));
 
-            while (resultado.next()) {
-                Producto producto = new Producto(resultado.getInt("id"),
-                        resultado.getString("nombre"),
-                        resultado.getString("marca"),
-                        resultado.getString("rubro"),
-                        resultado.getDouble("precio"),
-                        resultado.getInt("cantidad"));
+			productos.add(producto);
+		    }
 
-                productos.add(producto);
-            }
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -239,17 +238,16 @@ public class Producto {
     
     public ArrayList<String> obtenerFiltrosRubroProductos() {
         ArrayList<String> filtros = new ArrayList<>();
+	ResultSet resultado;
+	String query = "select distinct rubro from productos";
         
         try {
-            Statement statement = conexion.createStatement();
-            ResultSet resultado = statement.executeQuery(
-                    "select distinct rubro from productos");
+	    resultado = getGestionConexion().getStatement().executeQuery(query);
 
             while (resultado.next()) {
                 String filtro;
                 
                 filtro = resultado.getString("rubro");
-
                 filtros.add(filtro);
             }
 
@@ -261,62 +259,50 @@ public class Producto {
     }
     
     public void aumentarPrecios(String opcion, double cantidad) {
+	    ResultSet resultado;
+
         if (opcion.equals("PORCENTAJE")) {
+		Double porcentaje = cantidad/100;
+		String query = "update productos set precio = precio + precio * '" + porcentaje + "'";
             
             try {
-                PreparedStatement statement = conexion.prepareStatement("update productos set precio = precio + precio * ?");
-
-                statement.setDouble(1, cantidad/100);
-
-                System.out.println(statement.toString());
-                statement.executeUpdate();
+		resultado = getGestionConexion().getStatement().executeQuery(query);
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
             
         } else if (opcion.equals("VALOR")) {
+		Double valor = cantidad;
+		String query = "update productos set precio = precio + precio * '" + valor + "'";
             
             try {
-                PreparedStatement statement = conexion.prepareStatement("update productos set precio = precio + ?");
-
-                statement.setDouble(1, cantidad);
-                
-                System.out.println(statement.toString());
-                statement.executeUpdate();
+		resultado = getGestionConexion().getStatement().executeQuery(query);
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
-            
         }
     }
     public void disminuirPrecios(String opcion, double cantidad) {
+	    ResultSet resultado;
+
         if (opcion.equals("PORCENTAJE")) {
+		Double porcentaje = cantidad/100;
+		String query = "update productos set precio = precio - precio * '" + porcentaje + "'";
             
             try {
-                PreparedStatement statement = conexion.prepareStatement("update productos set precio = precio - precio * ?");
-
-                statement.setDouble(1, cantidad/100);
-
-                System.out.println(statement.toString());
-                statement.executeUpdate();
+		resultado = getGestionConexion().getStatement().executeQuery(query);
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
             
         } else if (opcion.equals("VALOR")) {
+		Double valor = cantidad;
+		String query = "update productos set precio = precio - precio * '" + valor + "'";
             
             try {
-                PreparedStatement statement = conexion.prepareStatement("update productos set precio = precio - ?");
-
-                statement.setDouble(1, cantidad);
-
-                System.out.println(statement.toString());
-                statement.executeUpdate();
+		resultado = getGestionConexion().getStatement().executeQuery(query);
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
-            
         }
-        
-    }
 }

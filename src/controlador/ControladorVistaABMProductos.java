@@ -12,10 +12,10 @@ public class ControladorVistaABMProductos {
     static VistaABMProductos vista = new VistaABMProductos();
     private static ArrayList<String> filtros;
 
-   /* public static void mostrar() {
+    public static void mostrar() {
         vista.setVisible(true);
 
-        ArrayList<Producto> productos = GestionConexion.obtenerProductos();
+        ArrayList<Producto> productos = listaProductos.obtenerProductos();
 
         filtros = GestionConexion.obtenerFiltrosRubroProductos();   
         
