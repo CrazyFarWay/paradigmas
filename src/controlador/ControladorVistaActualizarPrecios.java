@@ -9,32 +9,33 @@ import vistas.VistaActualizarPrecios;
 
 public class ControladorVistaActualizarPrecios {
     
-  /*  static VistaActualizarPrecios vista = new VistaActualizarPrecios();
+    static VistaActualizarPrecios vista = new VistaActualizarPrecios();
     private static ArrayList<String> filtros = new ArrayList<>();
     
     public static void mostrar(){
         
         vista.setVisible(true);
         
-        ArrayList<Producto> productos = GestionConexion.obtenerProductos();
+	Producto producto = new Producto();
+        ArrayList<Producto> productos = producto.obtenerProductos();
         
         filtros.clear();
-        filtros.addAll(GestionConexion.obtenerFiltrosRubroProductos());   
+        filtros.addAll(producto.obtenerFiltrosRubroProductos());   
 
         DefaultTableModel model = (DefaultTableModel) vista.getTablaProductos().getModel();
         DefaultComboBoxModel modeloComboBox = (DefaultComboBoxModel) vista.getFiltroRubro().getModel();
         
         model.setNumRows(0);
 
-        for (Producto producto : productos) {
+        for (Producto productoEnLista : productos) {
             Object[] fila = new Object[6];
 
-            fila[0] = producto.getId();
-            fila[1] = producto.getNombre();
-            fila[2] = producto.getMarca();
-            fila[3] = producto.getRubro();
-            fila[4] = producto.getPrecio();
-            fila[5] = producto.getCantidad();
+            fila[0] = productoEnLista.getId();
+            fila[1] = productoEnLista.getNombre();
+            fila[2] = productoEnLista.getMarca();
+            fila[3] = productoEnLista.getRubro();
+            fila[4] = productoEnLista.getPrecio();
+            fila[5] = productoEnLista.getCantidad();
             model.addRow(fila);
         }
         
@@ -46,37 +47,39 @@ public class ControladorVistaActualizarPrecios {
     }
         
     public static void filtrarProductos() {
-        ArrayList<Producto> productosFiltrados = GestionConexion.obtenerProductosFiltrados(vista.getFiltroRubro().getSelectedItem().toString());
+	Producto producto = new Producto();
+        ArrayList<Producto> productosFiltrados = producto.obtenerProductosFiltrados(vista.getFiltroRubro().getSelectedItem().toString());
                 
         
         DefaultTableModel model = (DefaultTableModel) vista.getTablaProductos().getModel();
         model.setNumRows(0);
 
-        for (Producto producto : productosFiltrados) {
+        for (Producto productoEnLista : productosFiltrados) {
             Object[] fila = new Object[6];
 
-            fila[0] = producto.getId();
-            fila[1] = producto.getNombre();
-            fila[2] = producto.getMarca();
-            fila[3] = producto.getRubro();
-            fila[4] = producto.getPrecio();
-            fila[5] = producto.getCantidad();
+            fila[0] = productoEnLista.getId();
+            fila[1] = productoEnLista.getNombre();
+            fila[2] = productoEnLista.getMarca();
+            fila[3] = productoEnLista.getRubro();
+            fila[4] = productoEnLista.getPrecio();
+            fila[5] = productoEnLista.getCantidad();
             model.addRow(fila);
         }
     }
     
     public static void aumentarPrecios() {
         DefaultComboBoxModel modeloComboBox = (DefaultComboBoxModel) vista.getTipoCambio().getModel();
+	Producto producto = new Producto();
         
         if (modeloComboBox.getSelectedItem().equals("PORCENTAJE")) {
             double porcentaje = Double.parseDouble(vista.getCantidad().getText());
             
-            GestionConexion.aumentarPrecios("PORCENTAJE", porcentaje);
+            producto.aumentarPrecios("PORCENTAJE", porcentaje);
             
         } else if (modeloComboBox.getSelectedItem().equals("VALOR")) {
             double valor = Double.parseDouble(vista.getCantidad().getText());
             
-            GestionConexion.aumentarPrecios("VALOR", valor);
+            producto.aumentarPrecios("VALOR", valor);
         }
         
         mostrar();
@@ -84,19 +87,20 @@ public class ControladorVistaActualizarPrecios {
     
     public static void disminuirPrecios() {
         DefaultComboBoxModel modeloComboBox = (DefaultComboBoxModel) vista.getTipoCambio().getModel();
+	Producto producto = new Producto();
         
         if (modeloComboBox.getSelectedItem().equals("PORCENTAJE")) {
             double porcentaje = Double.parseDouble(vista.getCantidad().getText());
             
-            GestionConexion.disminuirPrecios("PORCENTAJE", porcentaje);
+            producto.disminuirPrecios("PORCENTAJE", porcentaje);
             
         } else if (modeloComboBox.getSelectedItem().equals("VALOR")) {
             double valor = Double.parseDouble(vista.getCantidad().getText());
             
-            GestionConexion.disminuirPrecios("VALOR", valor);
+            producto.disminuirPrecios("VALOR", valor);
         }
         
         mostrar();
-    }*/
+    }
     
 }

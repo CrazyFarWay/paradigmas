@@ -15,24 +15,25 @@ public class ControladorVistaABMProductos {
     public static void mostrar() {
         vista.setVisible(true);
 
-        ArrayList<Producto> productos = listaProductos.obtenerProductos();
+	Producto producto = new Producto();
+        ArrayList<Producto> productos = producto.obtenerProductos();
 
-        filtros = GestionConexion.obtenerFiltrosRubroProductos();   
+        filtros = producto.obtenerFiltrosRubroProductos();   
         
         DefaultTableModel model = (DefaultTableModel) vista.getTablaProductos().getModel();
         DefaultComboBoxModel modeloComboBox = (DefaultComboBoxModel) vista.getFiltroRubro().getModel();
         
         model.setNumRows(0);
 
-        for (Producto producto : productos) {
+        for (Producto productoEnLista : productos) {
             Object[] fila = new Object[6];
 
-            fila[0] = producto.getId();
-            fila[1] = producto.getNombre();
-            fila[2] = producto.getMarca();
-            fila[3] = producto.getRubro();
-            fila[4] = producto.getPrecio();
-            fila[5] = producto.getCantidad();
+            fila[0] = productoEnLista.getId();
+            fila[1] = productoEnLista.getNombre();
+            fila[2] = productoEnLista.getMarca();
+            fila[3] = productoEnLista.getRubro();
+            fila[4] = productoEnLista.getPrecio();
+            fila[5] = productoEnLista.getCantidad();
             model.addRow(fila);
         }
         
@@ -44,7 +45,6 @@ public class ControladorVistaABMProductos {
     }
 
     public static void agregarProducto() {
-        
 	Producto producto = new Producto(
 		vista.getNombre().getText(),
 		vista.getMarca().getText(),
@@ -53,12 +53,11 @@ public class ControladorVistaABMProductos {
 		Integer.parseInt(vista.getCantidad().getText())
 	);
 	    
-	GestionConexion.agregarProducto(producto);
+	producto.agregarProducto(producto);
 	mostrar();
     }
 
     public static void modificarProducto() {
-
 	Producto producto = new Producto(
 		Integer.parseInt(vista.getId().getText()),
 		vista.getNombre().getText(),
@@ -68,13 +67,14 @@ public class ControladorVistaABMProductos {
 		Integer.parseInt(vista.getCantidad().getText())
 	);
 	    
-	GestionConexion.modificarProducto(producto);
+	producto.modificarProducto(producto);
 	mostrar();
     }
 
     public static void eliminarProducto() {
-       
-	GestionConexion.eliminarProducto(Integer.parseInt(vista.getId().getText()));
+	Producto producto = new Producto();
+
+	producto.eliminarProducto(Integer.parseInt(vista.getId().getText()));
 	mostrar();
 
     }
@@ -109,7 +109,8 @@ public class ControladorVistaABMProductos {
 
     public static void filtrarProductos() {
        
-        ArrayList<Producto> productos = GestionConexion.obtenerProductosFiltrados(
+	Producto producto = new  Producto();
+        ArrayList<Producto> productos = producto.obtenerProductosFiltrados(
               vista.getFiltroPrecio().getSelectedItem().toString(),
                vista.getFiltroRubro().getSelectedItem().toString()
         );
@@ -119,16 +120,16 @@ public class ControladorVistaABMProductos {
         DefaultTableModel model = (DefaultTableModel) vista.getTablaProductos().getModel();
         model.setNumRows(0);
 
-        for (Producto producto : productos) {
+        for (Producto productoEnLista : productos) {
             Object[] fila = new Object[6];
 
-            fila[0] = producto.getId();
-            fila[1] = producto.getNombre();
-            fila[2] = producto.getMarca();
-            fila[3] = producto.getRubro();
-            fila[4] = producto.getPrecio();
-            fila[5] = producto.getCantidad();
+            fila[0] = productoEnLista.getId();
+            fila[1] = productoEnLista.getNombre();
+            fila[2] = productoEnLista.getMarca();
+            fila[3] = productoEnLista.getRubro();
+            fila[4] = productoEnLista.getPrecio();
+            fila[5] = productoEnLista.getCantidad();
             model.addRow(fila);
         }
-    }*/
+    }
 }

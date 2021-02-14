@@ -12,26 +12,27 @@ public class ControladorVistaProveedores {
     private static ArrayList<Proveedor> proveedores;
     private static ArrayList<String> filtros;
     
-   /* public static void mostrar(){
+    public static void mostrar(){
         vista.setVisible(true);
-	proveedores = GestionConexion.obtenerProveedores();
+	Proveedor proveedor = new Proveedor();
+	proveedores = proveedor.obtenerProveedores();
         
-        filtros = GestionConexion.obtenerFiltrosRubroProveedores();    
+        filtros = proveedor.obtenerFiltrosRubroProveedores();    
         
 	DefaultTableModel modeloTabla = (DefaultTableModel) vista.getTablaProveedores().getModel();
         DefaultComboBoxModel modeloComboBox = (DefaultComboBoxModel) vista.getFiltroRubro().getModel();
 
 	modeloTabla.setNumRows(0);
 	
-	for(Proveedor proveedor:proveedores){
+	for(Proveedor proveedorEnLista:proveedores){
 		Object[] fila = new Object[6];
 		
-		fila[0] = proveedor.getCodigo();
-		fila[1] = proveedor.getNombre();
-		fila[2] = proveedor.getRubro();
-		fila[3] = proveedor.getTelefono();
-		fila[4] = proveedor.getCorreoElectronico();
-		fila[5] = proveedor.getDireccion();
+		fila[0] = proveedorEnLista.getCodigo();
+		fila[1] = proveedorEnLista.getNombre();
+		fila[2] = proveedorEnLista.getRubro();
+		fila[3] = proveedorEnLista.getTelefono();
+		fila[4] = proveedorEnLista.getCorreoElectronico();
+		fila[5] = proveedorEnLista.getDireccion();
 		
 		modeloTabla.addRow(fila);
 	}
@@ -53,7 +54,8 @@ public class ControladorVistaProveedores {
     }
     
     public static void agregarProveedor(){
-	Proveedor proveedor = new Proveedor(
+	Proveedor proveedor = new Proveedor();
+	Proveedor proveedorNuevo = new Proveedor(
 		vista.getNombre().getText(),
 		vista.getRubro().getText().toUpperCase(),
 		vista.getTelefono().getText(),
@@ -61,17 +63,19 @@ public class ControladorVistaProveedores {
 		vista.getDireccion().getText()  
 	);
 	
-	GestionConexion.agregarProveedor(proveedor);
+	proveedor.agregarProveedor(proveedor);
 	mostrar();
     }
     
     public static void eliminarProveedor(){
-	GestionConexion.eliminarProveedor(Integer.parseInt(vista.getCodigo().getText()));
+	Proveedor proveedor = new Proveedor();
+	proveedor.eliminarProveedor(Integer.parseInt(vista.getCodigo().getText()));
 	mostrar();
     }
     
     public static void modificarProveedor(){
-	Proveedor proveedor = new Proveedor(
+	Proveedor proveedor = new Proveedor();
+	Proveedor proveedorNuevo = new Proveedor(
 		Integer.parseInt(vista.getCodigo().getText()),
 		vista.getNombre().getText(),
 		vista.getRubro().getText().toUpperCase(),
@@ -80,7 +84,7 @@ public class ControladorVistaProveedores {
 		vista.getDireccion().getText()
 	);
 	
-	GestionConexion.modificarProveedor(proveedor);
+	proveedor.modificarProveedor(proveedorNuevo);
 	mostrar();
     }
     
@@ -109,7 +113,8 @@ public class ControladorVistaProveedores {
     }
     
     public static void filtrarProveedores() {
-        ArrayList<Proveedor> proveedoresFiltrados = GestionConexion.obtenerProveedoresFiltrados(
+	Proveedor proveedor = new Proveedor();
+        ArrayList<Proveedor> proveedoresFiltrados = proveedor.obtenerProveedoresFiltrados(
                 vista.getFiltroRubro().getSelectedItem().toString()
         );
                 
@@ -117,16 +122,16 @@ public class ControladorVistaProveedores {
         DefaultTableModel model = (DefaultTableModel) vista.getTablaProveedores().getModel();
         model.setNumRows(0);
 
-        for (Proveedor proveedor : proveedoresFiltrados) {
+        for (Proveedor proveedorEnLista : proveedoresFiltrados) {
             Object[] fila = new Object[6];
 
-            fila[0] = proveedor.getCodigo();
-            fila[1] = proveedor.getNombre();
-            fila[2] = proveedor.getRubro();
-            fila[3] = proveedor.getTelefono();
-            fila[4] = proveedor.getCorreoElectronico();
-            fila[5] = proveedor.getDireccion();
+            fila[0] = proveedorEnLista.getCodigo();
+            fila[1] = proveedorEnLista.getNombre();
+            fila[2] = proveedorEnLista.getRubro();
+            fila[3] = proveedorEnLista.getTelefono();
+            fila[4] = proveedorEnLista.getCorreoElectronico();
+            fila[5] = proveedorEnLista.getDireccion();
             model.addRow(fila);
         }
-    }*/
+    }
 }

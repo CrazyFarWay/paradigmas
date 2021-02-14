@@ -9,45 +9,46 @@ import vistas.VistaVentaConfirmada;
 import vistas.VistaVentaPrincipal;
 
 public class ControladorVistaVenta {
-/*
     static VistaVentaPrincipal vistaVentaPrincipal = new VistaVentaPrincipal();
     static VistaVentaConfirmada vistaVentaConfirmada = new VistaVentaConfirmada();
+	private static Producto producto = new Producto();
     
     public static void mostrar() {
         vistaVentaPrincipal.setVisible(true);
         vistaVentaPrincipal.getLabelMontoInsuficiente().setVisible(false);
-        ArrayList<Producto> productos = GestionConexion.obtenerProductos();
+        ArrayList<Producto> productos = producto.obtenerProductos();
 
         DefaultTableModel modelo1 = (DefaultTableModel) vistaVentaPrincipal.getTablaProductos().getModel();
         modelo1.setNumRows(0);
 
-        for (Producto producto : productos) {
+        for (Producto productoEnLista : productos) {
             Object[] fila = new Object[6];
 
-            fila[0] = producto.getId();
-            fila[1] = producto.getNombre();
-            fila[2] = producto.getMarca();
-            fila[3] = producto.getRubro();
-            fila[4] = producto.getPrecio();
-            fila[5] = producto.getCantidad();
+            fila[0] = productoEnLista.getId();
+            fila[1] = productoEnLista.getNombre();
+            fila[2] = productoEnLista.getMarca();
+            fila[3] = productoEnLista.getRubro();
+            fila[4] = productoEnLista.getPrecio();
+            fila[5] = productoEnLista.getCantidad();
             modelo1.addRow(fila);
         }
 
-        ArrayList<Venta> ventas = GestionConexion.obtenerVenta();
+	Venta venta = new Venta();
+        ArrayList<Venta> ventas = venta.obtenerVenta();
 
         DefaultTableModel modelo2 = (DefaultTableModel) vistaVentaPrincipal.getTablaVentas().getModel();
         modelo2.setNumRows(0);
 
-        for (Venta venta : ventas) {
+        for (Venta ventaEnLista : ventas) {
             Object[] fila = new Object[7];
 
-            fila[0] = venta.getId();
-            fila[1] = venta.getNombre();
-            fila[2] = venta.getMarca();
-            fila[3] = venta.getCantidad();
-            fila[4] = venta.getPrecioUnidad();
-            fila[5] = venta.getDescuento();
-            fila[6] = venta.getSubtotal();
+            fila[0] = ventaEnLista.getId();
+            fila[1] = ventaEnLista.getNombre();
+            fila[2] = ventaEnLista.getMarca();
+            fila[3] = ventaEnLista.getCantidad();
+            fila[4] = ventaEnLista.getPrecioUnidad();
+            fila[5] = ventaEnLista.getDescuento();
+            fila[6] = ventaEnLista.getSubtotal();
             modelo2.addRow(fila);
         }
 
@@ -70,17 +71,18 @@ public class ControladorVistaVenta {
                 Integer.parseInt(vistaVentaPrincipal.getDescuento().getText()),
                 subtotal = precioUnidad * cantidad - (descuento * precioUnidad) / 100
         );
-        GestionConexion.agregarVenta(venta); 
+        venta.agregarVenta(venta); 
         
         mostrar();
        
     }
 
     public static void eliminarVenta() {
+	Venta venta = new Venta();
         
         double total = 0;
         
-        GestionConexion.eliminarVenta(Integer.parseInt(vistaVentaPrincipal.getId().getText()));
+        venta.eliminarVenta(Integer.parseInt(vistaVentaPrincipal.getId().getText()));
         
         mostrar();
     
@@ -120,24 +122,25 @@ public class ControladorVistaVenta {
     
     public static void mostrarConfirmacion(){
         vistaVentaConfirmada.setVisible(true);
+	Venta venta = new Venta();
         
         String total, vuelto;
         
-        ArrayList<Venta> ventas = GestionConexion.obtenerVenta();
+        ArrayList<Venta> ventas = venta.obtenerVenta();
 
         DefaultTableModel modelo = (DefaultTableModel) vistaVentaConfirmada.getTablaVentas().getModel();
         modelo.setNumRows(0);
 
-        for (Venta venta : ventas) {
+        for (Venta ventaEnLista : ventas) {
             Object[] fila = new Object[7];
 
-            fila[0] = venta.getId();
-            fila[1] = venta.getNombre();
-            fila[2] = venta.getMarca();
-            fila[3] = venta.getCantidad();
-            fila[4] = venta.getPrecioUnidad();
-            fila[5] = venta.getDescuento();
-            fila[6] = venta.getSubtotal();
+            fila[0] = ventaEnLista.getId();
+            fila[1] = ventaEnLista.getNombre();
+            fila[2] = ventaEnLista.getMarca();
+            fila[3] = ventaEnLista.getCantidad();
+            fila[4] = ventaEnLista.getPrecioUnidad();
+            fila[5] = ventaEnLista.getDescuento();
+            fila[6] = ventaEnLista.getSubtotal();
             modelo.addRow(fila);
         }
         
@@ -151,7 +154,8 @@ public class ControladorVistaVenta {
     }
 
     public static void ConfirmarDeshacerVenta(){
-        GestionConexion.eliminarVentas();
+	Venta venta = new Venta();
+        venta.eliminarVentas();
         vistaVentaConfirmada.setVisible(false);
         mostrar();
     }
@@ -195,5 +199,5 @@ public class ControladorVistaVenta {
         vistaVentaPrincipal.getTotal().setText("");
         vistaVentaPrincipal.getMontoEntregado().setText("");
         vistaVentaPrincipal.getVuelto().setText("");
-    }*/
+    }
 }

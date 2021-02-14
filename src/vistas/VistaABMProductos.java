@@ -19,7 +19,7 @@ public class VistaABMProductos extends javax.swing.JFrame {
     /**
      * Creates new form VistaInventario
      */
-  /*  public VistaABMProductos() {
+   public VistaABMProductos() {
         initComponents();
     }
 
@@ -74,7 +74,6 @@ public class VistaABMProductos extends javax.swing.JFrame {
     public JTextField getRubro() {
         return rubro;
     }
-    */
     
     
     

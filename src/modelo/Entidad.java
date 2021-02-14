@@ -36,10 +36,4 @@ public abstract class Entidad {
     public void setEntidad(String entidad) {
         this.entidad = entidad;
     } 
-
-    public abstract void agregarProducto(Producto producto);
-    
-    public abstract void eliminarProducto(int id);
-
-    public abstract void modificarProducto(Producto producto);
 }
