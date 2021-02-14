@@ -3,7 +3,7 @@ package controlador;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.DefaultComboBoxModel;
-import modelo.BaseDeDatos;
+//import modelo.BaseDeDatos;
 import modelo.Proveedor;
 import vistas.VistaProveedores;
 
@@ -12,7 +12,7 @@ public class ControladorVistaProveedores {
     private static ArrayList<Proveedor> proveedores;
     private static ArrayList<String> filtros;
     
-    public static void mostrar(){
+   /* public static void mostrar(){
         vista.setVisible(true);
 	proveedores = GestionConexion.obtenerProveedores();
         
@@ -128,5 +128,5 @@ public class ControladorVistaProveedores {
             fila[5] = proveedor.getDireccion();
             model.addRow(fila);
         }
-    }
+    }*/
 }

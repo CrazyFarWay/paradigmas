@@ -3,7 +3,7 @@ package controlador;
 import javax.swing.JFrame;
 
 public class ControladorMenu {
-
+/*
 	public static void abrirProveedores(JFrame vista) {
 		vista.dispose();
 		ControladorVistaProveedores.mostrar();
@@ -30,10 +30,10 @@ public class ControladorMenu {
 
 	public static void cerrarSesion(JFrame vista) {
             vista.dispose();
-            GestionConexion.cerrarSesion();
+       //     GestionConexion.cerrarSesion();
             
             try {
-                GestionConexion.inicializar();
+         //       GestionConexion.inicializar();
             } catch (Exception ex) {
                 System.out.println(ex);
             }
@@ -57,6 +57,6 @@ public class ControladorMenu {
         public static void abrirActualizarPreciosDesdeInicio(){
                 
                 ControladorVistaActualizarPrecios.mostrar();
-        }
+        }*/
     
 }

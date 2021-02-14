@@ -343,51 +343,51 @@ public class VistaProveedores extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
         private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
-                ControladorVistaProveedores.agregarProveedor();
+               // ControladorVistaProveedores.agregarProveedor();
         }//GEN-LAST:event_botonAgregarActionPerformed
 
         private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
-		ControladorVistaProveedores.modificarProveedor();
+		//ControladorVistaProveedores.modificarProveedor();
         }//GEN-LAST:event_botonModificarActionPerformed
 
         private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-		ControladorVistaProveedores.eliminarProveedor();
+		//ControladorVistaProveedores.eliminarProveedor();
         }//GEN-LAST:event_botonEliminarActionPerformed
 
         private void tablaProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProveedoresMouseClicked
-		ControladorVistaProveedores.seleccionarProveedor();
+		//ControladorVistaProveedores.seleccionarProveedor();
         }//GEN-LAST:event_tablaProveedoresMouseClicked
 
         private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-		ControladorVistaProveedores.limpiarTextFields();
+		//ControladorVistaProveedores.limpiarTextFields();
         }//GEN-LAST:event_formMouseClicked
 
         private void botonHacerPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonHacerPedidoActionPerformed
-		ControladorVistaProveedores.hacerUnPedido();
+		//ControladorVistaProveedores.hacerUnPedido();
         }//GEN-LAST:event_botonHacerPedidoActionPerformed
 
         private void botonInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInventarioActionPerformed
-		ControladorMenu.abrirABM(this);
+		//ControladorMenu.abrirABM(this);
         }//GEN-LAST:event_botonInventarioActionPerformed
 
         private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
-		ControladorMenu.salirDelPrograma();
+		//ControladorMenu.salirDelPrograma();
         }//GEN-LAST:event_botonSalirActionPerformed
 
         private void botonVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVentasActionPerformed
-		ControladorMenu.abrirVentas(this);
+		//ControladorMenu.abrirVentas(this);
         }//GEN-LAST:event_botonVentasActionPerformed
 
         private void botonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesionActionPerformed
-		ControladorMenu.cerrarSesion(this);
+		//ControladorMenu.cerrarSesion(this);
         }//GEN-LAST:event_botonCerrarSesionActionPerformed
 
     private void filtroRubroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroRubroActionPerformed
-        ControladorVistaProveedores.filtrarProveedores();
+      //  ControladorVistaProveedores.filtrarProveedores();
     }//GEN-LAST:event_filtroRubroActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        ControladorMenu.abrirActualizarPrecios(this);
+       // ControladorMenu.abrirActualizarPrecios(this);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**

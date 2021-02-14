@@ -2,14 +2,14 @@ package controlador;
 
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import modelo.BaseDeDatos;
+//import modelo.BaseDeDatos;
 import modelo.Producto;
 import modelo.Venta;
 import vistas.VistaVentaConfirmada;
 import vistas.VistaVentaPrincipal;
 
 public class ControladorVistaVenta {
-
+/*
     static VistaVentaPrincipal vistaVentaPrincipal = new VistaVentaPrincipal();
     static VistaVentaConfirmada vistaVentaConfirmada = new VistaVentaConfirmada();
     
@@ -195,5 +195,5 @@ public class ControladorVistaVenta {
         vistaVentaPrincipal.getTotal().setText("");
         vistaVentaPrincipal.getMontoEntregado().setText("");
         vistaVentaPrincipal.getVuelto().setText("");
-    }
+    }*/
 }

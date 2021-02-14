@@ -125,7 +125,7 @@ public class VistaPedidos extends javax.swing.JFrame {
         }//GEN-LAST:event_destinatarioActionPerformed
 
         private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-		ControladorVistaPedidos.enviarPedido();
+		//ControladorVistaPedidos.enviarPedido();
         }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

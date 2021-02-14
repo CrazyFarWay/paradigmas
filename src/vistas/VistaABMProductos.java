@@ -19,7 +19,7 @@ public class VistaABMProductos extends javax.swing.JFrame {
     /**
      * Creates new form VistaInventario
      */
-    public VistaABMProductos() {
+  /*  public VistaABMProductos() {
         initComponents();
     }
 
@@ -74,7 +74,7 @@ public class VistaABMProductos extends javax.swing.JFrame {
     public JTextField getRubro() {
         return rubro;
     }
-    
+    */
     
     
     
@@ -386,51 +386,51 @@ public class VistaABMProductos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
-        ControladorVistaABMProductos.agregarProducto();
+       // ControladorVistaABMProductos.agregarProducto();
     }//GEN-LAST:event_botonAgregarActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
-        ControladorVistaABMProductos.modificarProducto();
+       // ControladorVistaABMProductos.modificarProducto();
     }//GEN-LAST:event_botonModificarActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-        ControladorVistaABMProductos.eliminarProducto();
+       // ControladorVistaABMProductos.eliminarProducto();
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void tablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosMouseClicked
-        ControladorVistaABMProductos.seleccionarProducto();
+        //ControladorVistaABMProductos.seleccionarProducto();
     }//GEN-LAST:event_tablaProductosMouseClicked
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        ControladorVistaABMProductos.limpiarTextFields();
+        //ControladorVistaABMProductos.limpiarTextFields();
     }//GEN-LAST:event_formMouseClicked
 
         private void botonVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVentasActionPerformed
-		ControladorMenu.abrirVentas(this);
+		//ControladorMenu.abrirVentas(this);
         }//GEN-LAST:event_botonVentasActionPerformed
 
         private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
-		ControladorMenu.salirDelPrograma();
+		//ControladorMenu.salirDelPrograma();
         }//GEN-LAST:event_botonSalirActionPerformed
 
         private void botonProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonProveedoresActionPerformed
-		ControladorMenu.abrirProveedores(this);
+		//ControladorMenu.abrirProveedores(this);
         }//GEN-LAST:event_botonProveedoresActionPerformed
 
         private void botonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesionActionPerformed
-		ControladorMenu.cerrarSesion(this);
+		//ControladorMenu.cerrarSesion(this);
         }//GEN-LAST:event_botonCerrarSesionActionPerformed
 
     private void botonActualizarPreciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarPreciosActionPerformed
-        ControladorVistaABMProductos.actualizarPrecios();
+        //ControladorVistaABMProductos.actualizarPrecios();
     }//GEN-LAST:event_botonActualizarPreciosActionPerformed
 
     private void filtroPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroPrecioActionPerformed
-        ControladorVistaABMProductos.filtrarProductos();
+       // ControladorVistaABMProductos.filtrarProductos();
     }//GEN-LAST:event_filtroPrecioActionPerformed
 
     private void filtroRubroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroRubroActionPerformed
-        ControladorVistaABMProductos.filtrarProductos();
+       // ControladorVistaABMProductos.filtrarProductos();
     }//GEN-LAST:event_filtroRubroActionPerformed
 
     private void rubroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rubroActionPerformed
@@ -438,7 +438,7 @@ public class VistaABMProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_rubroActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        ControladorMenu.abrirActualizarPrecios(this);
+       // ControladorMenu.abrirActualizarPrecios(this);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
     /**
      * @param args the command line arguments

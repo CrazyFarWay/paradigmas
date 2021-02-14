@@ -3,13 +3,13 @@ package controlador;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
-import modelo.BaseDeDatos;
+//import modelo.BaseDeDatos;
 import modelo.Producto;
 import vistas.VistaActualizarPrecios;
 
 public class ControladorVistaActualizarPrecios {
     
-    static VistaActualizarPrecios vista = new VistaActualizarPrecios();
+  /*  static VistaActualizarPrecios vista = new VistaActualizarPrecios();
     private static ArrayList<String> filtros = new ArrayList<>();
     
     public static void mostrar(){
@@ -97,6 +97,6 @@ public class ControladorVistaActualizarPrecios {
         }
         
         mostrar();
-    }
+    }*/
     
 }

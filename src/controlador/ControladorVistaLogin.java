@@ -5,23 +5,78 @@ import modelo.*;
 import vistas.*;
 
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import modelo.GestionConexion;
+import modelo.Usuario;
+
+
+
 public class ControladorVistaLogin {
-	private static VistaLogin vista = new VistaLogin();
-        public static int returnStatus = 0;
-
-    public static int getReturnStatus() {
-        return returnStatus;
-    }
-
-    public static void setReturnStatus(int returnStatus) {
-        ControladorVistaLogin.returnStatus = returnStatus;
-    }
 	
+    private static GestionConexion conexion;
+    private static Usuario usuario;
+    private static Usuario usuarioSel;
+    private static VistaInicial vistaInicial;
+    private static ArrayList<Usuario> usuarios = new ArrayList<>();
+
+    public static void inicializar() throws Exception {
+        vistaInicial = new VistaInicial();
+        vistaInicial.setVisible(true);
+        conectar();
+    }
+
+    public static void conectar() throws SQLException, ClassNotFoundException, Exception {
+        VistaLogin vistaLogin = new VistaLogin(vistaInicial, true);
+        vistaLogin.setVisible(true);
+        while (true) {
+            conexion = new GestionConexion("MYSQL", "localhost", "drugstore", vistaLogin.getUsuario().getText(), vistaLogin.getContraseña().getText());
+            if (vistaLogin.getReturnStatus() == 1) {
+                try {
+                    vistaLogin.setVisible(false);
+                    conexion.conectar();
+                    //vistaInicial.getUsuario().setText(vistaLogin.getUsuario().getText().toString());
+                    //System.out.println("Conecto con mensajeria satisfractoriamente ...");
+                    //usuario = new Usuario(conexion, "");
+                    //vistaInicial.getUsuario().setText(usuario.buscar(vistaLogin.getUsuario().getText()));
+                    //usuario.setNombre(vistaLogin.getUsuario().getText());
+                    //usuario.setClave(vistaLogin.getClave().getText());
+                    //usuario.enLinea();
+                    //muestraUsuarios(vistaInicial);
+                    break;
+                } catch (SQLException | ClassNotFoundException e) {
+                    //vistaInicial.getUsuario().setText("Acceso Incorrecto");
+                    //int n = JOptionPane.showConfirmDialog(vistaInicial, "Desea reingresar datos ?", "Sin Acceso al Sistema", JOptionPane.YES_NO_OPTION);
+                    /*if (n == JOptionPane.YES_OPTION) {
+                        vistaLogin.setVisible(true);
+                    } else {
+                        System.exit(0);
+                    }*/
+                }
+            } else {
+                ControladorVistaLogin.salir(vistaInicial);
+            }
+        }
+    }
+
+    public static void salir(VistaInicial vista) {
+        vista.dispose();
+        //usuario.desconecta();
+    }
+
+
+   
+    
+    
+    
+    
+	/*
 	public static void mostrar(){
-		vista.getUsuario().setText("");
-		vista.getContraseña().setText("");
-		vista.getLabelUsuarioContraseñaIncorrecto().setVisible(false);
-		vista.setVisible(true);
+		vistaInicial.getUsuario().setText("");
+		vistaInicial.getContraseña().setText("");
+		vistaInicial.getLabelUsuarioContraseñaIncorrecto().setVisible(false);
+		vistaInicial.setVisible(true);
 	}
 	
 	public static void ingresar(){
@@ -30,23 +85,23 @@ public class ControladorVistaLogin {
 	}
         
         public static void mostrarErrorDatosIncorrectos() {
-            vista.getLabelUsuarioContraseñaIncorrecto().setVisible(true);
+            vistaInicial.getLabelUsuarioContraseñaIncorrecto().setVisible(true);
         }
         
         public static void salir() {
-            vista.setVisible(false);
+            vistaInicial.setVisible(false);
             System.exit(0);
         }
         
         public static String getUsuario() {
-            return vista.getContraseña().getText();
+            return vistaInicial.getContraseña().getText();
         }
         
         public static String getContraseña() {
-            return vista.getUsuario().getText();
+            return vistaInicial.getUsuario().getText();
         }
 
         static void ocultar() {
-            vista.setVisible(false);
-        }
+            vistaInicial.setVisible(false);
+        }*/
 }

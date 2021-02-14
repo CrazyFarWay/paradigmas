@@ -12,7 +12,7 @@ import vistas.VistaPedidos;
  * @author CrazyFarWay
  */
 public class ControladorVistaPedidos {
-	private static VistaPedidos vista = new VistaPedidos();
+/*	private static VistaPedidos vista = new VistaPedidos();
 	
 	public static void mostrar(){
 		//limpiarTextFields();
@@ -34,5 +34,5 @@ public class ControladorVistaPedidos {
 	public static void rellenarDatos(String destinatario, String asunto){
 		vista.getDestinatario().setText(destinatario);
 		vista.getAsunto().setText(asunto);
-	}
+	}*/
 }

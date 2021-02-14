@@ -1,14 +1,20 @@
 package modelo;
 
-public class Usuario {
+public class Usuario extends Entidad {
    
     String usuario, contraseña;
 
-    public Usuario(String usuario, String contraseña) {
+  /*  public Usuario(String usuario, String contraseña) {
+        this.usuario = usuario;
+        this.contraseña = contraseña;
+    }*/
+    
+    public Usuario(GestionConexion conexion, String usuario, String contraseña) {
+        super("Usuario", conexion);
         this.usuario = usuario;
         this.contraseña = contraseña;
     }
-
+        
     public Usuario() {
     }
 

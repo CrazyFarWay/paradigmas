@@ -6,18 +6,21 @@
 package vistas;
 
 import controlador.ControladorMenu;
+import controlador.ControladorVistaLogin;
 
 /**
  *
  * @author CrazyFarWay
  */
-public class VistaInicial extends javax.swing.JFrame {
-
+public class VistaInicial extends javax.swing.JDialog {
+    
     /**
      * Creates new form VistaInicial
+     * @throws java.lang.Exception
      */
-    public VistaInicial() {
+    public VistaInicial() throws Exception {
         initComponents();
+       // setLocation(300, 0);
     }
 
     /**
@@ -40,7 +43,7 @@ public class VistaInicial extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
@@ -133,27 +136,27 @@ public class VistaInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        ControladorMenu.abrirProveedoresDesdeInicio();
+        //ControladorMenu.abrirProveedoresDesdeInicio();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        ControladorMenu.salirDelPrograma();
+        ControladorVistaLogin.salir(this);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        ControladorMenu.abrirVentasDesdeInicio();
+       // ControladorMenu.abrirVentasDesdeInicio();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        ControladorMenu.abrirABMDesdeInicio();
+      //  ControladorMenu.abrirABMDesdeInicio();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        ControladorMenu.abrirActualizarPreciosDesdeInicio();
+       // ControladorMenu.abrirActualizarPreciosDesdeInicio();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        ControladorMenu.cerrarSesion(this);
+       // ControladorMenu.cerrarSesion(this);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
    

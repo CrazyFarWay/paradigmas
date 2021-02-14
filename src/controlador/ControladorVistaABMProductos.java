@@ -1,10 +1,10 @@
 package controlador;
 
-import static controlador.ControladorVistaActualizarPrecios.vista;
+//import static controlador.ControladorVistaActualizarPrecios.vista;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
-import modelo.BaseDeDatos;
+//import modelo.BaseDeDatos;
 import modelo.Producto;
 import vistas.VistaABMProductos;
 
@@ -12,7 +12,7 @@ public class ControladorVistaABMProductos {
     static VistaABMProductos vista = new VistaABMProductos();
     private static ArrayList<String> filtros;
 
-    public static void mostrar() {
+   /* public static void mostrar() {
         vista.setVisible(true);
 
         ArrayList<Producto> productos = GestionConexion.obtenerProductos();
@@ -103,15 +103,15 @@ public class ControladorVistaABMProductos {
     }
     
     public static void actualizarPrecios() {
-        //vista.dispose();
+        vista.dispose();
         ControladorVistaActualizarPrecios.mostrar();
     }
 
     public static void filtrarProductos() {
        
         ArrayList<Producto> productos = GestionConexion.obtenerProductosFiltrados(
-                vista.getFiltroPrecio().getSelectedItem().toString(),
-                vista.getFiltroRubro().getSelectedItem().toString()
+              vista.getFiltroPrecio().getSelectedItem().toString(),
+               vista.getFiltroRubro().getSelectedItem().toString()
         );
         
                 
@@ -130,5 +130,5 @@ public class ControladorVistaABMProductos {
             fila[5] = producto.getCantidad();
             model.addRow(fila);
         }
-    }
+    }*/
 }
