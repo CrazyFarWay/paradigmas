@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-public class Proveedor {
+public class Proveedor extends Entidad {
 
     int codigo;
     String nombre, rubro, telefono, correoElectronico, direccion;
@@ -13,7 +13,13 @@ public class Proveedor {
     private Connection conexion;
     
 
-    public Proveedor(int codigo, String nombre, String rubro, String telefono, String correoElectronico, String direccion) {
+    public Proveedor(GestionConexion conexion, String nombre){
+	    super("Proveedor", conexion);
+	    this.nombre = nombre;
+    }
+
+    public Proveedor(GestionConexion conexion, int codigo, String nombre, String rubro, String telefono, String correoElectronico, String direccion) {
+	    super("Proveedor", conexion);
         this.codigo = codigo;
         this.nombre = nombre;
         this.rubro = rubro;
@@ -83,30 +89,23 @@ public class Proveedor {
 
     
     public void agregarProveedor(Proveedor proveedor) {
+	ResultSet resultado;
+	String query = "insert into proveedores (nombre, rubro, telefono, correoElectronico, direcion) vaules ('"+ proveedor.getNombre() + "', '" +
+proveedor.getRubro() + "', '" + proveedor.getTelefono() + "', '" + proveedor.getCorreoElectronico() + "', '" + proveedor.getDireccion() + "')";
 
         try {
-            PreparedStatement statement = conexion.prepareStatement("insert into proveedores (nombre, rubro, telefono, correoElectronico, direccion) values (?, ?, ?, ?, ?)");
-
-            statement.setString(1, proveedor.getNombre());
-            statement.setString(2, proveedor.getRubro());
-            statement.setString(3, proveedor.getTelefono());
-            statement.setString(4, proveedor.getCorreoElectronico());
-            statement.setString(5, proveedor.getDireccion());
-
-            statement.executeUpdate();
+		resultado = getGestionConexion().getStatement().executeQuery(query);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
     public void eliminarProveedor(int codigo) {
-        PreparedStatement statement;
+	    ResultSet resultado;
+	    String query = "delete from proveedores where codigo = '" + codigo + "'";
 
         try {
-            statement = conexion.prepareStatement("DELETE FROM PROVEEDORES WHERE codigo = ?");
-            statement.setInt(1, codigo);
-            statement.executeUpdate();
-
+		resultado = getGestionConexion().getStatement().executeQuery(query);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -114,41 +113,35 @@ public class Proveedor {
     }
 
     public void modificarProveedor(Proveedor proveedor) {
+	String query;
+
+	query = "update proveedores set nombre = '" + proveedor.getNombre() + "', rubro = '" + proveedor.getRubro() + "', telefono = '" + proveedor.getTelefono() + "', correoElectronico = '" + proveedor.getCorreoElectronico() + "', direccion = '" + proveedor.getDireccion() + "' where codigo = '" + proveedor.getCodigo() + "'";
 
         try {
-            PreparedStatement statement = conexion.prepareStatement("update proveedores set nombre=?, rubro=?, telefono=?, correoElectronico=?, direccion=? where codigo=?");
-
-            statement.setString(1, proveedor.getNombre());
-            statement.setString(2, proveedor.getRubro());
-            statement.setString(3, proveedor.getTelefono());
-            statement.setString(4, proveedor.getCorreoElectronico());
-            statement.setString(5, proveedor.getDireccion());
-            statement.setInt(6, proveedor.getCodigo());
-
-            statement.executeUpdate();
+	    getGestionConexion().getStatement().executeUpdate(query);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
     public ArrayList<Proveedor> obtenerProveedores() {
-
         ArrayList<Proveedor> proveedores = new ArrayList<>();
+        ResultSet resultado;
+	String query = "select * from proveedores order by codigo";
+	
 
         try {
-            Statement statement = conexion.createStatement();
-            ResultSet resultado = statement.executeQuery("select * from proveedores order by codigo");
+		resultado = getGestionConexion().getStatement().executeQuery(query);
+	    	while (resultado.next()) {
+                	Proveedor proveedor = new Proveedor(getGestionConexion(),"");
+			proveedor.setCodigo(resultado.getInt("codigo"));
+			proveedor.setNombre(resultado.getString("nombre"));
+			proveedor.setTelefono(resultado.getString("telefono"));
+			proveedor.setCorreoElectronico(resultado.getString("correoElectronico"));
+			proveedor.setDireccion(resultado.getString("direccion"));
 
-            while (resultado.next()) {
-                Proveedor proveedor = new Proveedor(resultado.getInt("codigo"),
-                        resultado.getString("nombre"),
-                        resultado.getString("rubro"),
-                        resultado.getString("telefono"),
-                        resultado.getString("correoElectronico"),
-                        resultado.getString("direccion"));
-
-                proveedores.add(proveedor);
-            }
+			proveedores.add(proveedor);
+		    }
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -166,23 +159,23 @@ public class Proveedor {
             rubro = "WHERE rubro = '"+rubro+"'";
         }
         
-        //System.out.println("select * from productos "+ rubro + orderBy + precio + cantidad);
+        //System.out.println("select * from proveedores "+ rubro + orderBy + precio + cantidad);
+	String query = "select * from proveedores "+ rubro;
+        ResultSet resultado;
         
         try {
-            Statement statement = conexion.createStatement();
-            ResultSet resultado = statement.executeQuery(
-                    "select * from proveedores "+ rubro);
+		resultado = getGestionConexion().getStatement().executeQuery(query);
+	    	while (resultado.next()) {
+                	Proveedor proveedor = new Proveedor(getGestionConexion(),"");
+			proveedor.setCodigo(resultado.getInt("codigo"));
+			proveedor.setNombre(resultado.getString("nombre"));
+			proveedor.setTelefono(resultado.getString("telefono"));
+			proveedor.setCorreoElectronico(resultado.getString("correoElectronico"));
+			proveedor.setDireccion(resultado.getString("direccion"));
 
-            while (resultado.next()) {
-                Proveedor proveedor = new Proveedor(resultado.getInt("codigo"),
-                        resultado.getString("nombre"),
-                        resultado.getString("rubro"),
-                        resultado.getString("telefono"),
-                        resultado.getString("correoElectronico"),
-                        resultado.getString("direccion"));
+			proveedores.add(proveedor);
+		    }
 
-                proveedores.add(proveedor);
-            }
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -193,17 +186,16 @@ public class Proveedor {
 
     public ArrayList<String> obtenerFiltrosRubroProveedores() {
         ArrayList<String> filtros = new ArrayList<>();
+	ResultSet resultado;
+	String query = "select distinct rubro from proveedores";
         
         try {
-            Statement statement = conexion.createStatement();
-            ResultSet resultado = statement.executeQuery(
-                    "select distinct rubro from proveedores");
+	    resultado = getGestionConexion().getStatement().executeQuery(query);
 
             while (resultado.next()) {
                 String filtro;
                 
                 filtro = resultado.getString("rubro");
-
                 filtros.add(filtro);
             }
 

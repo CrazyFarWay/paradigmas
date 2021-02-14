@@ -86,7 +86,6 @@ public class Producto extends Entidad {
     }
 
     
-    @Override
     public void agregarProducto(Producto producto) {
 	String query;
 
@@ -100,7 +99,6 @@ producto.getMarca() + "', '" + producto.getRubro() + "', '" + producto.getPrecio
         }
     }
 
-    @Override
     public void eliminarProducto(int id) {
 	String query;
 
@@ -114,7 +112,6 @@ producto.getMarca() + "', '" + producto.getRubro() + "', '" + producto.getPrecio
 
     }
 
-    @Override
     public void modificarProducto(Producto producto) {
 	String query;
 
@@ -282,27 +279,29 @@ producto.getMarca() + "', '" + producto.getRubro() + "', '" + producto.getPrecio
             }
         }
     }
-    public void disminuirPrecios(String opcion, double cantidad) {
-	    ResultSet resultado;
 
-        if (opcion.equals("PORCENTAJE")) {
-		Double porcentaje = cantidad/100;
-		String query = "update productos set precio = precio - precio * '" + porcentaje + "'";
-            
-            try {
-		resultado = getGestionConexion().getStatement().executeQuery(query);
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-            }
-            
-        } else if (opcion.equals("VALOR")) {
-		Double valor = cantidad;
-		String query = "update productos set precio = precio - precio * '" + valor + "'";
-            
-            try {
-		resultado = getGestionConexion().getStatement().executeQuery(query);
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-            }
-        }
+    	public void disminuirPrecios(String opcion, double cantidad) {
+	    	ResultSet resultado;
+
+		if (opcion.equals("PORCENTAJE")) {
+			Double porcentaje = cantidad/100;
+			String query = "update productos set precio = precio - precio * '" + porcentaje + "'";
+		    
+		    try {
+			resultado = getGestionConexion().getStatement().executeQuery(query);
+		    } catch (SQLException ex) {
+			System.out.println(ex.getMessage());
+		    }
+		    
+		} else if (opcion.equals("VALOR")) {
+			Double valor = cantidad;
+			String query = "update productos set precio = precio - precio * '" + valor + "'";
+		    
+		    try {
+			resultado = getGestionConexion().getStatement().executeQuery(query);
+		    } catch (SQLException ex) {
+			System.out.println(ex.getMessage());
+		    }
+		}
+	}
 }
