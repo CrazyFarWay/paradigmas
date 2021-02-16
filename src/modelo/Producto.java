@@ -311,6 +311,11 @@ producto.getMarca() + "', '" + producto.getRubro() + "', " + producto.getPrecio(
 		}
 	}
 
+	@Override
+	public String toString() {
+		return "Producto{" + "nombre=" + nombre + ", marca=" + marca + ", rubro=" + rubro + ", precio=" + precio + ", id=" + id + ", cantidad=" + cantidad + '}';
+	}
+
 	public Producto obtenerProducto(int id) {
 		ResultSet resultado;
 		String query = "select * from productos where id = " + id;

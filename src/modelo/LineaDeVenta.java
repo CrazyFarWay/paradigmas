@@ -17,7 +17,7 @@ public class LineaDeVenta extends Entidad {
     }
 
     public LineaDeVenta(GestionConexion conexion, int id, Producto producto, int cantidad, int descuento, double subtotal) {
-	   super("Venta", conexion);
+	   super("LineaDeVenta", conexion);
         this.id = id;
 	this.producto = producto;
         this.cantidad = cantidad;
@@ -28,6 +28,13 @@ public class LineaDeVenta extends Entidad {
     public LineaDeVenta(int id, Producto producto, int cantidad, int descuento, double subtotal) {
         this.id = id;
 	this.producto = producto;
+        this.cantidad = cantidad;
+        this.descuento = descuento;
+        this.subtotal = subtotal;
+    }
+
+    public LineaDeVenta(int id, int cantidad, int descuento, double subtotal) {
+        this.id = id;
         this.cantidad = cantidad;
         this.descuento = descuento;
         this.subtotal = subtotal;
@@ -69,36 +76,54 @@ public class LineaDeVenta extends Entidad {
     }
     
     
-     public ArrayList<LineaDeVenta> obtenerLineasDeVenta() {
+     public ArrayList<LineaDeVenta> obtenerLineasDeVenta() throws SQLException {
         ArrayList<LineaDeVenta> lineasDeVenta = new ArrayList<>();
-	String query = "select * from venta order by id";
+	String query = "select * from lineasdeventa order by idProducto";
 
         try {
-            ResultSet resultado = getGestionConexion().getStatement().executeQuery(query);
+	Statement statement = getGestionConexion().getConexion().createStatement();
+	ResultSet otroResultado;
+            otroResultado = statement.executeQuery(query);
 
-            while (resultado.next()) {
-		Producto productoCorrespondiente = producto.obtenerProducto(resultado.getInt("id"));
-
+            while (otroResultado.next()) {
+		    System.out.println("ANTES DE ASIGNAR UNA VENTA");
                 LineaDeVenta lineaDeVenta = new LineaDeVenta(
-			resultado.getInt("id"),
-			productoCorrespondiente,
-                        resultado.getInt("cantidad"),
-                        resultado.getInt("descuento"),
-                        resultado.getInt("subtotal")
+			otroResultado.getInt("idProducto"),
+                        otroResultado.getInt("cantidad"),
+                        otroResultado.getInt("descuento"),
+                        otroResultado.getDouble("subtotal")
                         );
 
                 lineasDeVenta.add(lineaDeVenta);
+		    System.out.println(lineaDeVenta);
             }
+
+	    for (LineaDeVenta lineaDeVenta: lineasDeVenta) {
+		    System.out.println("ANTES DE ASIGNAR EL PRODUCTO");
+		Producto productoCorrespondiente = producto.obtenerProducto(lineaDeVenta.getId());
+		//Producto productoCorrespondiente = new Producto();
+		    System.out.println(productoCorrespondiente);
+
+		    System.out.println("DESPUES DE ASIGNAR EL PRODUCTO");
+		lineaDeVenta.setProducto(productoCorrespondiente);
+		    System.out.println(lineaDeVenta);
+	    }
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+
         return lineasDeVenta;
 
     }
 
-    public void agregarLineaDeVenta(LineaDeVenta venta) {
-	String query = "insert into venta (idProducto, cantidad, descuento, subtotal) values (" + producto.getId() + ", " + venta.getCantidad() + ", " + venta.getDescuento() + ", " + venta.getSubtotal() + ")";
+	@Override
+	public String toString() {
+		return "LineaDeVenta{" + "id=" + id + ", cantidad=" + cantidad + ", descuento=" + descuento + ", producto=" + producto + ", subtotal=" + subtotal + '}';
+	}
+
+    public void agregarLineaDeVenta(LineaDeVenta lineaDeVenta) {
+	String query = "insert into lineasdeventa (idProducto, cantidad, descuento, subtotal) values (" + producto.getId() + ", " + lineaDeVenta.getCantidad() + ", " + lineaDeVenta.getDescuento() + ", " + lineaDeVenta.getSubtotal() + ")";
 
         try {
 		getGestionConexion().getStatement().executeUpdate(query);
@@ -108,7 +133,7 @@ public class LineaDeVenta extends Entidad {
     }
 
     public void eliminarLineaDeVenta(int id) {
-	String query = "delete from venta where id = '"+ id + "'";
+	String query = "delete from lineasdeventa where idProducto = '"+ id + "'";
 
         try {
 		getGestionConexion().getStatement().executeUpdate(query);
@@ -118,7 +143,7 @@ public class LineaDeVenta extends Entidad {
     }
     
     public void eliminarLineasDeVenta(){
-	String query = "delete from venta";
+	String query = "delete from lineasdeventa";
 
         try {
 		getGestionConexion().getStatement().executeUpdate(query);
