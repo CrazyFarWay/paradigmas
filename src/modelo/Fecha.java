@@ -40,5 +40,10 @@ public class Fecha {
     public void setHora(String hora) {
         this.hora = hora;
     }
+
+	@Override
+	public String toString() {
+		return "Dia: " + hoy + "\t\t Hora: " + hora;
+	}
         
 }

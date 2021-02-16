@@ -7,7 +7,7 @@ import modelo.*;
 public class ControladorMenu {
 	private static Producto producto;
 	private static Proveedor proveedor;
-	private static Venta venta;
+	private static LineaDeVenta venta;
 
 	public static void abrirProveedores(JFrame vista) {
 		vista.dispose();
@@ -28,7 +28,7 @@ public class ControladorMenu {
 	public static void abrirVentas(JFrame vista) {
 		vista.dispose();
 		ControladorVistaVenta.setProducto(producto);
-		ControladorVistaVenta.setVenta(venta);
+		ControladorVistaVenta.setLineaDeVenta(venta);
 		ControladorVistaVenta.mostrar();
 	}
         
@@ -75,7 +75,7 @@ public class ControladorMenu {
 	public static void abrirVentasDesdeInicio() {
 		
 		ControladorVistaVenta.setProducto(producto);
-		ControladorVistaVenta.setVenta(venta);
+		ControladorVistaVenta.setLineaDeVenta(venta);
 		ControladorVistaVenta.mostrar();
 	}
         
@@ -101,11 +101,11 @@ public class ControladorMenu {
 		proveedor = aProveedor;
 	}
 
-	public static Venta getVenta() {
+	public static LineaDeVenta getVenta() {
 		return venta;
 	}
 
-	public static void setVenta(Venta aVenta) {
+	public static void setVenta(LineaDeVenta aVenta) {
 		venta = aVenta;
 	}
     

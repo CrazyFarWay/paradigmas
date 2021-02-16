@@ -310,4 +310,24 @@ producto.getMarca() + "', '" + producto.getRubro() + "', " + producto.getPrecio(
 		    }
 		}
 	}
+
+	public Producto obtenerProducto(int id) {
+		ResultSet resultado;
+		String query = "select * from productos where id = " + id;
+		Producto producto = new Producto(getGestionConexion(), "");
+
+		try {
+			resultado = getGestionConexion().getStatement().executeQuery(query);
+			producto.setId(resultado.getInt("id"));
+			producto.setNombre(resultado.getString("nombre"));
+			producto.setMarca(resultado.getString("marca"));
+			producto.setRubro(resultado.getString("rubro"));
+			producto.setPrecio(resultado.getDouble("precio"));
+			producto.setCantidad(resultado.getInt("cantidad"));
+
+		} catch (SQLException ex) {
+		    System.out.println(ex.getMessage());
+		}
+		return producto;
+	}
 }

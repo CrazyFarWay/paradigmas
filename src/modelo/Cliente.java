@@ -9,6 +9,79 @@ package modelo;
  *
  * @author CrazyFarWay
  */
-public class Cliente {
+public class Cliente extends Entidad {
+	private String nombre, telefono, direccion, tipo;
+	private String dni;
+	private int id;
+
+	public Cliente (GestionConexion conexion) {
+		super("Cliente", conexion);
+	}
+
+	public Cliente(String nombre, String telefono, String direccion, String tipo, String dni, int id) {
+		this.nombre = nombre;
+		this.telefono = telefono;
+		this.direccion = direccion;
+		this.tipo = tipo;
+		this.dni = dni;
+		this.id = id;
+	}
+
+	public Cliente(String nombre, String telefono, String direccion, String tipo, String dni) {
+		this.nombre = nombre;
+		this.telefono = telefono;
+		this.direccion = direccion;
+		this.tipo = tipo;
+		this.dni = dni;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
     
 }

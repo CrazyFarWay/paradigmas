@@ -1,157 +1,61 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package modelo;
 
-import java.sql.*;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
+/**
+ *
+ * @author CrazyFarWay
+ */
 public class Venta extends Entidad {
+	private Ticket ticket = new Ticket();
+	private ArrayList<LineaDeVenta> lineasDeVenta = new ArrayList<>();
+	private Cliente cliente;
 
-    int id, cantidad, descuento;
-    String nombre, marca;
-    double precioUnidad, subtotal;
-    
-    public Venta(GestionConexion conexion, String nombre){
-	    super("Venta", conexion);
-	    this.nombre = nombre;
-    }
+	public Venta (GestionConexion conexion) {
+		super("Venta", conexion);
+	}
 
-    public Venta(GestionConexion conexion, int id, String nombre, String marca, int cantidad, double precioUnidad, int descuento, double subtotal) {
-	   super("Venta", conexion);
-        this.id = id;
-        this.nombre = nombre;
-        this.marca = marca;
-        this.cantidad = cantidad;
-        this.precioUnidad = precioUnidad;
-        this.descuento = descuento;
-        this.subtotal = subtotal;
-    }
-    
-    public Venta(int id, String nombre, String marca, int cantidad, double precioUnidad, int descuento, double subtotal) {
-        this.id = id;
-        this.nombre = nombre;
-        this.marca = marca;
-        this.cantidad = cantidad;
-        this.precioUnidad = precioUnidad;
-        this.descuento = descuento;
-        this.subtotal = subtotal;
-    }
+	public Venta() {
+	}
 
-    public Venta() {
-    }
+	public double calcularTotal() {
+		double total = 0;
 
-    public int getId() {
-        return id;
-    }
+		for(LineaDeVenta lineaDeVenta: lineasDeVenta) {
+			total += lineaDeVenta.getSubtotal();
+		}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+		return total;
+	}
 
-    public int getCantidad() {
-        return cantidad;
-    }
+	public Ticket getTicket() {
+		return ticket;
+	}
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
+	public void setTicket(Ticket ticket) {
+		this.ticket = ticket;
+	}
 
-    public int getDescuento() {
-        return descuento;
-    }
+	public ArrayList<LineaDeVenta> getLineasDeVenta() {
+		return lineasDeVenta;
+	}
 
-    public void setDescuento(int descuento) {
-        this.descuento = descuento;
-    }
+	public void setLineasDeVenta(ArrayList<LineaDeVenta> lineasDeVenta) {
+		this.lineasDeVenta = lineasDeVenta;
+	}
 
-    public String getNombre() {
-        return nombre;
-    }
+	public Cliente getCliente() {
+		return cliente;
+	}
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getMarca() {
-        return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    public double getPrecioUnidad() {
-        return precioUnidad;
-    }
-
-    public void setPrecioUnidad(double precioUnidad) {
-        this.precioUnidad = precioUnidad;
-    }
-
-    public double getSubtotal() {
-        return subtotal;
-    }
-
-    public void setSubtotal(double subtotal) {
-        this.subtotal = subtotal;
-    }
-    
-    
-     public ArrayList<Venta> obtenerVenta() {
-        ArrayList<Venta> ventas = new ArrayList<>();
-	String query = "select * from venta order by id";
-
-        try {
-            ResultSet resultado = getGestionConexion().getStatement().executeQuery(query);
-
-            while (resultado.next()) {
-                Venta venta = new Venta(resultado.getInt("id"),
-                        resultado.getString("nombre"),
-                        resultado.getString("marca"),
-                        resultado.getInt("cantidad"),
-                        resultado.getDouble("precioUnidad"),
-                        resultado.getInt("descuento"),
-                        resultado.getInt("subtotal")
-                        );
-
-                ventas.add(venta);
-            }
-
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return ventas;
-
-    }
-
-    public void agregarVenta(Venta venta) {
-	String query = "insert into venta (nombre, marca, cantidad, precioUnidad, descuento, subtotal) values ('"+ venta.getNombre() + "', '" + venta.getMarca() + "', " + venta.getCantidad() + ", " + venta.getPrecioUnidad() + ", " + venta.getDescuento() + ", " + venta.getSubtotal() + ")";
-
-        try {
-		getGestionConexion().getStatement().executeUpdate(query);
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    public void eliminarVenta(int id) {
-	String query = "delete from venta where id = '"+ id + "'";
-
-        try {
-		getGestionConexion().getStatement().executeUpdate(query);
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-    
-    public void eliminarVentas(){
-	String query = "delete from venta";
-
-        try {
-		getGestionConexion().getStatement().executeUpdate(query);
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    
-    }
-
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	
+	
 }
