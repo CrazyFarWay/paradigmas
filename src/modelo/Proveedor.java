@@ -8,10 +8,6 @@ public class Proveedor extends Entidad {
 
     int codigo;
     String nombre, rubro, telefono, correoElectronico, direccion;
-    
-    private Statement statement;
-    private Connection conexion;
-    
 
     public Proveedor(GestionConexion conexion, String nombre){
 	    super("Proveedor", conexion);

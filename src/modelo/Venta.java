@@ -4,15 +4,23 @@ import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-public class Venta {
+public class Venta extends Entidad {
 
     int id, cantidad, descuento;
     String nombre, marca;
     double precioUnidad, subtotal;
     
-    private Statement statement;
-    private Connection conexion;
-
+    public Venta(GestionConexion conexion, int id, String nombre, String marca, int cantidad, double precioUnidad, int descuento, double subtotal) {
+	   super("Venta", conexion);
+        this.id = id;
+        this.nombre = nombre;
+        this.marca = marca;
+        this.cantidad = cantidad;
+        this.precioUnidad = precioUnidad;
+        this.descuento = descuento;
+        this.subtotal = subtotal;
+    }
+    
     public Venta(int id, String nombre, String marca, int cantidad, double precioUnidad, int descuento, double subtotal) {
         this.id = id;
         this.nombre = nombre;
@@ -85,10 +93,10 @@ public class Venta {
     
      public ArrayList<Venta> obtenerVenta() {
         ArrayList<Venta> ventas = new ArrayList<>();
+	String query = "select * from venta order by id";
 
         try {
-            Statement statement = conexion.createStatement();
-            ResultSet resultado = statement.executeQuery("select * from venta order by id");
+            ResultSet resultado = getGestionConexion().getStatement().executeQuery(query);
 
             while (resultado.next()) {
                 Venta venta = new Venta(resultado.getInt("id"),
@@ -111,43 +119,31 @@ public class Venta {
     }
 
     public void agregarVenta(Venta venta) {
+	ResultSet resultado;
+	String query = "insert into venta (nombre, marca, cantidad, precioUnidad, descuento, subtotal) vaules ('"+ venta.getNombre() + "', '" + venta.getMarca() + "', '" + venta.getCantidad() + "', '" + venta.getPrecioUnidad() + "', '" + venta.getDescuento() + "', '" + venta.getSubtotal() + "'";
 
         try {
-            PreparedStatement statement = conexion.prepareStatement("insert into venta (nombre, marca, cantidad, precioUnidad, descuento, subtotal) values (?, ?, ?, ?, ?, ?)");
-
-            statement.setString(1, venta.getNombre());
-            statement.setString(2, venta.getMarca());
-            statement.setInt(3, venta.getCantidad());
-            statement.setDouble(4, venta.getPrecioUnidad());
-            statement.setInt(5, venta.getDescuento());
-            statement.setDouble(6, venta.getSubtotal());
-
-            statement.executeUpdate();
+		resultado = getGestionConexion().getStatement().executeQuery(query);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
     public void eliminarVenta(int id) {
-        PreparedStatement statement;
+	String query = "delete from venta where id = '"+ id + "'";
 
         try {
-            statement = conexion.prepareStatement("delete from venta where id = ?");
-            statement.setInt(1, id);
-            statement.executeUpdate();
-
+		getGestionConexion().getStatement().executeUpdate(query);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
     
     public void eliminarVentas(){
-        PreparedStatement statement;
+	String query = "delete from venta";
 
         try {
-            statement = conexion.prepareStatement("delete from venta");
-            statement.executeUpdate();
-
+		getGestionConexion().getStatement().executeUpdate(query);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

@@ -12,6 +12,7 @@ public class ControladorVistaVenta {
     static VistaVentaPrincipal vistaVentaPrincipal = new VistaVentaPrincipal();
     static VistaVentaConfirmada vistaVentaConfirmada = new VistaVentaConfirmada();
 	private static Producto producto = new Producto();
+	static Venta venta = new Venta();
     
     public static void mostrar() {
         vistaVentaPrincipal.setVisible(true);
@@ -33,7 +34,6 @@ public class ControladorVistaVenta {
             modelo1.addRow(fila);
         }
 
-	Venta venta = new Venta();
         ArrayList<Venta> ventas = venta.obtenerVenta();
 
         DefaultTableModel modelo2 = (DefaultTableModel) vistaVentaPrincipal.getTablaVentas().getModel();
@@ -78,8 +78,6 @@ public class ControladorVistaVenta {
     }
 
     public static void eliminarVenta() {
-	Venta venta = new Venta();
-        
         double total = 0;
         
         venta.eliminarVenta(Integer.parseInt(vistaVentaPrincipal.getId().getText()));
@@ -122,7 +120,6 @@ public class ControladorVistaVenta {
     
     public static void mostrarConfirmacion(){
         vistaVentaConfirmada.setVisible(true);
-	Venta venta = new Venta();
         
         String total, vuelto;
         
@@ -154,7 +151,6 @@ public class ControladorVistaVenta {
     }
 
     public static void ConfirmarDeshacerVenta(){
-	Venta venta = new Venta();
         venta.eliminarVentas();
         vistaVentaConfirmada.setVisible(false);
         mostrar();

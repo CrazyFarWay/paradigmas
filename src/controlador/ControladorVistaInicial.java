@@ -12,9 +12,9 @@ import vistas.VistaInicial;
  * @author CrazyFarWay
  */
 public class ControladorVistaInicial {
-    private static VistaInicial vista = new VistaInicial();
-    
-    public static void mostrar() {
-        vista.setVisible(true);
-    }
+//	static VistaInicial vista = new VistaInicial();
+//    
+//	public static void mostrar() {
+//		vista.setVisible(true);
+//	}
 }
