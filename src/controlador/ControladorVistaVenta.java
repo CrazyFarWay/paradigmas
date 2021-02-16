@@ -9,10 +9,10 @@ import vistas.VistaVentaConfirmada;
 import vistas.VistaVentaPrincipal;
 
 public class ControladorVistaVenta {
-    static VistaVentaPrincipal vistaVentaPrincipal = new VistaVentaPrincipal();
-    static VistaVentaConfirmada vistaVentaConfirmada = new VistaVentaConfirmada();
+    private static VistaVentaPrincipal vistaVentaPrincipal = new VistaVentaPrincipal();
+    private static VistaVentaConfirmada vistaVentaConfirmada = new VistaVentaConfirmada();
 	private static Producto producto = new Producto();
-	static Venta venta = new Venta();
+	private static Venta venta = new Venta();
     
     public static void mostrar() {
         vistaVentaPrincipal.setVisible(true);
@@ -62,7 +62,7 @@ public class ControladorVistaVenta {
         precioUnidad = Double.parseDouble(vistaVentaPrincipal.getPrecioUnidad().getText());
         descuento = (Integer.parseInt(vistaVentaPrincipal.getDescuento().getText()));
       
-        Venta venta = new Venta(
+        Venta ventaNueva = new Venta(
                 Integer.parseInt(vistaVentaPrincipal.getId().getText()),
                 vistaVentaPrincipal.getNombre().getText(),
                 vistaVentaPrincipal.getMarca().getText(),
@@ -71,7 +71,7 @@ public class ControladorVistaVenta {
                 Integer.parseInt(vistaVentaPrincipal.getDescuento().getText()),
                 subtotal = precioUnidad * cantidad - (descuento * precioUnidad) / 100
         );
-        venta.agregarVenta(venta); 
+        venta.agregarVenta(ventaNueva); 
         
         mostrar();
        
@@ -196,4 +196,36 @@ public class ControladorVistaVenta {
         vistaVentaPrincipal.getMontoEntregado().setText("");
         vistaVentaPrincipal.getVuelto().setText("");
     }
+
+	public static VistaVentaPrincipal getVistaVentaPrincipal() {
+		return vistaVentaPrincipal;
+	}
+
+	public static void setVistaVentaPrincipal(VistaVentaPrincipal aVistaVentaPrincipal) {
+		vistaVentaPrincipal = aVistaVentaPrincipal;
+	}
+
+	public static VistaVentaConfirmada getVistaVentaConfirmada() {
+		return vistaVentaConfirmada;
+	}
+
+	public static void setVistaVentaConfirmada(VistaVentaConfirmada aVistaVentaConfirmada) {
+		vistaVentaConfirmada = aVistaVentaConfirmada;
+	}
+
+	public static Producto getProducto() {
+		return producto;
+	}
+
+	public static void setProducto(Producto aProducto) {
+		producto = aProducto;
+	}
+
+	public static Venta getVenta() {
+		return venta;
+	}
+
+	public static void setVenta(Venta aVenta) {
+		venta = aVenta;
+	}
 }

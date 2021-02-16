@@ -16,8 +16,9 @@ import modelo.Usuario;
 public class ControladorVistaLogin {
 	
     private static GestionConexion conexion;
-    private static Usuario usuario;
-    private static Usuario usuarioSel;
+    private static Producto producto;
+    private static Proveedor proveedor;
+    private static Venta venta;
     private static VistaInicial vistaInicial;
     private static ArrayList<Usuario> usuarios = new ArrayList<>();
 
@@ -36,6 +37,12 @@ public class ControladorVistaLogin {
                 try {
                     vistaLogin.setVisible(false);
                     conexion.conectar();
+		    producto = new Producto(conexion, "");
+		    proveedor = new Proveedor(conexion, "");
+		    venta = new Venta(conexion, "");
+			ControladorMenu.setProducto(producto);
+			ControladorMenu.setProveedor(proveedor);
+			ControladorMenu.setVenta(venta);
                     //vistaInicial.getUsuario().setText(vistaLogin.getUsuario().getText().toString());
                     //System.out.println("Conecto con mensajeria satisfractoriamente ...");
                     //usuario = new Usuario(conexion, "");
@@ -53,6 +60,7 @@ public class ControladorVistaLogin {
                     } else {
                         System.exit(0);
                     }*/
+		    System.out.println("ERROR EN CONECTAR");
                 }
             } else {
                 ControladorVistaLogin.salir(vistaInicial);

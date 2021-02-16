@@ -94,23 +94,21 @@ public class Proveedor extends Entidad {
 
     
     public void agregarProveedor(Proveedor proveedor) {
-	ResultSet resultado;
-	String query = "insert into proveedores (nombre, rubro, telefono, correoElectronico, direcion) vaules ('"+ proveedor.getNombre() + "', '" +
+	String query = "insert into proveedores (nombre, rubro, telefono, correoElectronico, direccion) values ('"+ proveedor.getNombre() + "', '" +
 proveedor.getRubro() + "', '" + proveedor.getTelefono() + "', '" + proveedor.getCorreoElectronico() + "', '" + proveedor.getDireccion() + "')";
 
         try {
-		resultado = getGestionConexion().getStatement().executeQuery(query);
+		getGestionConexion().getStatement().executeUpdate(query);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
     public void eliminarProveedor(int codigo) {
-	    ResultSet resultado;
 	    String query = "delete from proveedores where codigo = '" + codigo + "'";
 
         try {
-		resultado = getGestionConexion().getStatement().executeQuery(query);
+		getGestionConexion().getStatement().executeUpdate(query);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -140,6 +138,7 @@ proveedor.getRubro() + "', '" + proveedor.getTelefono() + "', '" + proveedor.get
 	    	while (resultado.next()) {
                 	Proveedor proveedor = new Proveedor(getGestionConexion(),"");
 			proveedor.setCodigo(resultado.getInt("codigo"));
+			proveedor.setRubro(resultado.getString("rubro"));
 			proveedor.setNombre(resultado.getString("nombre"));
 			proveedor.setTelefono(resultado.getString("telefono"));
 			proveedor.setCorreoElectronico(resultado.getString("correoElectronico"));
@@ -173,6 +172,7 @@ proveedor.getRubro() + "', '" + proveedor.getTelefono() + "', '" + proveedor.get
 	    	while (resultado.next()) {
                 	Proveedor proveedor = new Proveedor(getGestionConexion(),"");
 			proveedor.setCodigo(resultado.getInt("codigo"));
+			proveedor.setRubro(resultado.getString("rubro"));
 			proveedor.setNombre(resultado.getString("nombre"));
 			proveedor.setTelefono(resultado.getString("telefono"));
 			proveedor.setCorreoElectronico(resultado.getString("correoElectronico"));

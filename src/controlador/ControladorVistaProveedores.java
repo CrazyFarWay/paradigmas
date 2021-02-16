@@ -11,10 +11,10 @@ public class ControladorVistaProveedores {
     private static VistaProveedores vista = new VistaProveedores();
     private static ArrayList<Proveedor> proveedores;
     private static ArrayList<String> filtros;
+	private static Proveedor proveedor;
     
     public static void mostrar(){
         vista.setVisible(true);
-	Proveedor proveedor = new Proveedor();
 	proveedores = proveedor.obtenerProveedores();
         
         filtros = proveedor.obtenerFiltrosRubroProveedores();    
@@ -54,7 +54,6 @@ public class ControladorVistaProveedores {
     }
     
     public static void agregarProveedor(){
-	Proveedor proveedor = new Proveedor();
 	Proveedor proveedorNuevo = new Proveedor(
 		vista.getNombre().getText(),
 		vista.getRubro().getText().toUpperCase(),
@@ -63,18 +62,16 @@ public class ControladorVistaProveedores {
 		vista.getDireccion().getText()  
 	);
 	
-	proveedor.agregarProveedor(proveedor);
+	proveedor.agregarProveedor(proveedorNuevo);
 	mostrar();
     }
     
     public static void eliminarProveedor(){
-	Proveedor proveedor = new Proveedor();
 	proveedor.eliminarProveedor(Integer.parseInt(vista.getCodigo().getText()));
 	mostrar();
     }
     
     public static void modificarProveedor(){
-	Proveedor proveedor = new Proveedor();
 	Proveedor proveedorNuevo = new Proveedor(
 		Integer.parseInt(vista.getCodigo().getText()),
 		vista.getNombre().getText(),
@@ -113,7 +110,6 @@ public class ControladorVistaProveedores {
     }
     
     public static void filtrarProveedores() {
-	Proveedor proveedor = new Proveedor();
         ArrayList<Proveedor> proveedoresFiltrados = proveedor.obtenerProveedoresFiltrados(
                 vista.getFiltroRubro().getSelectedItem().toString()
         );
@@ -134,4 +130,36 @@ public class ControladorVistaProveedores {
             model.addRow(fila);
         }
     }
+
+	public static VistaProveedores getVista() {
+		return vista;
+	}
+
+	public static void setVista(VistaProveedores aVista) {
+		vista = aVista;
+	}
+
+	public static ArrayList<Proveedor> getProveedores() {
+		return proveedores;
+	}
+
+	public static void setProveedores(ArrayList<Proveedor> aProveedores) {
+		proveedores = aProveedores;
+	}
+
+	public static ArrayList<String> getFiltros() {
+		return filtros;
+	}
+
+	public static void setFiltros(ArrayList<String> aFiltros) {
+		filtros = aFiltros;
+	}
+
+	public static Proveedor getProveedor() {
+		return proveedor;
+	}
+
+	public static void setProveedor(Proveedor aProveedor) {
+		proveedor = aProveedor;
+	}
 }

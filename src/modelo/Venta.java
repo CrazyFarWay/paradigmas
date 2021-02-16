@@ -10,6 +10,11 @@ public class Venta extends Entidad {
     String nombre, marca;
     double precioUnidad, subtotal;
     
+    public Venta(GestionConexion conexion, String nombre){
+	    super("Venta", conexion);
+	    this.nombre = nombre;
+    }
+
     public Venta(GestionConexion conexion, int id, String nombre, String marca, int cantidad, double precioUnidad, int descuento, double subtotal) {
 	   super("Venta", conexion);
         this.id = id;
@@ -119,11 +124,10 @@ public class Venta extends Entidad {
     }
 
     public void agregarVenta(Venta venta) {
-	ResultSet resultado;
-	String query = "insert into venta (nombre, marca, cantidad, precioUnidad, descuento, subtotal) vaules ('"+ venta.getNombre() + "', '" + venta.getMarca() + "', '" + venta.getCantidad() + "', '" + venta.getPrecioUnidad() + "', '" + venta.getDescuento() + "', '" + venta.getSubtotal() + "'";
+	String query = "insert into venta (nombre, marca, cantidad, precioUnidad, descuento, subtotal) values ('"+ venta.getNombre() + "', '" + venta.getMarca() + "', " + venta.getCantidad() + ", " + venta.getPrecioUnidad() + ", " + venta.getDescuento() + ", " + venta.getSubtotal() + ")";
 
         try {
-		resultado = getGestionConexion().getStatement().executeQuery(query);
+		getGestionConexion().getStatement().executeUpdate(query);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

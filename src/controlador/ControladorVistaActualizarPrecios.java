@@ -9,14 +9,14 @@ import vistas.VistaActualizarPrecios;
 
 public class ControladorVistaActualizarPrecios {
     
-    static VistaActualizarPrecios vista = new VistaActualizarPrecios();
+    private static VistaActualizarPrecios vista = new VistaActualizarPrecios();
     private static ArrayList<String> filtros = new ArrayList<>();
+	private static Producto producto;
     
     public static void mostrar(){
         
         vista.setVisible(true);
         
-	Producto producto = new Producto();
         ArrayList<Producto> productos = producto.obtenerProductos();
         
         filtros.clear();
@@ -47,7 +47,6 @@ public class ControladorVistaActualizarPrecios {
     }
         
     public static void filtrarProductos() {
-	Producto producto = new Producto();
         ArrayList<Producto> productosFiltrados = producto.obtenerProductosFiltrados(vista.getFiltroRubro().getSelectedItem().toString());
                 
         
@@ -69,7 +68,6 @@ public class ControladorVistaActualizarPrecios {
     
     public static void aumentarPrecios() {
         DefaultComboBoxModel modeloComboBox = (DefaultComboBoxModel) vista.getTipoCambio().getModel();
-	Producto producto = new Producto();
         
         if (modeloComboBox.getSelectedItem().equals("PORCENTAJE")) {
             double porcentaje = Double.parseDouble(vista.getCantidad().getText());
@@ -87,7 +85,6 @@ public class ControladorVistaActualizarPrecios {
     
     public static void disminuirPrecios() {
         DefaultComboBoxModel modeloComboBox = (DefaultComboBoxModel) vista.getTipoCambio().getModel();
-	Producto producto = new Producto();
         
         if (modeloComboBox.getSelectedItem().equals("PORCENTAJE")) {
             double porcentaje = Double.parseDouble(vista.getCantidad().getText());
@@ -102,5 +99,29 @@ public class ControladorVistaActualizarPrecios {
         
         mostrar();
     }
+
+	public static VistaActualizarPrecios getVista() {
+		return vista;
+	}
+
+	public static void setVista(VistaActualizarPrecios aVista) {
+		vista = aVista;
+	}
+
+	public static ArrayList<String> getFiltros() {
+		return filtros;
+	}
+
+	public static void setFiltros(ArrayList<String> aFiltros) {
+		filtros = aFiltros;
+	}
+
+	public static Producto getProducto() {
+		return producto;
+	}
+
+	public static void setProducto(Producto aProducto) {
+		producto = aProducto;
+	}
     
 }

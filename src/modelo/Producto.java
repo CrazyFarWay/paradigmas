@@ -99,8 +99,8 @@ public class Producto extends Entidad {
     public void agregarProducto(Producto producto) {
 	String query;
 
-	query = "insert into productos (nombre, marca, rubro, precio, cantidad) vaules ('"+ producto.getNombre() + "', '" +
-producto.getMarca() + "', '" + producto.getRubro() + "', '" + producto.getPrecio() + "', '" + producto.getCantidad() + "')";
+	query = "insert into productos (nombre, marca, rubro, precio, cantidad) values ('"+ producto.getNombre() + "', '" +
+producto.getMarca() + "', '" + producto.getRubro() + "', " + producto.getPrecio() + ", " + producto.getCantidad() + ")";
 
         try {
 	    getGestionConexion().getStatement().executeUpdate(query);
@@ -266,24 +266,22 @@ producto.getMarca() + "', '" + producto.getRubro() + "', '" + producto.getPrecio
     }
     
     public void aumentarPrecios(String opcion, double cantidad) {
-	    ResultSet resultado;
-
         if (opcion.equals("PORCENTAJE")) {
 		Double porcentaje = cantidad/100;
-		String query = "update productos set precio = precio + precio * '" + porcentaje + "'";
+		String query = "update productos set precio = precio + precio * " + porcentaje;
             
             try {
-		resultado = getGestionConexion().getStatement().executeQuery(query);
+		getGestionConexion().getStatement().executeUpdate(query);
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
             
         } else if (opcion.equals("VALOR")) {
 		Double valor = cantidad;
-		String query = "update productos set precio = precio + precio * '" + valor + "'";
+		String query = "update productos set precio = precio + " + valor;
             
             try {
-		resultado = getGestionConexion().getStatement().executeQuery(query);
+		getGestionConexion().getStatement().executeUpdate(query);
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
@@ -291,24 +289,22 @@ producto.getMarca() + "', '" + producto.getRubro() + "', '" + producto.getPrecio
     }
 
     	public void disminuirPrecios(String opcion, double cantidad) {
-	    	ResultSet resultado;
-
 		if (opcion.equals("PORCENTAJE")) {
 			Double porcentaje = cantidad/100;
-			String query = "update productos set precio = precio - precio * '" + porcentaje + "'";
+			String query = "update productos set precio = precio - precio * " + porcentaje;
 		    
 		    try {
-			resultado = getGestionConexion().getStatement().executeQuery(query);
+			getGestionConexion().getStatement().executeUpdate(query);
 		    } catch (SQLException ex) {
 			System.out.println(ex.getMessage());
 		    }
 		    
 		} else if (opcion.equals("VALOR")) {
 			Double valor = cantidad;
-			String query = "update productos set precio = precio - precio * '" + valor + "'";
+			String query = "update productos set precio = precio - " + valor;
 		    
 		    try {
-			resultado = getGestionConexion().getStatement().executeQuery(query);
+			getGestionConexion().getStatement().executeUpdate(query);
 		    } catch (SQLException ex) {
 			System.out.println(ex.getMessage());
 		    }

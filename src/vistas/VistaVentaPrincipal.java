@@ -389,19 +389,19 @@ public class VistaVentaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
         private void botonProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonProveedoresActionPerformed
-		//ControladorMenu.abrirProveedores(this);
+		ControladorMenu.abrirProveedores(this);
         }//GEN-LAST:event_botonProveedoresActionPerformed
 
         private void botonInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInventarioActionPerformed
-		//ControladorMenu.abrirABM(this);
+		ControladorMenu.abrirABM(this);
         }//GEN-LAST:event_botonInventarioActionPerformed
 
         private void botonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesionActionPerformed
-		//ControladorMenu.cerrarSesion(this);
+		ControladorMenu.cerrarSesion(this);
         }//GEN-LAST:event_botonCerrarSesionActionPerformed
 
         private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
-		//ControladorMenu.salirDelPrograma();
+		ControladorMenu.salirDelPrograma();
         }//GEN-LAST:event_botonSalirActionPerformed
 
     private void marcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marcaActionPerformed
@@ -413,19 +413,19 @@ public class VistaVentaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_idActionPerformed
 
     private void tablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosMouseClicked
-       // ControladorVistaVenta.seleccionarProducto();
+       ControladorVistaVenta.seleccionarProducto();
     }//GEN-LAST:event_tablaProductosMouseClicked
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-       // ControladorVistaVenta.limpiarTextFields();
+       ControladorVistaVenta.limpiarTextFields();
     }//GEN-LAST:event_formMouseClicked
 
     private void botonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirActionPerformed
-        //ControladorVistaVenta.agregarVenta();
+        ControladorVistaVenta.agregarVenta();
     }//GEN-LAST:event_botonAñadirActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-        //ControladorVistaVenta.eliminarVenta();
+        ControladorVistaVenta.eliminarVenta();
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void totalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalActionPerformed
@@ -433,19 +433,19 @@ public class VistaVentaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_totalActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       // ControladorVistaVenta.calculoTotal();
+       ControladorVistaVenta.calculoTotal();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tablaVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaVentasMouseClicked
-      //  ControladorVistaVenta.seleccionarVenta();
+      ControladorVistaVenta.seleccionarVenta();
     }//GEN-LAST:event_tablaVentasMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       // ControladorVistaVenta.calculoVuelto();
+       ControladorVistaVenta.calculoVuelto();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-       // ControladorMenu.abrirActualizarPrecios(this);
+       ControladorMenu.abrirActualizarPrecios(this);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**

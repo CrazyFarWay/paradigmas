@@ -9,13 +9,13 @@ import modelo.Producto;
 import vistas.VistaABMProductos;
 
 public class ControladorVistaABMProductos {
-    static VistaABMProductos vista = new VistaABMProductos();
+    private static VistaABMProductos vista = new VistaABMProductos();
     private static ArrayList<String> filtros;
+	private static Producto producto;
 
     public static void mostrar() {
         vista.setVisible(true);
 
-	Producto producto = new Producto();
         ArrayList<Producto> productos = producto.obtenerProductos();
 
         filtros = producto.obtenerFiltrosRubroProductos();   
@@ -45,7 +45,7 @@ public class ControladorVistaABMProductos {
     }
 
     public static void agregarProducto() {
-	Producto producto = new Producto(
+	Producto productoNuevo = new Producto(
 		vista.getNombre().getText(),
 		vista.getMarca().getText(),
                 vista.getRubro().getText().toUpperCase(),
@@ -53,12 +53,12 @@ public class ControladorVistaABMProductos {
 		Integer.parseInt(vista.getCantidad().getText())
 	);
 	    
-	producto.agregarProducto(producto);
+	producto.agregarProducto(productoNuevo);
 	mostrar();
     }
 
     public static void modificarProducto() {
-	Producto producto = new Producto(
+	Producto productoNuevo = new Producto(
 		Integer.parseInt(vista.getId().getText()),
 		vista.getNombre().getText(),
 		vista.getMarca().getText(),
@@ -67,12 +67,11 @@ public class ControladorVistaABMProductos {
 		Integer.parseInt(vista.getCantidad().getText())
 	);
 	    
-	producto.modificarProducto(producto);
+	producto.modificarProducto(productoNuevo);
 	mostrar();
     }
 
     public static void eliminarProducto() {
-	Producto producto = new Producto();
 
 	producto.eliminarProducto(Integer.parseInt(vista.getId().getText()));
 	mostrar();
@@ -109,7 +108,6 @@ public class ControladorVistaABMProductos {
 
     public static void filtrarProductos() {
        
-	Producto producto = new  Producto();
         ArrayList<Producto> productos = producto.obtenerProductosFiltrados(
               vista.getFiltroPrecio().getSelectedItem().toString(),
                vista.getFiltroRubro().getSelectedItem().toString()
@@ -132,4 +130,28 @@ public class ControladorVistaABMProductos {
             model.addRow(fila);
         }
     }
+
+	public static VistaABMProductos getVista() {
+		return vista;
+	}
+
+	public static void setVista(VistaABMProductos aVista) {
+		vista = aVista;
+	}
+
+	public static ArrayList<String> getFiltros() {
+		return filtros;
+	}
+
+	public static void setFiltros(ArrayList<String> aFiltros) {
+		filtros = aFiltros;
+	}
+
+	public static Producto getProducto() {
+		return producto;
+	}
+
+	public static void setProducto(Producto aProducto) {
+		producto = aProducto;
+	}
 }

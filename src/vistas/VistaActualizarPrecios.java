@@ -256,35 +256,35 @@ public class VistaActualizarPrecios extends javax.swing.JFrame {
     }//GEN-LAST:event_cantidadActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        //ControladorMenu.abrirABM(this);
+        ControladorMenu.abrirABM(this);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        //ControladorMenu.abrirProveedores(this);
+        ControladorMenu.abrirProveedores(this);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-       // ControladorMenu.abrirVentas(this);
+       ControladorMenu.abrirVentas(this);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        //ControladorMenu.cerrarSesion(this);
+        ControladorMenu.cerrarSesion(this);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-       // ControladorMenu.salirDelPrograma();
+       ControladorMenu.salirDelPrograma();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void filtroRubroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroRubroActionPerformed
-        //ControladorVistaActualizarPrecios.filtrarProductos();
+        ControladorVistaActualizarPrecios.filtrarProductos();
     }//GEN-LAST:event_filtroRubroActionPerformed
 
     private void botonAumentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAumentarActionPerformed
-        //ControladorVistaActualizarPrecios.aumentarPrecios();
+        ControladorVistaActualizarPrecios.aumentarPrecios();
     }//GEN-LAST:event_botonAumentarActionPerformed
 
     private void botonDisminuirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDisminuirActionPerformed
-       // ControladorVistaActualizarPrecios.disminuirPrecios();
+       ControladorVistaActualizarPrecios.disminuirPrecios();
     }//GEN-LAST:event_botonDisminuirActionPerformed
 
     /**

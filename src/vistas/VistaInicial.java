@@ -136,7 +136,7 @@ public class VistaInicial extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        //ControladorMenu.abrirProveedoresDesdeInicio();
+        ControladorMenu.abrirProveedoresDesdeInicio();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
@@ -144,19 +144,19 @@ public class VistaInicial extends javax.swing.JDialog {
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-       // ControladorMenu.abrirVentasDesdeInicio();
+       ControladorMenu.abrirVentasDesdeInicio();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-      //  ControladorMenu.abrirABMDesdeInicio();
+      ControladorMenu.abrirABMDesdeInicio();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-       // ControladorMenu.abrirActualizarPreciosDesdeInicio();
+       ControladorMenu.abrirActualizarPreciosDesdeInicio();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-       // ControladorMenu.cerrarSesion(this);
+       ControladorMenu.cerrarSesion(this);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
    
