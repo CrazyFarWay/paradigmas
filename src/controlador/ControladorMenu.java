@@ -31,6 +31,7 @@ public class ControladorMenu {
         vista.dispose();
         ControladorVistaVenta.setProducto(producto);
         ControladorVistaVenta.setLineaDeVenta(venta);
+        ControladorVistaVenta.setCliente(cliente);
         ControladorVistaVenta.mostrar();
     }
 
@@ -84,6 +85,7 @@ public class ControladorMenu {
 
         ControladorVistaVenta.setProducto(producto);
         ControladorVistaVenta.setLineaDeVenta(venta);
+        ControladorVistaVenta.setCliente(cliente);
         ControladorVistaVenta.mostrar();
     }
 

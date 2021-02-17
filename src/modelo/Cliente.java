@@ -44,6 +44,10 @@ public class Cliente extends Entidad {
         this.direccion = direccion;
     }
 
+    public Cliente() {
+    }
+    
+
     public String getNombre() {
         return nombre;
     }

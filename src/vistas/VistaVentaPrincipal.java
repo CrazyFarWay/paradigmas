@@ -7,6 +7,7 @@ package vistas;
 
 import controlador.ControladorMenu;
 import controlador.ControladorVistaVenta;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -498,6 +499,14 @@ public class VistaVentaPrincipal extends javax.swing.JFrame {
 
     public JLabel getLabelMontoInsuficiente() {
         return labelMontoInsuficiente;
+    }
+
+    public JComboBox<String> getComboBoxCliente() {
+        return comboBoxCliente;
+    }
+
+    public void setComboBoxCliente(JComboBox<String> comboBoxCliente) {
+        this.comboBoxCliente = comboBoxCliente;
     }
     
     
