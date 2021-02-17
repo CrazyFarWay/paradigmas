@@ -7,9 +7,9 @@ import javax.swing.JOptionPane;
 
 public class Producto extends Entidad {
 
-    String nombre, marca, rubro;
-    double precio;
-    int id, cantidad;
+    private String nombre, marca, rubro;
+    private double precio;
+    private int id, cantidad;
     
     public Producto(GestionConexion conexion,String nombre) {
 	    super("Producto", conexion);

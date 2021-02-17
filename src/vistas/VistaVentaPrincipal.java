@@ -396,7 +396,7 @@ public class VistaVentaPrincipal extends javax.swing.JFrame {
         }//GEN-LAST:event_botonProveedoresActionPerformed
 
         private void botonInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInventarioActionPerformed
-		ControladorMenu.abrirABM(this);
+		ControladorMenu.abrirABMProductos(this);
         }//GEN-LAST:event_botonInventarioActionPerformed
 
         private void botonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesionActionPerformed

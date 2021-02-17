@@ -38,6 +38,7 @@ public class VistaInicial extends javax.swing.JDialog {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -78,6 +79,15 @@ public class VistaInicial extends javax.swing.JDialog {
             }
         });
         jMenu1.add(jMenuItem3);
+
+        jMenuItem7.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
+        jMenuItem7.setText("ABM Clientes");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem7);
 
         jMenuItem4.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
         jMenuItem4.setText("Actualizar Precios");
@@ -148,7 +158,7 @@ public class VistaInicial extends javax.swing.JDialog {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-      ControladorMenu.abrirABMDesdeInicio();
+      ControladorMenu.abrirABMProductosDesdeInicio();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -158,6 +168,10 @@ public class VistaInicial extends javax.swing.JDialog {
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
        ControladorMenu.cerrarSesion(this);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+       ControladorMenu.abrirABMClientesDesdeInicio();
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -171,5 +185,6 @@ public class VistaInicial extends javax.swing.JDialog {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     // End of variables declaration//GEN-END:variables
 }

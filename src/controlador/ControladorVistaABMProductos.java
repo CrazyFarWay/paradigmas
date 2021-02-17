@@ -11,7 +11,7 @@ import vistas.VistaABMProductos;
 public class ControladorVistaABMProductos {
     private static VistaABMProductos vista = new VistaABMProductos();
     private static ArrayList<String> filtros;
-	private static Producto producto;
+    private static Producto producto;
 
     public static void mostrar() {
         vista.setVisible(true);

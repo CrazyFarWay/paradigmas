@@ -19,6 +19,7 @@ public class ControladorVistaLogin {
     private static Producto producto;
     private static Proveedor proveedor;
     private static LineaDeVenta lineaDeVenta;
+    private static Cliente cliente;
     private static VistaInicial vistaInicial;
     private static ArrayList<Usuario> usuarios = new ArrayList<>();
 
@@ -40,9 +41,11 @@ public class ControladorVistaLogin {
 		    producto = new Producto(conexion, "");
 		    proveedor = new Proveedor(conexion, "");
 		    lineaDeVenta = new LineaDeVenta(conexion);
+                    cliente = new Cliente(conexion);
 			ControladorMenu.setProducto(producto);
 			ControladorMenu.setProveedor(proveedor);
 			ControladorMenu.setVenta(lineaDeVenta);
+                        ControladorMenu.setCliente(cliente);
                     //vistaInicial.getUsuario().setText(vistaLogin.getUsuario().getText().toString());
                     //System.out.println("Conecto con mensajeria satisfractoriamente ...");
                     //usuario = new Usuario(conexion, "");

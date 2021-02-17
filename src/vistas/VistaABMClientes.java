@@ -5,16 +5,20 @@
  */
 package vistas;
 
+import controlador.ControladorMenu;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import controlador.ControladorVistaABMClientes;
 /**
  *
  * @author ValeS
  */
-public class VistaAMBClientes extends javax.swing.JFrame {
+public class VistaABMClientes extends javax.swing.JFrame {
 
     /**
      * Creates new form VistaAMBClientes
      */
-    public VistaAMBClientes() {
+    public VistaABMClientes() {
         initComponents();
     }
 
@@ -28,7 +32,7 @@ public class VistaAMBClientes extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaClientes = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -56,8 +60,13 @@ public class VistaAMBClientes extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -65,7 +74,12 @@ public class VistaAMBClientes extends javax.swing.JFrame {
                 "ID", "Nombre", "DNI", "Tipo", "Teléfono", "Dirección"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tablaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaClientesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablaClientes);
 
         jLabel1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
         jLabel1.setText("A.B.M. CLIENTES");
@@ -91,20 +105,40 @@ public class VistaAMBClientes extends javax.swing.JFrame {
         botonAgregar.setBackground(new java.awt.Color(102, 153, 0));
         botonAgregar.setForeground(new java.awt.Color(240, 240, 240));
         botonAgregar.setText("Agregar");
+        botonAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarActionPerformed(evt);
+            }
+        });
 
         botonModificar.setBackground(new java.awt.Color(0, 51, 153));
         botonModificar.setForeground(new java.awt.Color(240, 240, 240));
         botonModificar.setText("Modificar");
+        botonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonModificarActionPerformed(evt);
+            }
+        });
 
         botonEliminar.setBackground(new java.awt.Color(153, 0, 51));
         botonEliminar.setForeground(new java.awt.Color(240, 240, 240));
         botonEliminar.setText("Eliminar");
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Menú");
         jMenu1.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
 
         jMenuItem1.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
         jMenuItem1.setText("Ventas");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
@@ -127,6 +161,11 @@ public class VistaAMBClientes extends javax.swing.JFrame {
 
         jMenuItem6.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
         jMenuItem6.setText("Actualización de Precios");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem6);
         jMenu1.add(jSeparator1);
 
@@ -143,6 +182,11 @@ public class VistaAMBClientes extends javax.swing.JFrame {
         jMenuItem5.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
         jMenuItem5.setForeground(new java.awt.Color(255, 255, 255));
         jMenuItem5.setText("Salir");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem5);
 
         jMenuBar1.add(jMenu1);
@@ -232,20 +276,114 @@ public class VistaAMBClientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
+        ControladorMenu.abrirProveedores(this);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
+        ControladorMenu.abrirABMProductos(this);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
+        ControladorMenu.cerrarSesion(this);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        ControladorMenu.abrirVentas(this);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        ControladorMenu.abrirActualizarPrecios(this);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        ControladorMenu.salirDelPrograma();
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
+        ControladorVistaABMClientes.seleccionarCliente();
+    }//GEN-LAST:event_tablaClientesMouseClicked
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        ControladorVistaABMClientes.limpiarTextFields();
+    }//GEN-LAST:event_formMouseClicked
+
+    private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
+        ControladorVistaABMClientes.agregarCliente();
+    }//GEN-LAST:event_botonAgregarActionPerformed
+
+    private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
+        ControladorVistaABMClientes.modificarCliente();
+    }//GEN-LAST:event_botonModificarActionPerformed
+
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+        ControladorVistaABMClientes.eliminarCliente();
+    }//GEN-LAST:event_botonEliminarActionPerformed
 
     /**
      * @param args the command line arguments
      */
+
+    public JTextField getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(JTextField direccion) {
+        this.direccion = direccion;
+    }
+
+    public JTextField getDni() {
+        return dni;
+    }
+
+    public void setDni(JTextField dni) {
+        this.dni = dni;
+    }
+
+    public JTextField getId() {
+        return id;
+    }
+
+    public void setId(JTextField id) {
+        this.id = id;
+    }
+
+    public JTable getTablaClientes() {
+        return tablaClientes;
+    }
+
+    public void setTablaClientes(JTable tablaClientes) {
+        this.tablaClientes = tablaClientes;
+    }
+
+
+    public JTextField getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(JTextField nombre) {
+        this.nombre = nombre;
+    }
+
+    public JTextField getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(JTextField telefono) {
+        this.telefono = telefono;
+    }
+
+    public JTextField getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public void setTipo(JTextField tipo) {
+        this.tipo = tipo;
+    }
+    
+    
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -272,8 +410,8 @@ public class VistaAMBClientes extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField nombre;
+    private javax.swing.JTable tablaClientes;
     private javax.swing.JTextField telefono;
     private javax.swing.JTextField tipo;
     // End of variables declaration//GEN-END:variables

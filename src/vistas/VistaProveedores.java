@@ -367,7 +367,7 @@ public class VistaProveedores extends javax.swing.JFrame {
         }//GEN-LAST:event_botonHacerPedidoActionPerformed
 
         private void botonInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInventarioActionPerformed
-		ControladorMenu.abrirABM(this);
+		ControladorMenu.abrirABMProductos(this);
         }//GEN-LAST:event_botonInventarioActionPerformed
 
         private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
