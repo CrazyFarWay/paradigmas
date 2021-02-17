@@ -39,28 +39,35 @@ public class Ticket extends Entidad {
 			this.tipo = 'X';
 		}
 
-		System.out.println("");
+		System.out.println("----------------------------------------------------");
 		System.out.println("NUMERO DE TICKET: " + id);
-		System.out.println("Fecha: ");
-		System.out.println(fecha);
+		System.out.println("Fecha: " + fecha.getHoy().toString());
+		System.out.println("Hora: " + fecha.getHora().toString());
 		System.out.println("TICKET FACTURA "+ tipo);
 
-		System.out.println("-----------------------------------");
+		System.out.println("----------------------------------------------------");
 
 		System.out.println("CLIENTE:" + venta.getCliente().getNombre());
 		System.out.println("DNI:" + venta.getCliente().getDni());
 		System.out.println("DIRECCION:" + venta.getCliente().getDireccion());
-		System.out.println("A TIPO:" + venta.getCliente().getTipo());
+		System.out.println("A " + venta.getCliente().getTipo());
 
-		System.out.println("-----------------------------------");
+		System.out.println("----------------------------------------------------");
 
-		System.out.println("ID \t Prod. \t\t Cantidad \t\t Precio x unidad \t\t Desc \t\t Subt");
+		System.out.println(" ID Prod.            Cant  Precio  Desct.   Subtotal");
 		for(LineaDeVenta lineaDeVenta: venta.getLineasDeVenta()) {
-			System.out.println(lineaDeVenta.getId() + " \t " + lineaDeVenta.getProducto().getNombre() + " \t " + lineaDeVenta.getCantidad() + " \t\t\t " +  lineaDeVenta.getProducto().getPrecio() + " \t\t\t " + lineaDeVenta.getDescuento() + " \t\t " + lineaDeVenta.getSubtotal());
+			//System.out.println(lineaDeVenta.getId() + " \t " + lineaDeVenta.getProducto().getNombre() + " \t " + lineaDeVenta.getCantidad() + " \t\t\t " +  lineaDeVenta.getProducto().getPrecio() + " \t\t\t " + lineaDeVenta.getDescuento() + " \t\t " + lineaDeVenta.getSubtotal());
+			System.out.printf(" %2d %-15s  %4d  %6.2f    %3d      %6.2f \n", lineaDeVenta.getId(), lineaDeVenta.getProducto().getNombre(), lineaDeVenta.getCantidad(), lineaDeVenta.getProducto().getPrecio(), lineaDeVenta.getDescuento(), lineaDeVenta.getSubtotal());
+			
+        //System.out.println("Id  Descripción      Precio  Cnt   Total");
+            //System.out.printf("%2d  %-15s  %6.2f   %2d  %6.2f \n", pro.getId(), pro.getDescripcion(), pro.getPrecio(), pro.getCantidad(), pro.getCantidad() * pro.getPrecio());
 		}
 
-		System.out.println("-----------------------------------");
-		System.out.println("Total de la venta = " + venta.calcularTotal());
+		System.out.println("----------------------------------------------------");
+        //System.out.printf("               Total -->          %6.2f \n", total);
+	System.out.printf("                        Total de la venta --> %6.2f \n", venta.calcularTotal());
+		//System.out.println("Total de la venta = " + venta.calcularTotal());
+		System.out.println("----------------------------------------------------");
 	}
 
 	    public void agregarTicket(Ticket ticket) {
