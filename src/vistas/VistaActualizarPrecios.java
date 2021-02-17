@@ -110,11 +110,17 @@ public class VistaActualizarPrecios extends javax.swing.JFrame {
                 jScrollPane1.setViewportView(tablaProductos);
                 if (tablaProductos.getColumnModel().getColumnCount() > 0) {
                         tablaProductos.getColumnModel().getColumn(0).setResizable(false);
+                        tablaProductos.getColumnModel().getColumn(0).setPreferredWidth(40);
                         tablaProductos.getColumnModel().getColumn(1).setResizable(false);
+                        tablaProductos.getColumnModel().getColumn(1).setPreferredWidth(100);
                         tablaProductos.getColumnModel().getColumn(2).setResizable(false);
+                        tablaProductos.getColumnModel().getColumn(2).setPreferredWidth(80);
                         tablaProductos.getColumnModel().getColumn(3).setResizable(false);
+                        tablaProductos.getColumnModel().getColumn(3).setPreferredWidth(80);
                         tablaProductos.getColumnModel().getColumn(4).setResizable(false);
+                        tablaProductos.getColumnModel().getColumn(4).setPreferredWidth(50);
                         tablaProductos.getColumnModel().getColumn(5).setResizable(false);
+                        tablaProductos.getColumnModel().getColumn(5).setPreferredWidth(50);
                 }
 
                 jLabel1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
@@ -215,7 +221,7 @@ public class VistaActualizarPrecios extends javax.swing.JFrame {
                 layout.setHorizontalGroup(
                         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addContainerGap(49, Short.MAX_VALUE)
+                                .addContainerGap(26, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
