@@ -86,9 +86,6 @@ public class ControladorVistaVenta {
                 subtotal
         );
 
-        System.out.println("LINEA A AGREGAR");
-        System.out.println(lineaDeVentaNueva);
-
         lineaDeVenta.agregarLineaDeVenta(lineaDeVentaNueva);
 
         mostrar();
@@ -137,13 +134,6 @@ public class ControladorVistaVenta {
         Cliente clienteAux = cliente.obtenerClientesPorId(vistaVentaPrincipal.getComboBoxCliente().getSelectedIndex()+1);
         ArrayList<LineaDeVenta> lineaDeVentaAux = lineaDeVenta.obtenerLineasDeVenta();
         
-        
-        
-       
-        System.out.println(clienteAux);
-        System.out.println(lineaDeVentaAux);
-        
-        
         vistaVentaConfirmada.setVisible(true);
         ventaNueva = new Venta(venta.getGestionConexion());
         
@@ -154,7 +144,6 @@ public class ControladorVistaVenta {
         String total, vuelto;
 
         ArrayList<LineaDeVenta> ventas = ventaNueva.getLineasDeVenta();
-        System.out.println(ventaNueva);
 
         DefaultTableModel modelo = (DefaultTableModel) vistaVentaConfirmada.getTablaVentas().getModel();
         modelo.setNumRows(0);
@@ -205,8 +194,6 @@ public class ControladorVistaVenta {
     public static void seleccionarLineaDeVenta() {
         int filaSeleccionada = vistaVentaPrincipal.getTablaLineasDeVenta().getSelectedRow();
 
-        System.out.println("FILA SELECCIONADA");
-        System.out.println(filaSeleccionada);
         DefaultTableModel modelo = (DefaultTableModel) vistaVentaPrincipal.getTablaLineasDeVenta().getModel();
 
         if (filaSeleccionada >= 0) {

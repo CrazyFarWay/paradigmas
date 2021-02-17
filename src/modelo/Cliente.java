@@ -162,17 +162,21 @@ cliente.getDni() + "', '" + cliente.getTipo() + "', '" + cliente.getTelefono() +
      public Cliente obtenerClientesPorId(int id) {
         ResultSet resultado;
         String query = "select * from clientes where id=" +id;
-        Cliente cliente = new Cliente(getGestionConexion());
+        Cliente cliente = null;
         
         try {
             resultado = getGestionConexion().getStatement().executeQuery(query);
-            
+
+	    if(resultado.next()) {
+            	cliente = new Cliente(getGestionConexion());
+
                 cliente.setId(resultado.getInt("id"));
                 cliente.setNombre(resultado.getString("nombre"));
                 cliente.setDni(resultado.getString("dni"));
                 cliente.setTipo(resultado.getString("tipo"));
                 cliente.setTelefono(resultado.getString("telefono"));
                 cliente.setDireccion(resultado.getString("direccion"));
+	    }
 
                 
         } catch (SQLException ex) {

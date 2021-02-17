@@ -39,33 +39,28 @@ public class Ticket extends Entidad {
 			this.tipo = 'X';
 		}
 
+		System.out.println("");
 		System.out.println("NUMERO DE TICKET: " + id);
 		System.out.println("Fecha: ");
 		System.out.println(fecha);
 		System.out.println("TICKET FACTURA "+ tipo);
 
-		System.out.println("");
 		System.out.println("-----------------------------------");
-		System.out.println("");
 
-		System.out.println("CLIENTE:");
+		System.out.println("CLIENTE:" + venta.getCliente().getNombre());
 		System.out.println("DNI:" + venta.getCliente().getDni());
 		System.out.println("DIRECCION:" + venta.getCliente().getDireccion());
 		System.out.println("A TIPO:" + venta.getCliente().getTipo());
 
-		System.out.println("");
 		System.out.println("-----------------------------------");
-		System.out.println("");
 
-		System.out.println("Can \t Desc \t\t\t\t Uni \t Subt");
+		System.out.println("ID \t Prod. \t\t Cantidad \t\t Precio x unidad \t\t Desc \t\t Subt");
 		for(LineaDeVenta lineaDeVenta: venta.getLineasDeVenta()) {
-			System.out.println(lineaDeVenta);
-			System.out.println("-----------------------------------");
-			System.out.println("");
+			System.out.println(lineaDeVenta.getId() + " \t " + lineaDeVenta.getProducto().getNombre() + " \t " + lineaDeVenta.getCantidad() + " \t\t\t " +  lineaDeVenta.getProducto().getPrecio() + " \t\t\t " + lineaDeVenta.getDescuento() + " \t\t " + lineaDeVenta.getSubtotal());
 		}
 
-		System.out.println("");
-		System.out.println("Total de la venta" + venta.calcularTotal());
+		System.out.println("-----------------------------------");
+		System.out.println("Total de la venta = " + venta.calcularTotal());
 	}
 
 	    public void agregarTicket(Ticket ticket) {

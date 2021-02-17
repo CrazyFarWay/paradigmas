@@ -49,21 +49,21 @@ public class ControladorMenu {
 
     public static void cerrarSesion(JFrame vista) {
         vista.dispose();
-        //     GestionConexion.cerrarSesion();
+        ControladorVistaLogin.cerrarSesion();
 
         try {
-            //       GestionConexion.inicializar();
+            ControladorVistaLogin.inicializar();
         } catch (Exception ex) {
             System.out.println(ex);
         }
     }
 
-    public static void cerrarSesion(JDialog vista) {
-        vista.dispose();
-        //     GestionConexion.cerrarSesion();
+    public static void cerrarSesionDesdeInicio(JDialog vista) {
+	vista.dispose();
+        ControladorVistaLogin.cerrarSesion();
 
         try {
-            //       GestionConexion.inicializar();
+            ControladorVistaLogin.inicializar();
         } catch (Exception ex) {
             System.out.println(ex);
         }

@@ -117,11 +117,6 @@ public class LineaDeVenta extends Entidad {
     public void agregarLineaDeVenta(LineaDeVenta lineaDeVenta) {
 	String query = "insert into lineasdeventa (idProducto, cantidad, descuento, subtotal) values (" + lineaDeVenta.getProducto().getId() + ", " + lineaDeVenta.getCantidad() + ", " + lineaDeVenta.getDescuento() + ", " + lineaDeVenta.getSubtotal() + ")";
 
-	    System.out.println(query);
-
-	    System.out.println("LINEA A AGREGAR DENTRO DEL METODO QUE ACCEDE A LA BASE DE DATOS");
-	    System.out.println(lineaDeVenta);
-
         try {
 		getGestionConexion().getStatement().executeUpdate(query);
         } catch (SQLException ex) {

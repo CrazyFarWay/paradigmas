@@ -6,6 +6,7 @@ import vistas.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import modelo.GestionConexion;
 import modelo.Usuario;
@@ -84,11 +85,17 @@ public class ControladorVistaLogin {
             vistaInicial.getLabelUsuarioContraseñaIncorrecto().setVisible(true);
         }
         
+    */
         public static void salir() {
             vistaInicial.setVisible(false);
             System.exit(0);
         }
-        
+
+	public static void cerrarSesion() {
+		conexion.cerrar();
+	}
+
+	/*
         public static String getUsuario() {
             return vistaInicial.getContraseña().getText();
         }
