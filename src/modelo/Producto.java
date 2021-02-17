@@ -265,10 +265,10 @@ producto.getMarca() + "', '" + producto.getRubro() + "', " + producto.getPrecio(
         return filtros;
     }
     
-    public void aumentarPrecios(String opcion, double cantidad) {
+    public void aumentarPrecios(String opcion, double cantidad, String rubro) {
         if (opcion.equals("PORCENTAJE")) {
 		Double porcentaje = cantidad/100;
-		String query = "update productos set precio = precio + precio * " + porcentaje;
+		String query = "update productos set precio = precio + precio * " + porcentaje + "where rubro = '" + rubro + "'";
             
             try {
 		getGestionConexion().getStatement().executeUpdate(query);
@@ -278,7 +278,7 @@ producto.getMarca() + "', '" + producto.getRubro() + "', " + producto.getPrecio(
             
         } else if (opcion.equals("VALOR")) {
 		Double valor = cantidad;
-		String query = "update productos set precio = precio + " + valor;
+		String query = "update productos set precio = precio + " + valor + "where rubro = '" + rubro + "'";
             
             try {
 		getGestionConexion().getStatement().executeUpdate(query);
@@ -288,10 +288,10 @@ producto.getMarca() + "', '" + producto.getRubro() + "', " + producto.getPrecio(
         }
     }
 
-    	public void disminuirPrecios(String opcion, double cantidad) {
+    	public void disminuirPrecios(String opcion, double cantidad, String rubro) {
 		if (opcion.equals("PORCENTAJE")) {
 			Double porcentaje = cantidad/100;
-			String query = "update productos set precio = precio - precio * " + porcentaje;
+			String query = "update productos set precio = precio - precio * " + porcentaje + "where rubro = '" + rubro + "'";
 		    
 		    try {
 			getGestionConexion().getStatement().executeUpdate(query);
@@ -301,7 +301,7 @@ producto.getMarca() + "', '" + producto.getRubro() + "', " + producto.getPrecio(
 		    
 		} else if (opcion.equals("VALOR")) {
 			Double valor = cantidad;
-			String query = "update productos set precio = precio - " + valor;
+			String query = "update productos set precio = precio - " + valor + "where rubro = '" + rubro + "'";
 		    
 		    try {
 			getGestionConexion().getStatement().executeUpdate(query);

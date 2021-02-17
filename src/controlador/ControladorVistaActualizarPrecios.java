@@ -72,12 +72,12 @@ public class ControladorVistaActualizarPrecios {
         if (modeloComboBox.getSelectedItem().equals("PORCENTAJE")) {
             double porcentaje = Double.parseDouble(vista.getCantidad().getText());
             
-            producto.aumentarPrecios("PORCENTAJE", porcentaje);
+            producto.aumentarPrecios("PORCENTAJE", porcentaje, vista.getFiltroRubro().getSelectedItem().toString());
             
         } else if (modeloComboBox.getSelectedItem().equals("VALOR")) {
             double valor = Double.parseDouble(vista.getCantidad().getText());
             
-            producto.aumentarPrecios("VALOR", valor);
+            producto.aumentarPrecios("VALOR", valor, vista.getFiltroRubro().getSelectedItem().toString());
         }
         
         mostrar();
@@ -89,12 +89,12 @@ public class ControladorVistaActualizarPrecios {
         if (modeloComboBox.getSelectedItem().equals("PORCENTAJE")) {
             double porcentaje = Double.parseDouble(vista.getCantidad().getText());
             
-            producto.disminuirPrecios("PORCENTAJE", porcentaje);
+            producto.disminuirPrecios("PORCENTAJE", porcentaje, vista.getFiltroRubro().getSelectedItem().toString());
             
         } else if (modeloComboBox.getSelectedItem().equals("VALOR")) {
             double valor = Double.parseDouble(vista.getCantidad().getText());
             
-            producto.disminuirPrecios("VALOR", valor);
+            producto.disminuirPrecios("VALOR", valor, vista.getFiltroRubro().getSelectedItem().toString());
         }
         
         mostrar();
