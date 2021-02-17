@@ -261,9 +261,10 @@ public class VistaVentaPrincipal extends javax.swing.JFrame {
                 layout.setHorizontalGroup(
                         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGap(0, 0, Short.MAX_VALUE)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                         .addComponent(jLabel5)
                                                         .addComponent(jLabel10)
@@ -274,7 +275,7 @@ public class VistaVentaPrincipal extends javax.swing.JFrame {
                                                         .addComponent(precioUnidad)
                                                         .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGap(0, 0, Short.MAX_VALUE)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                                 .addComponent(jLabel2)
@@ -282,7 +283,6 @@ public class VistaVentaPrincipal extends javax.swing.JFrame {
                                                                 .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                         .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGroup(layout.createSequentialGroup()
-                                                .addContainerGap()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(jLabel7)
                                                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -433,7 +433,6 @@ public class VistaVentaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_totalActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       ControladorVistaVenta.calculoTotal();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tablaLineasDeVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaLineasDeVentaMouseClicked
@@ -543,4 +542,12 @@ public class VistaVentaPrincipal extends javax.swing.JFrame {
         private javax.swing.JTextField total;
         private javax.swing.JTextField vuelto;
         // End of variables declaration//GEN-END:variables
+
+	public javax.swing.JTable getTablaLineasDeVenta() {
+		return tablaLineasDeVenta;
+	}
+
+	public void setTablaLineasDeVenta(javax.swing.JTable tablaLineasDeVenta) {
+		this.tablaLineasDeVenta = tablaLineasDeVenta;
+	}
 }

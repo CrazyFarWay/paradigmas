@@ -20,6 +20,19 @@ public class Venta extends Entidad {
 		super("Venta", conexion);
 	}
 
+	public Venta(Ticket ticket, ArrayList<LineaDeVenta> lineasDeVenta, Cliente cliente) {
+		this.ticket = ticket;
+		this.lineasDeVenta = lineasDeVenta;
+		this.cliente = cliente;
+	}
+
+	public Venta(GestionConexion conexion, Ticket ticket, ArrayList<LineaDeVenta> lineasDeVenta, Cliente cliente) {
+		super("Venta", conexion);
+		this.ticket = ticket;
+		this.lineasDeVenta = lineasDeVenta;
+		this.cliente = cliente;
+	}
+
 	public Venta() {
 	}
 

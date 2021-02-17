@@ -1,5 +1,6 @@
 package modelo;
 
+import controlador.ControladorVistaVenta;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -76,37 +77,28 @@ public class LineaDeVenta extends Entidad {
     }
     
     
-     public ArrayList<LineaDeVenta> obtenerLineasDeVenta() throws SQLException {
+     public ArrayList<LineaDeVenta> obtenerLineasDeVenta() {
         ArrayList<LineaDeVenta> lineasDeVenta = new ArrayList<>();
 	String query = "select * from lineasdeventa order by idProducto";
+	ResultSet resultado;
 
         try {
-	Statement statement = getGestionConexion().getConexion().createStatement();
-	ResultSet otroResultado;
-            otroResultado = statement.executeQuery(query);
+            resultado = getGestionConexion().getStatement().executeQuery(query);
 
-            while (otroResultado.next()) {
-		    System.out.println("ANTES DE ASIGNAR UNA VENTA");
+            while (resultado.next()) {
                 LineaDeVenta lineaDeVenta = new LineaDeVenta(
-			otroResultado.getInt("idProducto"),
-                        otroResultado.getInt("cantidad"),
-                        otroResultado.getInt("descuento"),
-                        otroResultado.getDouble("subtotal")
+			resultado.getInt("idProducto"),
+                        resultado.getInt("cantidad"),
+                        resultado.getInt("descuento"),
+                        resultado.getDouble("subtotal")
                         );
 
                 lineasDeVenta.add(lineaDeVenta);
-		    System.out.println(lineaDeVenta);
             }
 
 	    for (LineaDeVenta lineaDeVenta: lineasDeVenta) {
-		    System.out.println("ANTES DE ASIGNAR EL PRODUCTO");
-		Producto productoCorrespondiente = producto.obtenerProducto(lineaDeVenta.getId());
-		//Producto productoCorrespondiente = new Producto();
-		    System.out.println(productoCorrespondiente);
-
-		    System.out.println("DESPUES DE ASIGNAR EL PRODUCTO");
+		Producto productoCorrespondiente = ControladorVistaVenta.obtenerProductoDeTabla(lineaDeVenta.getId());
 		lineaDeVenta.setProducto(productoCorrespondiente);
-		    System.out.println(lineaDeVenta);
 	    }
 
         } catch (SQLException ex) {
@@ -123,7 +115,12 @@ public class LineaDeVenta extends Entidad {
 	}
 
     public void agregarLineaDeVenta(LineaDeVenta lineaDeVenta) {
-	String query = "insert into lineasdeventa (idProducto, cantidad, descuento, subtotal) values (" + producto.getId() + ", " + lineaDeVenta.getCantidad() + ", " + lineaDeVenta.getDescuento() + ", " + lineaDeVenta.getSubtotal() + ")";
+	String query = "insert into lineasdeventa (idProducto, cantidad, descuento, subtotal) values (" + lineaDeVenta.getProducto().getId() + ", " + lineaDeVenta.getCantidad() + ", " + lineaDeVenta.getDescuento() + ", " + lineaDeVenta.getSubtotal() + ")";
+
+	    System.out.println(query);
+
+	    System.out.println("LINEA A AGREGAR DENTRO DEL METODO QUE ACCEDE A LA BASE DE DATOS");
+	    System.out.println(lineaDeVenta);
 
         try {
 		getGestionConexion().getStatement().executeUpdate(query);

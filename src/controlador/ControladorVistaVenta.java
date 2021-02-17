@@ -1,6 +1,7 @@
 package controlador;
 
 import java.util.ArrayList;
+import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 //import modelo.BaseDeDatos;
 import modelo.*;
@@ -57,7 +58,7 @@ public class ControladorVistaVenta {
     public static void agregarLineaDeVenta() {
         int cantidad, descuento;
         double precioUnidad, subtotal, total = 0;
-	Producto productoEnLineaDeVenta = producto.obtenerProducto(Integer.parseInt(vistaVentaPrincipal.getId().getText()));
+	Producto productoEnLineaDeVenta = ControladorVistaVenta.obtenerProductoDeTabla(Integer.parseInt(vistaVentaPrincipal.getId().getText()));
         
         cantidad = Integer.parseInt(vistaVentaPrincipal.getCantidad().getText());
         precioUnidad = productoEnLineaDeVenta.getPrecio();
@@ -72,9 +73,14 @@ public class ControladorVistaVenta {
 		subtotal
         );
 	
+	    System.out.println("LINEA A AGREGAR");
+	    System.out.println(lineaDeVentaNueva);
+	
         lineaDeVenta.agregarLineaDeVenta(lineaDeVentaNueva); 
+
         
         mostrar();
+        ControladorVistaVenta.calculoTotal();
        
     }
 
@@ -99,6 +105,8 @@ public class ControladorVistaVenta {
     }
 
     public static void calculoVuelto() {
+	Venta ventaNueva = new Venta(
+	);
         double montoEntregado, total, vuelto = 0;
 
         montoEntregado = Double.parseDouble(vistaVentaPrincipal.getMontoEntregado().getText());
@@ -144,11 +152,16 @@ public class ControladorVistaVenta {
         vistaVentaConfirmada.getVuelto().setText(vuelto);
     }
 
-    public static void ConfirmarDeshacerVenta(){
+    public static void deshacerVenta(){
         lineaDeVenta.eliminarLineasDeVenta();
         vistaVentaConfirmada.setVisible(false);
         mostrar();
     }
+
+    public static void confirmarVenta() {
+	    
+    }
+
     
     public static void seleccionarProducto() {
         int filaSeleccionada = vistaVentaPrincipal.getTablaProductos().getSelectedRow();
@@ -163,8 +176,11 @@ public class ControladorVistaVenta {
     }
 
     public static void seleccionarLineaDeVenta() {
-        int filaSeleccionada = vistaVentaPrincipal.getTablaVentas().getSelectedRow();
-        DefaultTableModel modelo = (DefaultTableModel) vistaVentaPrincipal.getTablaVentas().getModel();
+        int filaSeleccionada = vistaVentaPrincipal.getTablaLineasDeVenta().getSelectedRow();
+
+	    System.out.println("FILA SELECCIONADA");
+	    System.out.println(filaSeleccionada);
+        DefaultTableModel modelo = (DefaultTableModel) vistaVentaPrincipal.getTablaLineasDeVenta().getModel();
 
         if (filaSeleccionada >= 0) {
             vistaVentaPrincipal.getId().setText(modelo.getValueAt(filaSeleccionada, 0).toString());
@@ -189,6 +205,40 @@ public class ControladorVistaVenta {
         vistaVentaPrincipal.getVuelto().setText("");
     }
 
+    public static Producto obtenerProductoDeTabla(int id) {
+	    ArrayList<Producto> productos = ControladorVistaVenta.obtenerProductosDeTabla();
+
+	    for(Producto productoEnFila: productos) {
+		    if(productoEnFila.getId() == id) {
+			    return productoEnFila;
+		    }
+	    }
+
+	    return (new Producto());
+    }
+
+    public static ArrayList<Producto> obtenerProductosDeTabla() {
+	    ArrayList<Producto> productos = new ArrayList<>();
+	    DefaultTableModel modelo = (DefaultTableModel) vistaVentaPrincipal.getTablaProductos().getModel();
+	    
+	    for(int i=0; i<modelo.getRowCount(); i++) {
+		    Producto productoDeFila;
+		    productoDeFila = new Producto(
+			    producto.getGestionConexion(),
+			    (Integer) modelo.getValueAt(i, 0),
+			    (String) modelo.getValueAt(i, 1),
+			    (String) modelo.getValueAt(i, 2),
+			    (String) modelo.getValueAt(i, 3),
+			    (Double) modelo.getValueAt(i, 4),
+			    (Integer) modelo.getValueAt(i, 5)
+		    );
+
+		    productos.add(productoDeFila);
+	    }
+
+	    return productos;
+    }
+
 	public static VistaVentaPrincipal getVistaVentaPrincipal() {
 		return vistaVentaPrincipal;
 	}
@@ -200,7 +250,7 @@ public class ControladorVistaVenta {
 	public static VistaVentaConfirmada getVistaVentaConfirmada() {
 		return vistaVentaConfirmada;
 	}
-
+ 
 	public static void setVistaVentaConfirmada(VistaVentaConfirmada aVistaVentaConfirmada) {
 		vistaVentaConfirmada = aVistaVentaConfirmada;
 	}
