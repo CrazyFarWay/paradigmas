@@ -93,6 +93,7 @@ public class ControladorVistaLogin {
 
 	public static void cerrarSesion() {
 		conexion.cerrar();
+                vistaInicial.dispose();
 	}
 
 	/*
