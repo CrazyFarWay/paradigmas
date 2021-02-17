@@ -158,5 +158,34 @@ cliente.getDni() + "', '" + cliente.getTipo() + "', '" + cliente.getTelefono() +
         }
         return clientes;
     }
+    
+     public Cliente obtenerClientesPorId(int id) {
+        ResultSet resultado;
+        String query = "select * from clientes where id=" +id;
+        Cliente cliente = new Cliente(getGestionConexion());
+        
+        try {
+            resultado = getGestionConexion().getStatement().executeQuery(query);
+            
+                cliente.setId(resultado.getInt("id"));
+                cliente.setNombre(resultado.getString("nombre"));
+                cliente.setDni(resultado.getString("dni"));
+                cliente.setTipo(resultado.getString("tipo"));
+                cliente.setTelefono(resultado.getString("telefono"));
+                cliente.setDireccion(resultado.getString("direccion"));
+
+                
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return cliente;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "nombre=" + nombre + ", telefono=" + telefono + ", direccion=" + direccion + ", tipo=" + tipo + ", dni=" + dni + ", id=" + id + '}';
+    }
+     
+     
 
 }

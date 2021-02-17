@@ -20,15 +20,13 @@ public class Venta extends Entidad {
 		super("Venta", conexion);
 	}
 
-	public Venta(Ticket ticket, ArrayList<LineaDeVenta> lineasDeVenta, Cliente cliente) {
-		this.ticket = ticket;
+	public Venta(GestionConexion conexion, ArrayList<LineaDeVenta> lineasDeVenta, Cliente cliente) {
+		super("Venta", conexion);
 		this.lineasDeVenta = lineasDeVenta;
 		this.cliente = cliente;
 	}
-
-	public Venta(GestionConexion conexion, Ticket ticket, ArrayList<LineaDeVenta> lineasDeVenta, Cliente cliente) {
-		super("Venta", conexion);
-		this.ticket = ticket;
+        
+        public Venta(ArrayList<LineaDeVenta> lineasDeVenta, Cliente cliente) {
 		this.lineasDeVenta = lineasDeVenta;
 		this.cliente = cliente;
 	}
@@ -45,6 +43,10 @@ public class Venta extends Entidad {
 
 		return total;
 	}
+        
+        public void imprimirDatosDeVenta(){
+            ticket.mostrar(this);
+        }
 
 	public Ticket getTicket() {
 		return ticket;
@@ -69,6 +71,11 @@ public class Venta extends Entidad {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+
+    @Override
+    public String toString() {
+        return "Venta{" + "ticket=" + ticket + ", lineasDeVenta=" + lineasDeVenta + ", cliente=" + cliente + '}';
+    }
 	
 	
 }

@@ -16,6 +16,7 @@ public class ControladorVistaVenta {
     private static Producto producto = new Producto();
     private static LineaDeVenta lineaDeVenta = new LineaDeVenta();
     private static Venta venta = new Venta();
+    private static Venta ventaNueva;
     private static Cliente cliente = new Cliente();
 
     public static void mostrar() {
@@ -116,9 +117,8 @@ public class ControladorVistaVenta {
     }
 
     public static void calculoVuelto() {
-        Venta ventaNueva = new Venta();
         double montoEntregado, total, vuelto = 0;
-
+        
         montoEntregado = Double.parseDouble(vistaVentaPrincipal.getMontoEntregado().getText());
         total = Double.parseDouble(vistaVentaPrincipal.getTotal().getText());
 
@@ -133,11 +133,28 @@ public class ControladorVistaVenta {
     }
 
     public static void mostrarConfirmacion() {
+        
+        Cliente clienteAux = cliente.obtenerClientesPorId(vistaVentaPrincipal.getComboBoxCliente().getSelectedIndex()+1);
+        ArrayList<LineaDeVenta> lineaDeVentaAux = lineaDeVenta.obtenerLineasDeVenta();
+        
+        
+        
+       
+        System.out.println(clienteAux);
+        System.out.println(lineaDeVentaAux);
+        
+        
         vistaVentaConfirmada.setVisible(true);
+        ventaNueva = new Venta(venta.getGestionConexion());
+        
+        ventaNueva.setLineasDeVenta(lineaDeVentaAux);
+        ventaNueva.setCliente(clienteAux);
+        
 
         String total, vuelto;
 
-        ArrayList<LineaDeVenta> ventas = lineaDeVenta.obtenerLineasDeVenta();
+        ArrayList<LineaDeVenta> ventas = ventaNueva.getLineasDeVenta();
+        System.out.println(ventaNueva);
 
         DefaultTableModel modelo = (DefaultTableModel) vistaVentaConfirmada.getTablaVentas().getModel();
         modelo.setNumRows(0);
@@ -169,6 +186,7 @@ public class ControladorVistaVenta {
     }
 
     public static void confirmarVenta() {
+        ventaNueva.imprimirDatosDeVenta();
 
     }
 
