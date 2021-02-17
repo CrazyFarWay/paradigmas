@@ -68,16 +68,42 @@ public class VistaVentaConfirmada extends javax.swing.JFrame {
                         new String [] {
                                 "ID", "Nombre", "Marca", "Cantidad", "Precio x Unidad", "Descuento", "Subtotal"
                         }
-                ));
+                ) {
+                        Class[] types = new Class [] {
+                                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+                        };
+                        boolean[] canEdit = new boolean [] {
+                                false, false, false, false, false, false, false
+                        };
+
+                        public Class getColumnClass(int columnIndex) {
+                                return types [columnIndex];
+                        }
+
+                        public boolean isCellEditable(int rowIndex, int columnIndex) {
+                                return canEdit [columnIndex];
+                        }
+                });
                 jScrollPane1.setViewportView(tablaLineasDeVenta);
+                if (tablaLineasDeVenta.getColumnModel().getColumnCount() > 0) {
+                        tablaLineasDeVenta.getColumnModel().getColumn(0).setResizable(false);
+                        tablaLineasDeVenta.getColumnModel().getColumn(1).setResizable(false);
+                        tablaLineasDeVenta.getColumnModel().getColumn(2).setResizable(false);
+                        tablaLineasDeVenta.getColumnModel().getColumn(3).setResizable(false);
+                        tablaLineasDeVenta.getColumnModel().getColumn(4).setResizable(false);
+                        tablaLineasDeVenta.getColumnModel().getColumn(5).setResizable(false);
+                        tablaLineasDeVenta.getColumnModel().getColumn(6).setResizable(false);
+                }
 
                 jLabel2.setText("Total");
 
                 jLabel3.setText("Vuelto");
 
                 total.setEditable(false);
+                total.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
                 vuelto.setEditable(false);
+                vuelto.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
                 jButton1.setText("Confirmar");
                 jButton1.addActionListener(new java.awt.event.ActionListener() {

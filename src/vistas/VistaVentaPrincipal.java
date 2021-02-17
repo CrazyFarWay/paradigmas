@@ -102,11 +102,14 @@ public class VistaVentaPrincipal extends javax.swing.JFrame {
                 jLabel5.setText("Cantidad");
 
                 id.setEditable(false);
+                id.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
                 id.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 idActionPerformed(evt);
                         }
                 });
+
+                cantidad.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
                 jLabel6.setText("Descuento");
 
@@ -134,13 +137,36 @@ public class VistaVentaPrincipal extends javax.swing.JFrame {
                         new String [] {
                                 "ID", "Nombre", "Marca", "Rubro", "Precio", "Cantidad"
                         }
-                ));
+                ) {
+                        Class[] types = new Class [] {
+                                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
+                        };
+                        boolean[] canEdit = new boolean [] {
+                                false, false, false, false, false, false
+                        };
+
+                        public Class getColumnClass(int columnIndex) {
+                                return types [columnIndex];
+                        }
+
+                        public boolean isCellEditable(int rowIndex, int columnIndex) {
+                                return canEdit [columnIndex];
+                        }
+                });
                 tablaProductos.addMouseListener(new java.awt.event.MouseAdapter() {
                         public void mouseClicked(java.awt.event.MouseEvent evt) {
                                 tablaProductosMouseClicked(evt);
                         }
                 });
                 jScrollPane1.setViewportView(tablaProductos);
+                if (tablaProductos.getColumnModel().getColumnCount() > 0) {
+                        tablaProductos.getColumnModel().getColumn(0).setResizable(false);
+                        tablaProductos.getColumnModel().getColumn(1).setResizable(false);
+                        tablaProductos.getColumnModel().getColumn(2).setResizable(false);
+                        tablaProductos.getColumnModel().getColumn(3).setResizable(false);
+                        tablaProductos.getColumnModel().getColumn(4).setResizable(false);
+                        tablaProductos.getColumnModel().getColumn(5).setResizable(false);
+                }
 
                 tablaLineasDeVenta.setModel(new javax.swing.table.DefaultTableModel(
                         new Object [][] {
@@ -149,13 +175,39 @@ public class VistaVentaPrincipal extends javax.swing.JFrame {
                         new String [] {
                                 "ID", "Nombre", "Marca", "Cantidad", "Precio x Unidad", "Descuento", "Subtotal"
                         }
-                ));
+                ) {
+                        Class[] types = new Class [] {
+                                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+                        };
+                        boolean[] canEdit = new boolean [] {
+                                false, false, false, false, false, false, false
+                        };
+
+                        public Class getColumnClass(int columnIndex) {
+                                return types [columnIndex];
+                        }
+
+                        public boolean isCellEditable(int rowIndex, int columnIndex) {
+                                return canEdit [columnIndex];
+                        }
+                });
                 tablaLineasDeVenta.addMouseListener(new java.awt.event.MouseAdapter() {
                         public void mouseClicked(java.awt.event.MouseEvent evt) {
                                 tablaLineasDeVentaMouseClicked(evt);
                         }
                 });
                 jScrollPane2.setViewportView(tablaLineasDeVenta);
+                if (tablaLineasDeVenta.getColumnModel().getColumnCount() > 0) {
+                        tablaLineasDeVenta.getColumnModel().getColumn(0).setResizable(false);
+                        tablaLineasDeVenta.getColumnModel().getColumn(1).setResizable(false);
+                        tablaLineasDeVenta.getColumnModel().getColumn(2).setResizable(false);
+                        tablaLineasDeVenta.getColumnModel().getColumn(3).setResizable(false);
+                        tablaLineasDeVenta.getColumnModel().getColumn(4).setResizable(false);
+                        tablaLineasDeVenta.getColumnModel().getColumn(5).setResizable(false);
+                        tablaLineasDeVenta.getColumnModel().getColumn(6).setResizable(false);
+                }
+
+                descuento.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
                 jLabel8.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
                 jLabel8.setText("PRODUCTOS");
@@ -163,6 +215,7 @@ public class VistaVentaPrincipal extends javax.swing.JFrame {
                 jLabel10.setText("Precio");
 
                 precioUnidad.setEditable(false);
+                precioUnidad.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
                 jLabel9.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
                 jLabel9.setText("Total");
@@ -174,6 +227,7 @@ public class VistaVentaPrincipal extends javax.swing.JFrame {
                 jLabel12.setText("Monto Entregado");
 
                 total.setEditable(false);
+                total.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
                 total.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 totalActionPerformed(evt);
@@ -181,6 +235,9 @@ public class VistaVentaPrincipal extends javax.swing.JFrame {
                 });
 
                 vuelto.setEditable(false);
+                vuelto.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+                montoEntregado.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
                 jButton2.setText("Calcular Vuelto");
                 jButton2.addActionListener(new java.awt.event.ActionListener() {
