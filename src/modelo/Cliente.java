@@ -95,8 +95,8 @@ public class Cliente extends Entidad {
     public void agregarCliente(Cliente cliente) {
         String query;
 
-        query = "insert into clientes (nombre, dni, tipo, telefono, direccion) values ('" + cliente.getNombre() + "', '"
-                + cliente.getDni() + "', '" + cliente.getTipo() + "', " + cliente.getTelefono() + ", " + cliente.getDireccion() + ")";
+        query = "insert into clientes (nombre, dni, tipo, telefono, direccion) values ('"+ cliente.getNombre() + "', '" +
+cliente.getDni() + "', '" + cliente.getTipo() + "', '" + cliente.getTelefono() + "', '" + cliente.getDireccion() + "')";
 
         try {
             getGestionConexion().getStatement().executeUpdate(query);
@@ -121,8 +121,7 @@ public class Cliente extends Entidad {
     public void modificarCliente(Cliente cliente) {
         String query;
 
-        query = "update clientes set nombre = '" + cliente.getNombre() + "', dni = '" + cliente.getDni() + "', tipo = '" + cliente.getTipo()
-                + "', telefono = '" + cliente.getTelefono() + "', direccion = '" + cliente.getDireccion() + "' where id = '" + cliente.getId() + "'";
+        query = "update clientes set nombre = '" + cliente.getNombre() + "', dni = '" + cliente.getDni() + "', tipo = '" + cliente.getTipo() + "', telefono = '" + cliente.getTelefono() + "', direccion = '" + cliente.getDireccion() + "' where id = '" + cliente.getId() + "'";
 
         try {
             getGestionConexion().getStatement().executeUpdate(query);
