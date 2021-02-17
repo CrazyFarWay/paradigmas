@@ -121,7 +121,7 @@ cliente.getDni() + "', '" + cliente.getTipo() + "', '" + cliente.getTelefono() +
     public void modificarCliente(Cliente cliente) {
         String query;
 
-        query = "update clientes set nombre = '" + cliente.getNombre() + "', dni = '" + cliente.getDni() + "', tipo = '" + cliente.getTipo() + "', telefono = '" + cliente.getTelefono() + "', direccion = '" + cliente.getDireccion() + "' where id = '" + cliente.getId() + "'";
+        query = "update clientes set nombre = '" + cliente.getNombre() + "', dni = '" + cliente.getDni() + "', tipo = '" + cliente.getTipo() + "', telefono = '" + cliente.getTelefono() + "', direccion = '" + cliente.getDireccion() + "' where id = " + cliente.getId();
 
         try {
             getGestionConexion().getStatement().executeUpdate(query);

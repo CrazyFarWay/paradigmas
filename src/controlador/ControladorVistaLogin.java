@@ -4,17 +4,14 @@ import java.util.ArrayList;
 import modelo.*;
 import vistas.*;
 
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import modelo.GestionConexion;
 import modelo.Usuario;
 
-
-
 public class ControladorVistaLogin {
-	
+
     private static GestionConexion conexion;
     private static Producto producto;
     private static Proveedor proveedor;
@@ -36,37 +33,31 @@ public class ControladorVistaLogin {
             conexion = new GestionConexion("MYSQL", "localhost", "drugstore", vistaLogin.getUsuario().getText(), vistaLogin.getContraseña().getText());
             if (vistaLogin.getReturnStatus() == 1) {
                 try {
-                    vistaLogin.setVisible(false);
                     conexion.conectar();
-		    producto = new Producto(conexion, "");
-		    proveedor = new Proveedor(conexion, "");
-		    lineaDeVenta = new LineaDeVenta(conexion);
+                    producto = new Producto(conexion, "");
+                    proveedor = new Proveedor(conexion, "");
+                    lineaDeVenta = new LineaDeVenta(conexion);
                     cliente = new Cliente(conexion);
-			ControladorMenu.setProducto(producto);
-			ControladorMenu.setProveedor(proveedor);
-			ControladorMenu.setVenta(lineaDeVenta);
-                        ControladorMenu.setCliente(cliente);
-                    //vistaInicial.getUsuario().setText(vistaLogin.getUsuario().getText().toString());
-                    //System.out.println("Conecto con mensajeria satisfractoriamente ...");
-                    //usuario = new Usuario(conexion, "");
-                    //vistaInicial.getUsuario().setText(usuario.buscar(vistaLogin.getUsuario().getText()));
-                    //usuario.setNombre(vistaLogin.getUsuario().getText());
-                    //usuario.setClave(vistaLogin.getClave().getText());
-                    //usuario.enLinea();
-                    //muestraUsuarios(vistaInicial);
+                    ControladorMenu.setProducto(producto);
+                    ControladorMenu.setProveedor(proveedor);
+                    ControladorMenu.setVenta(lineaDeVenta);
+                    ControladorMenu.setCliente(cliente);
+                    vistaLogin.setVisible(false);
+
                     break;
                 } catch (SQLException | ClassNotFoundException e) {
-                    //vistaInicial.getUsuario().setText("Acceso Incorrecto");
-                    //int n = JOptionPane.showConfirmDialog(vistaInicial, "Desea reingresar datos ?", "Sin Acceso al Sistema", JOptionPane.YES_NO_OPTION);
-                    /*if (n == JOptionPane.YES_OPTION) {
+                    System.out.println("ERROR EN CONECTAR");
+                   // vistaLogin.setReturnStatus(0);
+                    
+                    int n = JOptionPane.showConfirmDialog(vistaInicial, "Desea reingresar datos ?", "Sin Acceso al Sistema", JOptionPane.YES_NO_OPTION);
+                    if (n == JOptionPane.YES_OPTION) {
                         vistaLogin.setVisible(true);
                     } else {
                         System.exit(0);
-                    }*/
-		    System.out.println("ERROR EN CONECTAR");
+                    }
                 }
             } else {
-                ControladorVistaLogin.salir(vistaInicial);
+                //ControladorVistaLogin.salir(vistaInicial);
             }
         }
     }
@@ -76,13 +67,7 @@ public class ControladorVistaLogin {
         //usuario.desconecta();
     }
 
-
-   
-    
-    
-    
-    
-	/*
+    /*
 	public static void mostrar(){
 		vistaInicial.getUsuario().setText("");
 		vistaInicial.getContraseña().setText("");

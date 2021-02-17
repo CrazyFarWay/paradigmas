@@ -36,6 +36,10 @@ public class VistaLogin extends javax.swing.JDialog {
     public JPasswordField getContraseña() {
 		return contraseña;
     }
+
+    public void setReturnStatus(int returnStatus) {
+        this.returnStatus = returnStatus;
+    }
     
     
     public VistaLogin(java.awt.Dialog parent, boolean modal) {
@@ -63,7 +67,6 @@ public class VistaLogin extends javax.swing.JDialog {
         usuario = new javax.swing.JTextField();
         contraseña = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
-        labelUsuarioContraseñaIncorrecto = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -114,10 +117,6 @@ public class VistaLogin extends javax.swing.JDialog {
             }
         });
 
-        labelUsuarioContraseñaIncorrecto.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
-        labelUsuarioContraseñaIncorrecto.setForeground(new java.awt.Color(153, 0, 0));
-        labelUsuarioContraseñaIncorrecto.setText("Usuario o Contraseña incorrectos");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,12 +133,10 @@ public class VistaLogin extends javax.swing.JDialog {
                             .addComponent(contraseña)
                             .addComponent(usuario)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(labelUsuarioContraseñaIncorrecto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1)))
+                        .addGap(0, 247, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -156,9 +153,7 @@ public class VistaLogin extends javax.swing.JDialog {
                     .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(labelUsuarioContraseñaIncorrecto))
+                .addComponent(jButton1)
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -191,15 +186,6 @@ public class VistaLogin extends javax.swing.JDialog {
 		this.contraseña = contraseña;
 	}
 
-	public JLabel getLabelUsuarioContraseñaIncorrecto() {
-		return labelUsuarioContraseñaIncorrecto;
-	}
-
-	public void setLabelUsuarioContraseñaIncorrecto(JLabel labelUsuarioContraseñaIncorrecto) {
-		this.labelUsuarioContraseñaIncorrecto = labelUsuarioContraseñaIncorrecto;
-	}
-
-	
 
 	public void setUsuario(JTextField usuario) {
 		this.usuario = usuario;
@@ -217,7 +203,6 @@ public class VistaLogin extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel labelUsuarioContraseñaIncorrecto;
     private javax.swing.JTextField usuario;
     // End of variables declaration//GEN-END:variables
 }

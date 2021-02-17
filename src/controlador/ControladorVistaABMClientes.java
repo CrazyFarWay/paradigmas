@@ -54,6 +54,7 @@ public class ControladorVistaABMClientes {
 
     public static void modificarCliente() {
         Cliente clienteNuevo = new Cliente(
+                Integer.parseInt(vista.getId().getText()),
                 vista.getNombre().getText(),
                 vista.getDni().getText(),
                 vista.getTipo().getText().toUpperCase(),
