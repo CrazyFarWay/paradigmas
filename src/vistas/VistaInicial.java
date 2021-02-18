@@ -20,7 +20,7 @@ public class VistaInicial extends javax.swing.JDialog {
      */
     public VistaInicial() throws Exception {
         initComponents();
-       // setLocation(300, 0);
+        setLocation(300, 200);
     }
 
     /**
